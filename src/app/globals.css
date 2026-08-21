@@ -1,0 +1,324 @@
+@import "tailwindcss";
+
+/* ─────────────────────────────────────────────────────────────────────────────
+   Palette: instrument panel, not SaaS dashboard.
+
+   A deep slate-teal ground rather than black, bone-coloured type rather than
+   blue-white, and three accents that each carry one fixed meaning:
+
+     signal    amber      live, connected, the action to take
+     oxide     burnt red  the broken state, the "before", the disagreement
+     verdigris muted green  resolved, reconciled, the outcome
+
+   Never swap those roles — the colour is doing work, not decoration.
+   ───────────────────────────────────────────────────────────────────────── */
+
+@theme {
+  --color-ground: #14101f;
+  --color-ground-2: #1b1629;
+  --color-panel: #221c33;
+  --color-panel-2: #2b2340;
+  --color-pit: #0d0a15;
+
+  --color-bone: #ece9f2;
+  --color-bone-2: #c3bbd4;
+  --color-bone-3: #9d93b0;
+
+  --color-paper: #eae6f0;
+  --color-paper-2: #d8d2e2;
+  --color-graphite: #17121f;
+
+  --color-rule: rgba(236, 233, 242, 0.13);
+  --color-rule-2: rgba(236, 233, 242, 0.26);
+  --color-rule-ink: rgba(23, 18, 31, 0.16);
+
+  --color-signal: #9b8cff;
+  --color-signal-hi: #b3a6ff;
+  --color-signal-soft: rgba(155, 140, 255, 0.13);
+  --color-oxide: #e88a5e;
+  --color-verdigris: #6fd3ae;
+
+  --font-display: var(--font-archivo), ui-sans-serif, system-ui, sans-serif;
+  --font-sans: var(--font-instrument), ui-sans-serif, system-ui, sans-serif;
+  --font-mono: var(--font-jetbrains), ui-monospace, SFMono-Regular, Menlo, monospace;
+}
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+    scroll-padding-top: 88px;
+    -webkit-text-size-adjust: 100%;
+  }
+
+  body {
+    background-color: var(--color-ground);
+    color: var(--color-bone);
+    font-family: var(--font-sans);
+    font-size: 17.5px;
+    line-height: 1.68;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    overflow-x: clip;
+  }
+
+  h1,
+  h2,
+  h3,
+  h4 {
+    font-family: var(--font-display);
+    font-variation-settings: "wdth" 112;
+    font-weight: 600;
+    letter-spacing: -0.022em;
+    line-height: 1.02;
+    text-wrap: balance;
+  }
+
+  p {
+    text-wrap: pretty;
+  }
+
+  ::selection {
+    background-color: var(--color-signal);
+    color: var(--color-pit);
+  }
+
+  :focus-visible {
+    outline: 2px solid var(--color-signal);
+    outline-offset: 3px;
+  }
+
+  svg {
+    max-width: 100%;
+  }
+}
+
+@layer components {
+  /* Measure ---------------------------------------------------------- */
+  .shell {
+    width: 100%;
+    max-width: 1320px;
+    margin-inline: auto;
+    padding-inline: 20px;
+  }
+
+  @media (min-width: 768px) {
+    .shell {
+      padding-inline: 36px;
+    }
+  }
+
+  @media (min-width: 1280px) {
+    .shell {
+      padding-inline: 48px;
+    }
+  }
+
+  .section {
+    padding-block: 80px;
+  }
+
+  @media (min-width: 768px) {
+    .section {
+      padding-block: 112px;
+    }
+  }
+
+  @media (min-width: 1024px) {
+    .section {
+      padding-block: 144px;
+    }
+  }
+
+  .prose-w {
+    max-width: 64ch;
+  }
+
+  /* Type ------------------------------------------------------------- */
+  .display-2 {
+    font-size: clamp(2.05rem, 4.6vw, 3.5rem);
+  }
+
+  .display-3 {
+    font-size: clamp(1.35rem, 2.1vw, 1.7rem);
+    line-height: 1.16;
+  }
+
+  .lead {
+    font-size: clamp(1.125rem, 1.4vw, 1.28rem);
+    line-height: 1.62;
+    color: var(--color-bone-2);
+  }
+
+  /* Running copy inside sections — one size, set once, instead of a dozen
+     slightly different pixel values scattered through the components. */
+  .copy {
+    font-size: 16.5px;
+    line-height: 1.68;
+    color: var(--color-bone-2);
+  }
+
+  .copy-sm {
+    font-size: 15.5px;
+    line-height: 1.62;
+    color: var(--color-bone-2);
+  }
+
+  /* One mono system for every label, figure and tag on the page. */
+  .tag {
+    font-family: var(--font-mono);
+    font-size: 12px;
+    font-weight: 500;
+    line-height: 1.35;
+    letter-spacing: 0.085em;
+    text-transform: uppercase;
+    color: var(--color-bone-3);
+  }
+
+  /* Section markers are bracketed like a schematic reference, and each one
+     carries its own index — the page reads as a numbered document. */
+  .marker {
+    font-family: var(--font-mono);
+    font-size: 12px;
+    font-weight: 500;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--color-signal);
+  }
+
+  .marker::before {
+    content: "[ ";
+    color: var(--color-bone-3);
+  }
+
+  .marker::after {
+    content: " ]";
+    color: var(--color-bone-3);
+  }
+
+  /* Surfaces --------------------------------------------------------- */
+  /* Data surfaces are square. Only controls get a radius. */
+  .panel {
+    background-color: var(--color-panel);
+    border: 1px solid var(--color-rule);
+  }
+
+  .rule-t {
+    border-top: 1px solid var(--color-rule);
+  }
+
+  .rule-b {
+    border-bottom: 1px solid var(--color-rule);
+  }
+
+  /* Controls --------------------------------------------------------- */
+  .btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 9px;
+    height: 50px;
+    padding-inline: 24px;
+    border-radius: 3px;
+    font-family: var(--font-mono);
+    font-size: 13px;
+    font-weight: 500;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    white-space: nowrap;
+    transition:
+      background-color 0.18s ease,
+      border-color 0.18s ease,
+      color 0.18s ease;
+  }
+
+  .btn-primary {
+    background-color: var(--color-signal);
+    color: var(--color-pit);
+  }
+
+  .btn-primary:hover {
+    background-color: var(--color-signal-hi);
+  }
+
+  .btn-secondary {
+    border: 1px solid var(--color-rule-2);
+    color: var(--color-bone);
+  }
+
+  .btn-secondary:hover {
+    border-color: var(--color-signal);
+    color: var(--color-signal);
+  }
+
+  .btn-sm {
+    height: 38px;
+    padding-inline: 15px;
+    font-size: 11.5px;
+  }
+
+  .chip {
+    display: inline-flex;
+    align-items: center;
+    height: 28px;
+    padding-inline: 10px;
+    border: 1px solid var(--color-rule);
+    font-family: var(--font-mono);
+    font-size: 11.5px;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    color: var(--color-bone-2);
+  }
+
+  /* Inverted section ------------------------------------------------- */
+  /* One printed sheet in the middle of a dark page. Children inherit the
+     swapped tokens, so nothing needs a light-mode variant of its own. */
+  .on-paper {
+    --color-ground: var(--color-paper);
+    --color-panel: rgba(23, 18, 31, 0.04);
+    --color-bone: var(--color-graphite);
+    --color-bone-2: #443a54;
+    --color-bone-3: #5c5170;
+    --color-rule: var(--color-rule-ink);
+    --color-rule-2: rgba(23, 18, 31, 0.32);
+    /* Darker on paper than on the dark ground: the periwinkle that reads at
+       6.8:1 on #14101f drops well below AA here, which fails at label sizes. */
+    --color-signal: #5b3fb8;
+    --color-verdigris: #1f6b52;
+    --color-oxide: #a8471c;
+
+    background-color: var(--color-paper);
+    color: var(--color-graphite);
+  }
+
+  .on-paper .btn-primary {
+    background-color: var(--color-graphite);
+    color: var(--color-paper);
+  }
+}
+
+/* Motion ------------------------------------------------------------- */
+@keyframes dash-flow {
+  to {
+    stroke-dashoffset: -240;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+  }
+
+  /* Scroll reveals write inline styles; beat them so nothing stays hidden. */
+  .reveal {
+    opacity: 1 !important;
+    transform: none !important;
+  }
+}
