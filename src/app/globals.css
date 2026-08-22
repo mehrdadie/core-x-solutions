@@ -14,11 +14,11 @@
    ───────────────────────────────────────────────────────────────────────── */
 
 @theme {
-  --color-ground: #1a1a1a;
-  --color-ground-2: #242424;
-  --color-panel: #222222;
-  --color-panel-2: #2a2a2a;
-  --color-pit: #0d0d0d;
+  --color-ground: #0a0a0a;
+  --color-ground-2: #151515;
+  --color-panel: #131313;
+  --color-panel-2: #1b1b1b;
+  --color-pit: #000000;
 
   --color-bone: #f0efed;
   --color-bone-2: #c2c0bb;
@@ -281,7 +281,7 @@
     --color-rule: var(--color-rule-ink);
     --color-rule-2: rgba(26, 26, 26, 0.32);
     /* Darker on paper than on the dark ground: the gold that reads at 9.3:1
-       on #1a1a1a manages barely 1.6:1 here, which is illegible at any size. */
+       on #0a0a0a manages barely 1.6:1 here, which is illegible at any size. */
     --color-signal: #8a5b06;
     --color-verdigris: #1f6b52;
     --color-oxide: #a8461c;
