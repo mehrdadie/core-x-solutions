@@ -1,19 +1,33 @@
+import Image from "next/image"
 import { about, profile } from "@/content/profile"
 import Reveal from "@/components/ui/Reveal"
 
 /**
- * A consultancy has no face to put here, so the slot carries the mark instead.
- * Same 4:5 frame the layout already reserves, so nothing shifts.
+ * PLACEHOLDER. These are not Core-X people — the photograph is stock, standing
+ * in until there is a real one. It carries the same weight on the page as a
+ * genuine team photo would, which is exactly why it cannot ship to production
+ * as-is: a visitor reads this slot as "this is who you would be working with".
+ * Same argument as the testimonials in `profile.ts`, recorded in CLAUDE.md.
+ *
+ * The frame follows the source's 5:4 rather than the 4:5 the slot used to
+ * reserve, because cropping a seven-person group to portrait cuts the two
+ * people at the edges out of the photograph entirely.
+ *
+ * next/image here rather than the plain <img> used for the logo and post
+ * covers: this is a local raster, so there is no remote host to allow-list and
+ * no fixed-aspect vector to preserve — the optimizer's job (AVIF/WebP,
+ * per-breakpoint resizing) is worth having.
  */
-function Mark() {
+function CompanyImage() {
   return (
-    <div className="relative aspect-[4/5] w-full overflow-hidden bg-paper-2 text-graphite">
-      <div className="absolute inset-0 flex flex-col justify-between p-5">
-        <span className="tag text-graphite/55">{profile.shortRole}</span>
-        <p className="font-display text-[4.5rem] leading-[0.8] font-semibold tracking-[-0.05em] text-graphite/80">
-          CX
-        </p>
-      </div>
+    <div className="relative aspect-[5/4] w-full overflow-hidden bg-paper-2">
+      <Image
+        src="/team-placeholder.webp"
+        alt="Seven colleagues gathered on a rooftop terrace, four standing behind three seated."
+        fill
+        sizes="(min-width: 1024px) 420px, 100vw"
+        className="object-cover"
+      />
     </div>
   )
 }
@@ -83,7 +97,7 @@ export default function About() {
 
           <Reveal delay={0.1}>
             <div className="lg:sticky lg:top-24">
-              <Mark />
+              <CompanyImage />
               <p className="tag mt-4">{profile.location}</p>
             </div>
           </Reveal>

@@ -124,6 +124,10 @@ broken deploy.
 ## Open items
 
 - Real testimonials, then re-add `<Testimonials />` to the page
+- The About slot carries a stock team photo (`public/team-placeholder.webp`).
+  Those are not Core-X people. Same problem as the testimonials: a visitor reads
+  the slot as "this is who you would be working with". Replace with a real photo,
+  or restore the `CX` mark, before this reaches `main`
 - `www.core-x.solutions` certificate — verify it issued; set apex as primary domain
 - Blog images still load from the personal site's Supabase storage bucket
 - `profile.linkedin` is null until a company LinkedIn page exists; every use site
