@@ -54,7 +54,7 @@ const triage = [
   ["Two systems, two numbers, neither agrees", "/services/crm-data-quality", "CRM data quality"],
   ["The forecast is a guess wearing a number", "/services/sales-forecasting", "Sales forecasting"],
   ["Nobody can say which channel paid for itself", "/services/revenue-attribution-models", "Attribution models"],
-  ["Renewals surprise us a fortnight out", "/services/renewal-automation", "Renewal automation"],
+  ["Renewals surprise us a fortnight out", "/services/account-health-scoring", "Account health scoring"],
 ] as const
 
 export default function ServicesIndexPage() {
