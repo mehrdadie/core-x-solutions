@@ -17,6 +17,7 @@ export const profile = {
 
 /** Anchors are rooted so the nav resolves from the sub-pages too. */
 export const nav = [
+  { label: "Services", href: "/services/revenue-operations-consultant" },
   { label: "Case studies", href: "/case-studies" },
   { label: "Capabilities", href: "/#capabilities" },
   { label: "Approach", href: "/#approach" },
