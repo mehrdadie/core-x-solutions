@@ -4,10 +4,12 @@ import { profile } from "@/content/profile"
 import Header from "@/components/sections/Header"
 import Footer from "@/components/sections/Footer"
 import FinalCta from "@/components/sections/FinalCta"
+import RelatedServices from "@/components/services/RelatedServices"
 import Reveal from "@/components/ui/Reveal"
 
 const title = "Upsell & Cross-Sell Scoring | Expand Account Revenue"
-const description = "Score customers for upsell and cross-sell opportunities. Identify expansion-ready accounts. Grow revenue from existing customers."
+const description =
+  "Score customers for upsell and cross-sell opportunities. Identify expansion-ready accounts. Grow revenue from existing customers."
 
 export const metadata: Metadata = {
   title,
@@ -35,8 +37,8 @@ export default function UpsellCrossSellScoringPage() {
             <Reveal>
               <div className="flex flex-wrap items-baseline justify-between gap-x-8 gap-y-2 border-b border-rule pb-5">
                 <p className="marker">Guide</p>
-                <Link href="/" className="tag transition-colors hover:text-signal">
-                  ← Back to home
+                <Link href="/services" className="tag transition-colors hover:text-signal">
+                  ← All services
                 </Link>
               </div>
             </Reveal>
@@ -49,73 +51,92 @@ export default function UpsellCrossSellScoringPage() {
 
             <Reveal delay={0.1}>
               <p className="lead mt-8">
-                Growing revenue from existing customers is 5x cheaper than new customer acquisition. Score every customer for expansion opportunities.
+                Growing revenue from existing customers is 5x cheaper than new customer acquisition.
+                Score every customer for expansion opportunities.
               </p>
             </Reveal>
           </div>
         </section>
 
         <section className="on-paper section">
-          <div className="shell space-y-16 md:space-y-20">
+          <div className="shell border-t border-rule-2">
             <Reveal>
-              <article>
-                <h2 className="font-display text-[1.8rem] md:text-[2.2rem] leading-[1.1] font-semibold mb-6">
+              <article className="grid gap-x-14 gap-y-6 border-b border-rule py-12 md:grid-cols-[minmax(0,0.36fr)_minmax(0,1fr)] md:py-16">
+                <h2 className="font-display text-[clamp(1.5rem,2.9vw,2.05rem)] leading-none font-semibold tracking-[-0.03em] text-bone md:pt-1">
                   Expansion Signals
                 </h2>
-                <div className="space-y-4 text-[15px] leading-[1.65] text-bone-2">
-                  <p><strong>High engagement:</strong> Heavy product usage. Frequent logins. All features adopted.</p>
-                  <p><strong>Seat expansion:</strong> More users added to account. Team growing.</p>
-                  <p><strong>High satisfaction:</strong> NPS score 9-10. Low support tickets.</p>
-                  <p><strong>Revenue trajectory:</strong> Billing growing year-over-year. Willing to spend.</p>
-                  <p><strong>Use case expansion:</strong> Using product in new departments or use cases.</p>
+
+                <div className="min-w-0">
+                  <div className="copy space-y-4 [&_strong]:font-semibold [&_strong]:text-bone">
+                    <p>
+                      <strong>High engagement:</strong> Heavy product usage. Frequent logins. All
+                      features adopted.
+                    </p>
+                    <p>
+                      <strong>Seat expansion:</strong> More users added to account. Team growing.
+                    </p>
+                    <p>
+                      <strong>High satisfaction:</strong> NPS score 9-10. Low support tickets.
+                    </p>
+                    <p>
+                      <strong>Revenue trajectory:</strong> Billing growing year-over-year. Willing
+                      to spend.
+                    </p>
+                    <p>
+                      <strong>Use case expansion:</strong> Using product in new departments or use
+                      cases.
+                    </p>
+                  </div>
                 </div>
               </article>
             </Reveal>
 
             <Reveal delay={0.05}>
-              <article>
-                <h2 className="font-display text-[1.8rem] md:text-[2.2rem] leading-[1.1] font-semibold mb-6">
+              <article className="grid gap-x-14 gap-y-6 border-b border-rule py-12 md:grid-cols-[minmax(0,0.36fr)_minmax(0,1fr)] md:py-16">
+                <h2 className="font-display text-[clamp(1.5rem,2.9vw,2.05rem)] leading-none font-semibold tracking-[-0.03em] text-bone md:pt-1">
                   Upsell vs Cross-Sell Strategy
                 </h2>
-                <div className="space-y-6">
-                  {[
-                    {
-                      type: "Upsell",
-                      desc: "Upgrade existing product to higher tier. More features, more volume, more users.",
-                      example: "Starter → Professional plan",
-                    },
-                    {
-                      type: "Cross-Sell",
-                      desc: "Sell complementary product to existing customer.",
-                      example: "CRM customer buys email marketing add-on",
-                    },
-                  ].map((item) => (
-                    <div key={item.type} className="border-l-2 border-signal pl-6">
-                      <h3 className="font-semibold text-[1.05rem] mb-2">{item.type}</h3>
-                      <p className="text-[15px] text-bone-2 mb-1">{item.desc}</p>
-                      <p className="text-[14px] text-bone-2 italic">{item.example}</p>
-                    </div>
-                  ))}
+
+                <div className="min-w-0">
+                  <div className="space-y-6">
+                    {[
+                      {
+                        type: "Upsell",
+                        desc: "Upgrade existing product to higher tier. More features, more volume, more users.",
+                        example: "Starter → Professional plan",
+                      },
+                      {
+                        type: "Cross-Sell",
+                        desc: "Sell complementary product to existing customer.",
+                        example: "CRM customer buys email marketing add-on",
+                      },
+                    ].map((item) => (
+                      <div key={item.type} className="border-l-2 border-signal pl-6">
+                        <h3 className="font-semibold text-[1.05rem] mb-2">{item.type}</h3>
+                        <p className="copy-sm mb-1">{item.desc}</p>
+                        <p className="copy-sm italic">{item.example}</p>
+                      </div>
+                    ))}
+                  </div>
                 </div>
               </article>
             </Reveal>
 
             <Reveal delay={0.1}>
-              <div className="rounded-sm border-2 border-signal/20 bg-signal/5 p-6 md:p-8">
+              <div className="panel border-l-2 border-l-signal p-6 md:p-8">
                 <p className="font-semibold text-bone mb-3">Automate expansion revenue scoring</p>
-                <p className="text-[15px] text-bone-2 mb-4">
+                <p className="copy mb-5">
                   Work with a RevOps consultant to build expansion scoring and playbooks.
                 </p>
-                <Link
-                  href="#contact"
-                  className="inline-block px-5 py-2.5 bg-signal text-pit font-semibold rounded-sm hover:bg-signal/90 transition-colors"
-                >
+                <Link href="#contact" className="btn btn-primary">
                   Build Expansion Strategy
                 </Link>
               </div>
             </Reveal>
           </div>
         </section>
+
+        <RelatedServices current="/services/upsell-cross-sell-scoring" />
 
         <FinalCta />
       </main>

@@ -4,10 +4,12 @@ import { profile } from "@/content/profile"
 import Header from "@/components/sections/Header"
 import Footer from "@/components/sections/Footer"
 import FinalCta from "@/components/sections/FinalCta"
+import RelatedServices from "@/components/services/RelatedServices"
 import Reveal from "@/components/ui/Reveal"
 
 const title = "KPI Selection Guide | Choose the Right Metrics"
-const description = "Select the right KPIs for your business. Revenue KPIs, pipeline KPIs, efficiency KPIs. Measure what matters. Drive behavior with metrics."
+const description =
+  "Select the right KPIs for your business. Revenue KPIs, pipeline KPIs, efficiency KPIs. Measure what matters. Drive behavior with metrics."
 
 export const metadata: Metadata = {
   title,
@@ -35,8 +37,8 @@ export default function KpiSelectionGuidePage() {
             <Reveal>
               <div className="flex flex-wrap items-baseline justify-between gap-x-8 gap-y-2 border-b border-rule pb-5">
                 <p className="marker">Guide</p>
-                <Link href="/" className="tag transition-colors hover:text-signal">
-                  ← Back to home
+                <Link href="/services" className="tag transition-colors hover:text-signal">
+                  ← All services
                 </Link>
               </div>
             </Reveal>
@@ -49,88 +51,118 @@ export default function KpiSelectionGuidePage() {
 
             <Reveal delay={0.1}>
               <p className="lead mt-8">
-                Too many metrics confuse. Too few miss important signals. Select 3-5 core KPIs that align to strategy. Measure ruthlessly.
+                Too many metrics confuse. Too few miss important signals. Select 3-5 core KPIs that
+                align to strategy. Measure ruthlessly.
               </p>
             </Reveal>
           </div>
         </section>
 
         <section className="on-paper section">
-          <div className="shell space-y-16 md:space-y-20">
+          <div className="shell border-t border-rule-2">
             <Reveal>
-              <article>
-                <h2 className="font-display text-[1.8rem] md:text-[2.2rem] leading-[1.1] font-semibold mb-6">
+              <article className="grid gap-x-14 gap-y-6 border-b border-rule py-12 md:grid-cols-[minmax(0,0.36fr)_minmax(0,1fr)] md:py-16">
+                <h2 className="font-display text-[clamp(1.5rem,2.9vw,2.05rem)] leading-none font-semibold tracking-[-0.03em] text-bone md:pt-1">
                   KPI Categories
                 </h2>
-                <div className="space-y-6">
-                  {[
-                    {
-                      category: "Revenue KPIs",
-                      metrics: "ARR, MRR, Revenue Growth %, NRR, Win Rate",
-                      owner: "CEO/CFO",
-                    },
-                    {
-                      category: "Pipeline KPIs",
-                      metrics: "Pipeline generation, pipeline coverage, pipeline velocity, forecast accuracy",
-                      owner: "VP Sales/RevOps",
-                    },
-                    {
-                      category: "Sales KPIs",
-                      metrics: "Deals closed, avg deal size, sales cycle, conversion rate, quota attainment",
-                      owner: "Sales Manager",
-                    },
-                    {
-                      category: "Customer KPIs",
-                      metrics: "Churn rate, NPS, health score, expansion rate, retention",
-                      owner: "VP CS/Customer Success",
-                    },
-                    {
-                      category: "Marketing KPIs",
-                      metrics: "Lead generation, lead quality, cost per lead, lead to opportunity rate, pipeline contribution",
-                      owner: "VP Marketing",
-                    },
-                  ].map((item) => (
-                    <div key={item.category} className="p-4 rounded-sm border border-rule/50">
-                      <h3 className="font-semibold text-[1.05rem] mb-2">{item.category}</h3>
-                      <p className="text-[15px] text-bone-2 mb-1"><strong>Metrics:</strong> {item.metrics}</p>
-                      <p className="text-[14px] text-bone-2"><strong>Owner:</strong> {item.owner}</p>
-                    </div>
-                  ))}
+
+                <div className="min-w-0">
+                  <div className="space-y-6">
+                    {[
+                      {
+                        category: "Revenue KPIs",
+                        metrics: "ARR, MRR, Revenue Growth %, NRR, Win Rate",
+                        owner: "CEO/CFO",
+                      },
+                      {
+                        category: "Pipeline KPIs",
+                        metrics:
+                          "Pipeline generation, pipeline coverage, pipeline velocity, forecast accuracy",
+                        owner: "VP Sales/RevOps",
+                      },
+                      {
+                        category: "Sales KPIs",
+                        metrics:
+                          "Deals closed, avg deal size, sales cycle, conversion rate, quota attainment",
+                        owner: "Sales Manager",
+                      },
+                      {
+                        category: "Customer KPIs",
+                        metrics: "Churn rate, NPS, health score, expansion rate, retention",
+                        owner: "VP CS/Customer Success",
+                      },
+                      {
+                        category: "Marketing KPIs",
+                        metrics:
+                          "Lead generation, lead quality, cost per lead, lead to opportunity rate, pipeline contribution",
+                        owner: "VP Marketing",
+                      },
+                    ].map((item) => (
+                      <div key={item.category} className="panel p-5">
+                        <h3 className="font-semibold text-[1.05rem] mb-2">{item.category}</h3>
+                        <p className="copy-sm mb-1">
+                          <strong>Metrics:</strong> {item.metrics}
+                        </p>
+                        <p className="copy-sm">
+                          <strong>Owner:</strong> {item.owner}
+                        </p>
+                      </div>
+                    ))}
+                  </div>
                 </div>
               </article>
             </Reveal>
 
             <Reveal delay={0.05}>
-              <article>
-                <h2 className="font-display text-[1.8rem] md:text-[2.2rem] leading-[1.1] font-semibold mb-6">
+              <article className="grid gap-x-14 gap-y-6 border-b border-rule py-12 md:grid-cols-[minmax(0,0.36fr)_minmax(0,1fr)] md:py-16">
+                <h2 className="font-display text-[clamp(1.5rem,2.9vw,2.05rem)] leading-none font-semibold tracking-[-0.03em] text-bone md:pt-1">
                   KPI Selection Framework
                 </h2>
-                <div className="space-y-4 text-[15px] leading-[1.65] text-bone-2">
-                  <p><strong>1. Start with strategy.</strong> What are your top 3 goals? (e.g., grow ARR 50%, improve NRR, reduce churn)</p>
-                  <p><strong>2. Map KPIs to goals.</strong> What metrics measure progress toward each goal?</p>
-                  <p><strong>3. Select 3-5 per role.</strong> Each role owns 3-5 KPIs. No more. Focus matters.</p>
-                  <p><strong>4. Set targets and cadence.</strong> Monthly reviews. Quarterly adjustments. Yearly planning.</p>
-                  <p><strong>5. Automate tracking.</strong> Dashboards update daily. No manual reporting.</p>
+
+                <div className="min-w-0">
+                  <div className="copy space-y-4 [&_strong]:font-semibold [&_strong]:text-bone">
+                    <p>
+                      <strong>1. Start with strategy.</strong> What are your top 3 goals? (e.g.,
+                      grow ARR 50%, improve NRR, reduce churn)
+                    </p>
+                    <p>
+                      <strong>2. Map KPIs to goals.</strong> What metrics measure progress toward
+                      each goal?
+                    </p>
+                    <p>
+                      <strong>3. Select 3-5 per role.</strong> Each role owns 3-5 KPIs. No more.
+                      Focus matters.
+                    </p>
+                    <p>
+                      <strong>4. Set targets and cadence.</strong> Monthly reviews. Quarterly
+                      adjustments. Yearly planning.
+                    </p>
+                    <p>
+                      <strong>5. Automate tracking.</strong> Dashboards update daily. No manual
+                      reporting.
+                    </p>
+                  </div>
                 </div>
               </article>
             </Reveal>
 
             <Reveal delay={0.1}>
-              <div className="rounded-sm border-2 border-signal/20 bg-signal/5 p-6 md:p-8">
-                <p className="font-semibold text-bone mb-3">Select and implement your KPI framework</p>
-                <p className="text-[15px] text-bone-2 mb-4">
+              <div className="panel border-l-2 border-l-signal p-6 md:p-8">
+                <p className="font-semibold text-bone mb-3">
+                  Select and implement your KPI framework
+                </p>
+                <p className="copy mb-5">
                   Work with a consultant to design KPIs aligned to your strategy.
                 </p>
-                <Link
-                  href="#contact"
-                  className="inline-block px-5 py-2.5 bg-signal text-pit font-semibold rounded-sm hover:bg-signal/90 transition-colors"
-                >
+                <Link href="#contact" className="btn btn-primary">
                   KPI Framework Workshop
                 </Link>
               </div>
             </Reveal>
           </div>
         </section>
+
+        <RelatedServices current="/services/kpi-selection-guide" />
 
         <FinalCta />
       </main>
