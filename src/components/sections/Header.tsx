@@ -44,7 +44,7 @@ export default function Header() {
             alt={profile.name}
             width={654}
             height={100}
-            className="h-[22px] w-auto sm:h-[25px]"
+            className="h-[19px] w-auto sm:h-[21px]"
           />
           <span aria-hidden className="hidden h-4 w-px bg-rule-2 lg:inline-block" />
           <span className="tag hidden lg:inline">{profile.shortRole}</span>
