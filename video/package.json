@@ -1,0 +1,23 @@
+{
+  "name": "core-x-video",
+  "private": true,
+  "version": "1.0.0",
+  "description": "Motion-graphic case-study videos for Core-X Solutions (Remotion).",
+  "scripts": {
+    "studio": "remotion studio",
+    "render": "remotion render CaseStudy out/case-study.mp4"
+  },
+  "dependencies": {
+    "@fontsource/archivo": "^5.3.0",
+    "@fontsource/instrument-sans": "^5.3.0",
+    "@fontsource/jetbrains-mono": "^5.3.0",
+    "@remotion/cli": "4.0.410",
+    "react": "19.2.0",
+    "react-dom": "19.2.0",
+    "remotion": "4.0.410"
+  },
+  "devDependencies": {
+    "@types/react": "19.2.0",
+    "typescript": "5.7.3"
+  }
+}

@@ -1,0 +1,43 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 654 100" width="654" height="100" role="img" aria-label="Core-X">
+  <title>Core-X</title>
+  <defs>
+    <linearGradient id="cx-steel" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#ffffff"/>
+      <stop offset="0.46" stop-color="#f5f6f7"/>
+      <stop offset="1" stop-color="#c9ced4"/>
+    </linearGradient>
+    <linearGradient id="cx-gold" x1="0" y1="0" x2="0.85" y2="1">
+      <stop offset="0" stop-color="#ffd45e"/>
+      <stop offset="0.52" stop-color="#fbb713"/>
+      <stop offset="1" stop-color="#f09000"/>
+    </linearGradient>
+    <radialGradient id="cx-orb" cx="0.34" cy="0.28" r="0.78">
+      <stop offset="0" stop-color="#fff3bd"/>
+      <stop offset="0.42" stop-color="#ffc935"/>
+      <stop offset="1" stop-color="#ef8a00"/>
+    </radialGradient>
+  </defs>
+
+  <g fill="url(#cx-steel)">
+    <!-- C -->
+    <path d="M100 0 L92 19 L30 19 A11 11 0 0 0 19 30 L19 70 A11 11 0 0 0 30 81 L92 81 L100 100 L30 100 A30 30 0 0 1 0 70 L0 30 A30 30 0 0 1 30 0 Z"/>
+    <!-- O -->
+    <path fill-rule="evenodd" d="M152 0 L192 0 A30 30 0 0 1 222 30 L222 70 A30 30 0 0 1 192 100 L152 100 A30 30 0 0 1 122 70 L122 30 A30 30 0 0 1 152 0 Z
+                                 M152 19 A11 11 0 0 0 141 30 L141 70 A11 11 0 0 0 152 81 L192 81 A11 11 0 0 0 203 70 L203 30 A11 11 0 0 0 192 19 Z"/>
+    <!-- R -->
+    <path fill-rule="evenodd" d="M244 0 L314 0 A30 30 0 0 1 344 30 L344 32 A28 28 0 0 1 316 60 L304 60 L344 100 L312 100 L278 60 L263 60 L263 100 L244 100 Z
+                                 M274 19 A11 11 0 0 0 274 41 L314 41 A11 11 0 0 0 314 19 Z"/>
+    <!-- E -->
+    <path d="M366 0 L462 0 L462 19 L385 19 L385 41 L451 41 L451 60 L385 60 L385 81 L462 81 L462 100 L366 100 Z"/>
+  </g>
+
+  <!-- orb inside the O -->
+  <circle cx="172" cy="50" r="23" fill="url(#cx-orb)"/>
+
+  <g fill="url(#cx-gold)">
+    <!-- hyphen -->
+    <rect x="484" y="41" width="48" height="19" rx="4"/>
+    <!-- X -->
+    <path d="M554 0 L584 0 L604 32 L624 0 L654 0 L619 50 L654 100 L624 100 L604 68 L584 100 L554 100 L589 50 Z"/>
+  </g>
+</svg>
