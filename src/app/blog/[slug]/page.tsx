@@ -8,6 +8,8 @@ import Header from "@/components/sections/Header"
 import Footer from "@/components/sections/Footer"
 import FinalCta from "@/components/sections/FinalCta"
 import Reveal from "@/components/ui/Reveal"
+import TrackPost from "@/components/analytics/TrackPost"
+import { EVENTS } from "@/lib/analytics-events"
 
 export const revalidate = 600
 /** Slugs published after the last build still render, then get cached. */
@@ -193,6 +195,8 @@ export default async function PostPage({ params }: Params) {
           </div>
         </section>
 
+        <TrackPost slug={post.slug} title={post.title} canonical={post.canonical_url} />
+
         <article className="on-paper section">
           <div className="shell grid gap-14 lg:grid-cols-[minmax(0,0.22fr)_minmax(0,1fr)] lg:gap-16">
             {headings.length > 1 ? (
@@ -204,6 +208,9 @@ export default async function PostPage({ params }: Params) {
                       <a
                         href={`#${h.id}`}
                         className="flex gap-3 border-b border-rule py-3 text-[15px] leading-snug transition-colors hover:text-signal"
+                        data-ph-event={EVENTS.postTocClicked}
+                        data-ph-slug={post.slug}
+                        data-ph-heading={h.text}
                       >
                         <span className="font-mono text-[12px] text-bone-3 tabular-nums">
                           {String(i + 1).padStart(2, "0")}

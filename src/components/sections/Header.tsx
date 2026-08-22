@@ -2,6 +2,8 @@
 
 import { useEffect, useState } from "react"
 import { Menu, X } from "lucide-react"
+import { EVENTS } from "@/lib/analytics-events"
+import { track } from "@/lib/analytics"
 import { nav, profile } from "@/content/profile"
 
 export default function Header() {
@@ -35,7 +37,13 @@ export default function Header() {
       }`}
     >
       <div className="shell flex h-[64px] items-center justify-between gap-6">
-        <a href="/#top" className="flex items-center gap-3.5" onClick={() => setOpen(false)}>
+        <a
+          href="/#top"
+          className="flex items-center gap-3.5"
+          onClick={() => setOpen(false)}
+          data-ph-event={EVENTS.logoClicked}
+          data-ph-location="header"
+        >
           {/* Plain <img>: the mark is a fixed-aspect vector, so next/image would add an
               optimizer round-trip and an SVG allow-list for no gain. width/height carry
               the intrinsic ratio, which is what keeps the header from shifting on load. */}
@@ -52,12 +60,26 @@ export default function Header() {
 
         <nav aria-label="Primary" className="hidden items-center gap-9 md:flex">
           {nav.map((item, i) => (
-            <a key={item.href} href={item.href} className="group tag flex items-baseline gap-1.5 hover:text-bone">
+            <a
+              key={item.href}
+              href={item.href}
+              className="group tag flex items-baseline gap-1.5 hover:text-bone"
+              data-ph-event={EVENTS.navClicked}
+              data-ph-label={item.label}
+              data-ph-href={item.href}
+              data-ph-location="header"
+            >
               <span className="text-bone-3 group-hover:text-signal">0{i + 1}</span>
               {item.label}
             </a>
           ))}
-          <a href="/#contact" className="btn btn-primary btn-sm">
+          <a
+            href="/#contact"
+            className="btn btn-primary btn-sm"
+            data-ph-event={EVENTS.ctaClicked}
+            data-ph-label="Discuss a project"
+            data-ph-location="header"
+          >
             Discuss a project
           </a>
         </nav>
@@ -68,7 +90,12 @@ export default function Header() {
           aria-label={open ? "Close menu" : "Open menu"}
           aria-expanded={open}
           aria-controls="mobile-nav"
-          onClick={() => setOpen((v) => !v)}
+          onClick={() =>
+            setOpen((v) => {
+              track(EVENTS.mobileMenuToggled, { open: !v })
+              return !v
+            })
+          }
         >
           {open ? <X size={20} aria-hidden /> : <Menu size={20} aria-hidden />}
         </button>
@@ -82,12 +109,23 @@ export default function Header() {
               href={item.href}
               onClick={() => setOpen(false)}
               className="flex items-baseline gap-4 border-b border-rule py-4 font-display text-2xl text-bone"
+              data-ph-event={EVENTS.navClicked}
+              data-ph-label={item.label}
+              data-ph-href={item.href}
+              data-ph-location="mobile_menu"
             >
               <span className="tag text-signal">0{i + 1}</span>
               {item.label}
             </a>
           ))}
-          <a href="/#contact" onClick={() => setOpen(false)} className="btn btn-primary mt-6 w-full">
+          <a
+            href="/#contact"
+            onClick={() => setOpen(false)}
+            className="btn btn-primary mt-6 w-full"
+            data-ph-event={EVENTS.ctaClicked}
+            data-ph-label="Discuss a project"
+            data-ph-location="mobile_menu"
+          >
             Discuss a project
           </a>
         </div>

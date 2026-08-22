@@ -5,6 +5,7 @@ import Header from "@/components/sections/Header"
 import Footer from "@/components/sections/Footer"
 import FinalCta from "@/components/sections/FinalCta"
 import CaseStudyArticle from "@/components/sections/CaseStudyArticle"
+import { EVENTS } from "@/lib/analytics-events"
 import Reveal from "@/components/ui/Reveal"
 
 const title = `Case studies | ${profile.name}`
@@ -72,6 +73,9 @@ export default function CaseStudiesPage() {
                         <a
                           href={`#${study.id}`}
                           className="group flex items-baseline gap-4 border-b border-rule py-3.5 transition-colors hover:text-signal"
+                          data-ph-event={EVENTS.caseStudyOpened}
+                          data-ph-target={study.id}
+                          data-ph-position={i + 1}
                         >
                           <span className="font-mono text-[12px] text-bone-3 tabular-nums transition-colors group-hover:text-signal">
                             {String(i + 1).padStart(2, "0")}

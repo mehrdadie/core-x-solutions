@@ -1,6 +1,8 @@
 "use client"
 
 import { useEffect, useRef, useState } from "react"
+import { EVENTS } from "@/lib/analytics-events"
+import { track } from "@/lib/analytics"
 import { useReducedMotion } from "framer-motion"
 import { journey } from "@/content/profile"
 
@@ -24,6 +26,16 @@ export default function JourneyRail() {
   const [auto, setAuto] = useState(0)
   const [pinned, setPinned] = useState<number | null>(null)
   const [inView, setInView] = useState(false)
+
+  /**
+   * The rail advances on its own once it scrolls into view, so `active` moving
+   * proves nothing. Pinning a stop is a deliberate act — that is the event.
+   */
+  const pinStep = (i: number) => {
+    setPinned(i)
+    track(EVENTS.journeyStepPinned, { index: i + 1, id: STOPS[i].id, of: N })
+    if (i === N - 1) track(EVENTS.journeyCompleted, { via: "pinned" })
+  }
 
   const active = pinned ?? auto
   const stop = STOPS[active]
@@ -110,7 +122,7 @@ export default function JourneyRail() {
                   onMouseEnter={() => setPinned(i)}
                   onFocus={() => setPinned(i)}
                   onBlur={() => setPinned(null)}
-                  onClick={() => setPinned(i)}
+                  onClick={() => pinStep(i)}
                   aria-current={on ? "step" : undefined}
                   className="group w-full pt-4 pr-3 text-left"
                 >
@@ -172,7 +184,7 @@ export default function JourneyRail() {
               />
               <button
                 type="button"
-                onClick={() => setPinned(i)}
+                onClick={() => pinStep(i)}
                 aria-current={on ? "step" : undefined}
                 className="w-full py-2.5 text-left"
               >

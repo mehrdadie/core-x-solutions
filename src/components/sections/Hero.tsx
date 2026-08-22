@@ -1,5 +1,6 @@
 import { hero } from "@/content/profile"
 import JourneyRail from "./JourneyRail"
+import { EVENTS } from "@/lib/analytics-events"
 import Reveal from "@/components/ui/Reveal"
 
 /**
@@ -50,10 +51,24 @@ export default function Hero() {
 
           <Reveal delay={0.18}>
             <div className="flex flex-wrap items-center gap-3">
-              <a href={hero.primaryCta.href} className="btn btn-primary">
+              <a
+                href={hero.primaryCta.href}
+                className="btn btn-primary"
+                data-ph-event={EVENTS.ctaClicked}
+                data-ph-label={hero.primaryCta.label}
+                data-ph-location="hero"
+                data-ph-variant="primary"
+              >
                 {hero.primaryCta.label}
               </a>
-              <a href={hero.secondaryCta.href} className="btn btn-secondary">
+              <a
+                href={hero.secondaryCta.href}
+                className="btn btn-secondary"
+                data-ph-event={EVENTS.ctaClicked}
+                data-ph-label={hero.secondaryCta.label}
+                data-ph-location="hero"
+                data-ph-variant="secondary"
+              >
                 {hero.secondaryCta.label}
               </a>
             </div>

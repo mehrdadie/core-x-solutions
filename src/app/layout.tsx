@@ -1,5 +1,6 @@
 import type { Metadata, Viewport } from "next"
 import { Archivo, Instrument_Sans, JetBrains_Mono } from "next/font/google"
+import Analytics from "@/components/analytics/Analytics"
 import { profile } from "@/content/profile"
 import "./globals.css"
 
@@ -91,7 +92,10 @@ export const viewport: Viewport = {
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
     <html lang="en" className={`${archivo.variable} ${instrument.variable} ${jetbrains.variable}`}>
-      <body className="antialiased">{children}</body>
+      <body className="antialiased">
+        {children}
+        <Analytics />
+      </body>
     </html>
   )
 }

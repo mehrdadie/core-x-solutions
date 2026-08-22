@@ -5,6 +5,7 @@ import { formatPostDate, getPosts } from "@/lib/posts"
 import Header from "@/components/sections/Header"
 import Footer from "@/components/sections/Footer"
 import FinalCta from "@/components/sections/FinalCta"
+import { EVENTS } from "@/lib/analytics-events"
 import Reveal from "@/components/ui/Reveal"
 
 /** Rebuilt at most every ten minutes; new posts appear without a redeploy. */
@@ -74,6 +75,10 @@ export default async function BlogIndex() {
                     <Link
                       href={`/blog/${post.slug}`}
                       className="group grid gap-x-12 gap-y-5 border-b border-rule py-10 md:grid-cols-[minmax(0,0.28fr)_minmax(0,1fr)] md:py-12"
+                      data-ph-event={EVENTS.postCardClicked}
+                      data-ph-slug={post.slug}
+                      data-ph-title={post.title}
+                      data-ph-position={i + 1}
                     >
                       <div className="flex flex-wrap items-baseline gap-x-4 gap-y-1 md:block">
                         <p className="tag text-signal">{post.category}</p>

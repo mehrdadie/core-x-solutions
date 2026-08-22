@@ -4,6 +4,8 @@ import { useState } from "react"
 import { useReducedMotion } from "framer-motion"
 import { architecture } from "@/content/profile"
 import Reveal from "@/components/ui/Reveal"
+import { EVENTS } from "@/lib/analytics-events"
+import { track } from "@/lib/analytics"
 
 const SRC_X = 19 // where a source line leaves the label column
 const LAYER = { l: 35, r: 49, y: 50 }
@@ -21,6 +23,24 @@ export default function Architecture() {
   const [active, setActive] = useState<string | null>(null)
   const reduced = useReducedMotion()
   const { sources, stages, outputs } = architecture
+
+  /**
+   * Hover and focus also drive `active`, so state changes are not intent — a
+   * mouse crossing the diagram would look like a dozen selections. The click is
+   * the intent, and it is tracked in both directions: on a pointer device the
+   * hover has already opened the node, so the click that follows is usually the
+   * one that closes it. Only firing on "opened" would have meant this event
+   * almost never appearing on desktop.
+   */
+  const selectNode = (id: string, kind: "source" | "stage" | "output") => {
+    const opening = active !== id
+    setActive(opening ? id : null)
+    track(EVENTS.architectureNodeSelected, {
+      node: id,
+      kind,
+      action: opening ? "opened" : "closed",
+    })
+  }
 
   const spineLive = active !== null
   const activeOutput = outputs.find((o) => o.id === active)
@@ -119,7 +139,7 @@ export default function Architecture() {
                     type="button"
                     onMouseEnter={() => setActive(s.id)}
                     onFocus={() => setActive(s.id)}
-                    onClick={() => setActive(active === s.id ? null : s.id)}
+                    onClick={() => selectNode(s.id, "source")}
                     aria-pressed={active === s.id}
                     className={`flex w-full items-center justify-between gap-2.5 border px-3 py-2 text-left font-mono text-[11px] tracking-[0.1em] uppercase transition-all duration-250 ${
                       active === s.id
@@ -150,7 +170,7 @@ export default function Architecture() {
                   type="button"
                   onMouseEnter={() => setActive(stage.id)}
                   onFocus={() => setActive(stage.id)}
-                  onClick={() => setActive(active === stage.id ? null : stage.id)}
+                  onClick={() => selectNode(stage.id, "stage")}
                   aria-pressed={active === stage.id}
                   className={`w-[130px] border px-4 py-5 text-center transition-all duration-250 ${
                     active === stage.id
@@ -176,7 +196,7 @@ export default function Architecture() {
                   type="button"
                   onMouseEnter={() => setActive(o.id)}
                   onFocus={() => setActive(o.id)}
-                  onClick={() => setActive(active === o.id ? null : o.id)}
+                  onClick={() => selectNode(o.id, "output")}
                   aria-pressed={active === o.id}
                   className={`w-full border p-4 text-left transition-all duration-250 ${
                     active === o.id

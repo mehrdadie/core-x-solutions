@@ -65,6 +65,54 @@ both, not just editing the string.
 GPTBot, ClaudeBot, PerplexityBot and Google-Extended. Being cited by AI assistants
 is a goal here. `/llms.txt` exists for the same reason.
 
+## Analytics
+
+**PostHog, behind a first-party path.** `posthog-js` is wired in through
+`src/lib/analytics.ts` and mounted once from the root layout. Two environment
+variables in Vercel, neither in the repo:
+
+| Variable | Purpose |
+|---|---|
+| `NEXT_PUBLIC_POSTHOG_KEY` | Project API key. **Absent = the whole layer is a no-op** — that is deliberate, so local dev and previews send nothing. |
+| `NEXT_PUBLIC_POSTHOG_HOST` | Dashboard host. Defaults to `https://us.posthog.com`; set it to the EU host if the project ever moves. |
+
+`NEXT_PUBLIC_*` is inlined at **build** time, not read at runtime. Adding the key
+to Vercel does nothing until the next deploy.
+
+Ingestion is rewritten from `/ingest/*` to PostHog in `next.config.js` rather
+than called directly. Blockers drop `*.i.posthog.com` by hostname, and on a
+technical B2B audience that slice is large and not random. The rewrite derives
+the region from `NEXT_PUBLIC_POSTHOG_HOST`, so the client and the proxy cannot
+disagree about it.
+
+**The SDK is initialised at module scope, not from a provider.** This is
+load-bearing and was a real bug before it was moved. React runs effects in tree
+order, so a provider in the layout initialises *after* the effects of the page
+inside it — every capture on mount (`not_found_viewed`, `post_viewed`) hit an
+uninitialised client and was silently discarded. It still worked on client-side
+navigation, where the SDK was already up, so it looked fine to anyone testing by
+clicking around. Do not move that `init()` back into a component.
+
+**Named events live in `src/lib/analytics-events.ts`, and nowhere else.** Nothing
+captures a bare string. Most events reach PostHog through one delegated click
+listener (`TrackClicks.tsx`): a link opts in by carrying
+`data-ph-event="cta_clicked"` plus any `data-ph-*` it wants as properties, which
+keeps the sections server components. Mailto and off-site clicks are derived
+rather than annotated, since those are the conversion and never want forgetting.
+The three interactive components call `track()` directly, because their signal is
+a state change rather than a click.
+
+One trap worth knowing in `Architecture.tsx`: hover also sets the active node, so
+by the time a mouse user clicks, the click is usually *closing* it. The event
+fires in both directions and carries `action` — tracking only "opened" meant it
+never appeared on desktop at all.
+
+**Session recording is on, with all inputs masked.** There is no consent banner.
+That is fine for a US audience and is a question worth answering before pointing
+EU traffic at it; `respect_dnt` is on, and `person_profiles: "identified_only"`
+keeps visitors anonymous. Add `data-ph-mask` to any element whose text should
+never reach a replay.
+
 ## Automation already in place
 
 **IndexNow fires from the database.** A trigger on `public.posts`
@@ -98,6 +146,11 @@ broken deploy.
 - `profile.linkedin` is null until a company LinkedIn page exists; every use site
   already guards on it
 - No inbound links yet. See `docs/backlinks.md` in the sibling repo
+- PostHog is instrumented but not connected: set `NEXT_PUBLIC_POSTHOG_KEY` in
+  Vercel and redeploy, or the analytics layer stays a no-op
+- Decide the consent-banner question before EU traffic meets session recording
+- `outbound_clicked` has no link to fire on yet — the only off-site link the
+  site would have is LinkedIn, and `profile.linkedin` is still null
 
 ## Related repo
 

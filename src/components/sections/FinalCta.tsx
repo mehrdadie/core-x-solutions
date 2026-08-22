@@ -1,4 +1,5 @@
 import { finalCta, hero, profile } from "@/content/profile"
+import { EVENTS } from "@/lib/analytics-events"
 import Reveal from "@/components/ui/Reveal"
 
 /**
@@ -24,7 +25,14 @@ export default function FinalCta() {
             <p className="lead prose-w mt-8">{finalCta.body}</p>
 
             <div className="mt-10 flex flex-wrap items-center gap-3">
-              <a href={mailto} className="btn btn-primary">
+              <a
+                href={mailto}
+                className="btn btn-primary"
+                data-ph-event={EVENTS.ctaClicked}
+                data-ph-label={finalCta.primary}
+                data-ph-location="final_cta"
+                data-ph-variant="primary"
+              >
                 {finalCta.primary}
               </a>
               {profile.linkedin ? (
@@ -33,6 +41,10 @@ export default function FinalCta() {
                 target="_blank"
                 rel="noreferrer noopener"
                 className="btn btn-secondary"
+                data-ph-event={EVENTS.ctaClicked}
+                data-ph-label="LinkedIn"
+                data-ph-location="final_cta"
+                data-ph-variant="secondary"
               >
                 LinkedIn
               </a>
@@ -57,6 +69,9 @@ export default function FinalCta() {
                   <a
                     href={`mailto:${profile.email}?subject=${encodeURIComponent(prompt)}`}
                     className="group flex items-baseline gap-5 border-b border-rule py-5 text-[16.5px] text-bone-2 transition-colors hover:text-bone"
+                    data-ph-event={EVENTS.contactPromptClicked}
+                    data-ph-prompt={prompt}
+                    data-ph-index={i + 1}
                   >
                     <span className="font-mono text-[11px] tracking-[0.1em] text-bone-3 transition-colors group-hover:text-signal">
                       {String(i + 1).padStart(2, "0")}

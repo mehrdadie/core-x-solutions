@@ -1,3 +1,4 @@
+import { EVENTS } from "@/lib/analytics-events"
 import { profile } from "@/content/profile"
 
 export default function Footer() {
@@ -15,6 +16,8 @@ export default function Footer() {
           <a
             href={`mailto:${profile.email}`}
             className="font-mono text-[14px] tracking-[0.04em] text-bone-2 transition-colors hover:text-signal"
+            data-ph-event={EVENTS.footerLinkClicked}
+            data-ph-label="email"
           >
             {profile.email}
           </a>
@@ -23,6 +26,8 @@ export default function Footer() {
             href={profile.linkedin}
             target="_blank"
             rel="noreferrer noopener"
+            data-ph-event={EVENTS.footerLinkClicked}
+            data-ph-label="linkedin"
             className="font-mono text-[14px] tracking-[0.04em] text-bone-2 transition-colors hover:text-signal"
           >
             LinkedIn

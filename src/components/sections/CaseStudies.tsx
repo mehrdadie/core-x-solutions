@@ -1,6 +1,7 @@
 import Link from "next/link"
 import { caseStudies, featuredCaseStudies } from "@/content/profile"
 import CaseStudyArticle from "./CaseStudyArticle"
+import { EVENTS } from "@/lib/analytics-events"
 import Reveal from "@/components/ui/Reveal"
 
 /**
@@ -38,6 +39,8 @@ export default function CaseStudies() {
           <Link
             href="/case-studies"
             className="group mt-20 flex items-baseline justify-between gap-6 border-t-2 border-graphite pt-6"
+            data-ph-event={EVENTS.caseStudyOpened}
+            data-ph-target="index"
           >
             <span className="font-display text-[clamp(1.35rem,2.6vw,2rem)] leading-tight font-semibold tracking-[-0.025em]">
               All {caseStudies.length} case studies
