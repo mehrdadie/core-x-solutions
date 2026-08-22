@@ -62,10 +62,12 @@ export type PostCard = Pick<
   | "published_at"
   | "cover_image_url"
   | "cover_image_alt"
+  // Carried so the sitemap can tell an original from a cross-published copy.
+  | "canonical_url"
 >
 
 const CARD_COLUMNS =
-  "slug,title,dek,excerpt,category,tags,reading_minutes,published_at,cover_image_url,cover_image_alt"
+  "slug,title,dek,excerpt,category,tags,reading_minutes,published_at,cover_image_url,cover_image_alt,canonical_url"
 
 function client() {
   if (!SUPABASE_URL || !SUPABASE_KEY) return null

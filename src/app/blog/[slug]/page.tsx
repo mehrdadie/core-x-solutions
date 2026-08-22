@@ -105,7 +105,7 @@ export default async function PostPage({ params }: Params) {
         name: post.author_name,
         url: post.author_url ?? profile.url,
       },
-      publisher: { "@type": "Person", name: profile.name, url: profile.url },
+      publisher: { "@type": "Organization", name: profile.name, url: profile.url },
       ...(image
         ? {
             image: {
