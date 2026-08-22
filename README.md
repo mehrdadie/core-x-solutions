@@ -61,3 +61,26 @@ The `Testimonials` component exists but is **not rendered**. See the comment abo
 
 Vercel builds `main` automatically. Set the environment variables in the Vercel
 project, not in the repo — `.env*.local` is gitignored and must stay that way.
+
+## IndexNow
+
+`public/1acc8e1f517f4a16805af289d548d36e.txt` is the IndexNow verification key.
+It is meant to be publicly readable — it proves domain ownership when pinging
+`api.indexnow.org`, and is not a secret. Do not delete it; Bing revalidates it on
+every submission.
+
+To notify participating engines (Bing, Yandex, Seznam, Naver — not Google) that a
+URL changed:
+
+```bash
+curl -X POST https://api.indexnow.org/indexnow \
+  -H 'Content-Type: application/json' \
+  -d '{
+    "host": "core-x.solutions",
+    "key": "1acc8e1f517f4a16805af289d548d36e",
+    "keyLocation": "https://core-x.solutions/1acc8e1f517f4a16805af289d548d36e.txt",
+    "urlList": ["https://core-x.solutions/blog/some-new-post"]
+  }'
+```
+
+Submitting unchanged URLs repeatedly is treated as spam and returns 429.
