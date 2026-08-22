@@ -182,12 +182,22 @@ Deno.serve(async (req: Request) => {
     return json({ status: "queue-empty" })
   }
 
-  const topicId = (topic as Topic & { id: string }).id
+  const { id: topicId, attempts } = topic as Topic & { id: string; attempts: number }
 
   const fail = async (message: string) => {
+    // claim_next_topic() already incremented attempts, and refuses to hand out
+    // a topic on its fourth. Marking that state 'failed' rather than leaving it
+    // 'pending' is what puts it at the top of content_queue instead of leaving
+    // it looking like backlog that will be picked up eventually.
+    const exhausted = attempts >= 3
+
     await db
       .from("content_topics")
-      .update({ status: "pending", claimed_at: null, last_error: message.slice(0, 2000) })
+      .update({
+        status: exhausted ? "failed" : "pending",
+        claimed_at: null,
+        last_error: message.slice(0, 2000),
+      })
       .eq("id", topicId)
     await log({ topic_id: topicId, cluster: topic.cluster, status: "error", error: message.slice(0, 2000) })
     return json({ error: message, cluster: topic.cluster }, 500)
