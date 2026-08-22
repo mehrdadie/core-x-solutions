@@ -231,9 +231,14 @@ export default async function PostPage({ params }: Params) {
                     height={720}
                     className="block w-full"
                   />
-                  <figcaption className="tag border-t border-rule px-4 py-3">
-                    The same month, counted three ways — and the difference, named
-                  </figcaption>
+                  {/* The caption travels with the post. It used to be one
+                      hardcoded line, correct for the single post that had a
+                      cover and wrong for every other. */}
+                  {post.cover_image_caption ? (
+                    <figcaption className="tag border-t border-rule px-4 py-3">
+                      {post.cover_image_caption}
+                    </figcaption>
+                  ) : null}
                 </figure>
               ) : null}
 

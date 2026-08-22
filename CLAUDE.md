@@ -43,9 +43,14 @@ contradictory signals. Posts written for this site are self-canonical and do
 appear.
 
 **Colour literals exist outside the token block.** `@theme` in `globals.css` is
-the source of truth, but the hero's radial gradient (`Hero.tsx`), the generated
-OG card (`opengraph-image.tsx`) and the two logo files carry their own hex values
-and do not inherit. Change the palette in four places, not one.
+the source of truth, but the hero's radial gradient (`Hero.tsx`), the two
+generated OG cards (`opengraph-image.tsx` and `blog/[slug]/opengraph-image.tsx`)
+and the two logo files carry their own hex values and do not inherit. Change the
+palette in five places, not one.
+
+Post diagrams are the exception that proves it: `Diagram.tsx` uses the token
+classes rather than literals, which is what lets one component read correctly on
+both the dark ground and the paper ground the article body sits on.
 
 **The logo is a hand-built SVG, not an exported asset.**
 `public/core-x-logo.svg` is the CORE-X wordmark, drawn on a 654x100 grid (cap
@@ -65,6 +70,14 @@ both, not just editing the string.
 GPTBot, ClaudeBot, PerplexityBot and Google-Extended. Being cited by AI assistants
 is a goal here. `/llms.txt` exists for the same reason.
 
+**The markdown renderer is deliberately small, and that is a constraint on
+authors.** `markdown.tsx` returns React elements, never HTML, so a post body from
+the database can never inject anything. It supports h2/h3, paragraphs, bold,
+italic, inline code, links, lists, blockquotes, rules, fenced code, pipe tables,
+figures and `diagram` fences — and nothing else. Parsing is two-pass: fences are
+lifted out before the paragraph splitter runs, because the splitter works on
+blank lines and used to tear any code sample containing one into fragments.
+
 ## Automation already in place
 
 **IndexNow fires from the database.** A trigger on `public.posts`
@@ -80,11 +93,29 @@ Verify a ping with:
 select id, status_code, created from net._http_response order by created desc limit 5;
 ```
 
+**Posts are written on a schedule.** A `pg_cron` job (`generate-post`, every 30
+minutes) calls `run_post_generator()`, which POSTs to the `generate-post` Edge
+Function. That takes the next cluster off `content_topics`, writes an article
+with the Claude API, and inserts it with **`status = 'draft'`** — invisible to
+the site and to IndexNow until a person publishes it. Credentials come from Vault
+(`generator_service_key`, `generator_function_url`) and the function's own
+`ANTHROPIC_API_KEY` secret; nothing secret is in the repo. Full operator notes in
+`docs/auto-blog.md`.
+
+Generation state lives on the topic row rather than in the scheduler, so a run
+that dies leaves one reclaimable topic and a double-fire takes two different
+ones. `select * from public.content_queue;` is the view worth knowing: failures
+first, then drafts awaiting review, then the backlog.
+
 ## Publishing a post
 
 Insert a row into `public.posts` with `status = 'published'` and a
 `published_at` in the past. Everything else is automatic: the blog index, the post
 page, the sitemap (10-minute ISR) and the IndexNow ping.
+
+For a generated draft the same thing is one field: `update public.posts set
+status = 'published', published_at = now() where slug = '...'`. The IndexNow
+update trigger fires on that transition, so review *is* the publish step.
 
 RLS restricts anonymous reads to `status = 'published' and published_at <= now()`,
 so a future `published_at` renders nothing. That is a real trap — it looks like a
@@ -98,6 +129,9 @@ broken deploy.
 - `profile.linkedin` is null until a company LinkedIn page exists; every use site
   already guards on it
 - No inbound links yet. See `docs/backlinks.md` in the sibling repo
+- Generated drafts need reviewing before they are worth anything — see
+  `docs/auto-blog.md`, and read the note there before switching the pipeline to
+  publish automatically
 
 ## Related repo
 
