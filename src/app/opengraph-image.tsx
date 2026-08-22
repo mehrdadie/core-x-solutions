@@ -20,16 +20,16 @@ export default async function OpengraphImage() {
           display: "flex",
           flexDirection: "column",
           justifyContent: "space-between",
-          background: "#14101f",
+          background: "#1a1a1a",
           padding: 72,
           fontFamily: "sans-serif",
         }}
       >
         <div style={{ display: "flex", alignItems: "center", gap: 16 }}>
-          <div style={{ width: 20, height: 20, background: "#9b8cff" }} />
+          <div style={{ width: 20, height: 20, background: "#f0b429" }} />
           <div
             style={{
-              color: "#c3bbd4",
+              color: "#c2c0bb",
               fontSize: 26,
               letterSpacing: 4,
               textTransform: "uppercase",
@@ -42,7 +42,7 @@ export default async function OpengraphImage() {
         <div style={{ display: "flex", flexDirection: "column", gap: 24 }}>
           <div
             style={{
-              color: "#ece9f2",
+              color: "#f0efed",
               fontSize: 82,
               lineHeight: 1.04,
               letterSpacing: -2.5,
@@ -52,7 +52,7 @@ export default async function OpengraphImage() {
           >
             We connect the systems behind your business.
           </div>
-          <div style={{ color: "#9d93b0", fontSize: 30 }}>
+          <div style={{ color: "#97948d", fontSize: 30 }}>
             {`${profile.name} · core-x.solutions`}
           </div>
         </div>

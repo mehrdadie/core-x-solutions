@@ -14,29 +14,29 @@
    ───────────────────────────────────────────────────────────────────────── */
 
 @theme {
-  --color-ground: #14101f;
-  --color-ground-2: #1b1629;
-  --color-panel: #221c33;
-  --color-panel-2: #2b2340;
-  --color-pit: #0d0a15;
+  --color-ground: #1a1a1a;
+  --color-ground-2: #242424;
+  --color-panel: #222222;
+  --color-panel-2: #2a2a2a;
+  --color-pit: #0d0d0d;
 
-  --color-bone: #ece9f2;
-  --color-bone-2: #c3bbd4;
-  --color-bone-3: #9d93b0;
+  --color-bone: #f0efed;
+  --color-bone-2: #c2c0bb;
+  --color-bone-3: #97948d;
 
-  --color-paper: #eae6f0;
-  --color-paper-2: #d8d2e2;
-  --color-graphite: #17121f;
+  --color-paper: #ece9e3;
+  --color-paper-2: #dbd7cf;
+  --color-graphite: #1a1a1a;
 
-  --color-rule: rgba(236, 233, 242, 0.13);
-  --color-rule-2: rgba(236, 233, 242, 0.26);
-  --color-rule-ink: rgba(23, 18, 31, 0.16);
+  --color-rule: rgba(240, 239, 237, 0.13);
+  --color-rule-2: rgba(240, 239, 237, 0.26);
+  --color-rule-ink: rgba(26, 26, 26, 0.16);
 
-  --color-signal: #9b8cff;
-  --color-signal-hi: #b3a6ff;
-  --color-signal-soft: rgba(155, 140, 255, 0.13);
-  --color-oxide: #e88a5e;
-  --color-verdigris: #6fd3ae;
+  --color-signal: #f0b429;
+  --color-signal-hi: #ffc84d;
+  --color-signal-soft: rgba(240, 180, 41, 0.13);
+  --color-oxide: #e07a4f;
+  --color-verdigris: #6fbfa0;
 
   --font-display: var(--font-archivo), ui-sans-serif, system-ui, sans-serif;
   --font-sans: var(--font-instrument), ui-sans-serif, system-ui, sans-serif;
@@ -274,17 +274,17 @@
      swapped tokens, so nothing needs a light-mode variant of its own. */
   .on-paper {
     --color-ground: var(--color-paper);
-    --color-panel: rgba(23, 18, 31, 0.04);
+    --color-panel: rgba(26, 26, 26, 0.04);
     --color-bone: var(--color-graphite);
-    --color-bone-2: #443a54;
-    --color-bone-3: #5c5170;
+    --color-bone-2: #43413c;
+    --color-bone-3: #5c5952;
     --color-rule: var(--color-rule-ink);
-    --color-rule-2: rgba(23, 18, 31, 0.32);
-    /* Darker on paper than on the dark ground: the periwinkle that reads at
-       6.8:1 on #14101f drops well below AA here, which fails at label sizes. */
-    --color-signal: #5b3fb8;
+    --color-rule-2: rgba(26, 26, 26, 0.32);
+    /* Darker on paper than on the dark ground: the gold that reads at 9.3:1
+       on #1a1a1a manages barely 1.6:1 here, which is illegible at any size. */
+    --color-signal: #8a5b06;
     --color-verdigris: #1f6b52;
-    --color-oxide: #a8471c;
+    --color-oxide: #a8461c;
 
     background-color: var(--color-paper);
     color: var(--color-graphite);
