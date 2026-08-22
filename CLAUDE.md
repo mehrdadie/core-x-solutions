@@ -43,9 +43,18 @@ contradictory signals. Posts written for this site are self-canonical and do
 appear.
 
 **Colour literals exist outside the token block.** `@theme` in `globals.css` is
-the source of truth, but the hero's radial gradient (`Hero.tsx`) and the generated
-OG card (`opengraph-image.tsx`) carry their own hex values and do not inherit.
-Change the palette in three places, not one.
+the source of truth, but the hero's radial gradient (`Hero.tsx`), the generated
+OG card (`opengraph-image.tsx`) and the two logo files carry their own hex values
+and do not inherit. Change the palette in four places, not one.
+
+**The logo is a hand-built SVG, not an exported asset.**
+`public/core-x-logo.svg` is the CORE-X wordmark, drawn on a 654x100 grid (cap
+height 100, stroke 19, letters at x = 0/122/244/366/484/554). `src/app/icon.svg`
+is the same O-and-orb glyph on its own, which is the only part of the mark that
+still reads at 16px. The header loads the wordmark as a plain `<img>` — next/image
+would mean an optimizer round-trip and an SVG allow-list for a fixed-aspect
+vector. Keep the `width`/`height` attributes on it: they carry the intrinsic
+ratio, and they are what stops the bar reflowing while the file loads.
 
 **The hero headline is hardcoded in JSX**, not driven by `profile.ts`. It is sized
 to its own measure: line one is 10.75em wide, and the `min()` cap and width factor

@@ -35,11 +35,18 @@ export default function Header() {
       }`}
     >
       <div className="shell flex h-[64px] items-center justify-between gap-6">
-        <a href="/#top" className="flex items-center gap-3" onClick={() => setOpen(false)}>
-          <span aria-hidden className="h-2.5 w-2.5 bg-signal" />
-          <span className="font-display text-[16px] font-semibold tracking-[-0.01em] text-bone">
-            {profile.name}
-          </span>
+        <a href="/#top" className="flex items-center gap-3.5" onClick={() => setOpen(false)}>
+          {/* Plain <img>: the mark is a fixed-aspect vector, so next/image would add an
+              optimizer round-trip and an SVG allow-list for no gain. width/height carry
+              the intrinsic ratio, which is what keeps the header from shifting on load. */}
+          <img
+            src="/core-x-logo.svg"
+            alt={profile.name}
+            width={654}
+            height={100}
+            className="h-[22px] w-auto sm:h-[25px]"
+          />
+          <span aria-hidden className="hidden h-4 w-px bg-rule-2 lg:inline-block" />
           <span className="tag hidden lg:inline">{profile.shortRole}</span>
         </a>
 
