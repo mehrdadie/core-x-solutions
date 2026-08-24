@@ -4,10 +4,12 @@ import { profile } from "@/content/profile"
 import Header from "@/components/sections/Header"
 import Footer from "@/components/sections/Footer"
 import FinalCta from "@/components/sections/FinalCta"
+import RelatedServices from "@/components/services/RelatedServices"
 import Reveal from "@/components/ui/Reveal"
 
-const title = "Revenue Operations Consultant | RevOps Consulting Services"
-const description = "Transform your revenue operations with expert RevOps consulting. Align sales, marketing, and customer success through data-driven strategy and automation."
+const title = "Revenue Operations Consultant | Core-X Solutions"
+const description =
+  "A RevOps consultancy that connects CRM, marketing, finance and support into one system you can report on. What we own, how an engagement runs, and what changed for the businesses we did it for."
 
 export const metadata: Metadata = {
   title,
@@ -24,290 +26,515 @@ export const metadata: Metadata = {
   twitter: { card: "summary_large_image", title, description },
 }
 
+const symptoms = [
+  {
+    said: "Sales and finance disagree about last month.",
+    actual:
+      "Two systems hold a number called revenue and neither owns the definition. Usually one counts bookings and the other counts collections, and nobody wrote that down.",
+  },
+  {
+    said: "We do not know which channel is working.",
+    actual:
+      "Campaign naming was never enforced, so ad spend cannot be joined to closed revenue at customer level. The reports are real; the join is guesswork.",
+  },
+  {
+    said: "Leads go cold.",
+    actual:
+      "There is no owner, no clock and no escalation. Response time is a function of who happened to be looking at the inbox.",
+  },
+  {
+    said: "Reporting takes the whole week.",
+    actual:
+      "Someone is exporting from five platforms and reconciling by hand, so the numbers describe a week that has already finished.",
+  },
+  {
+    said: "The CRM is a mess.",
+    actual:
+      "Duplicates from prior migrations, ownership that no longer matches the team, and no survivorship rule for which value wins. Every meeting opens with an argument about the data.",
+  },
+]
+
+const steps = [
+  {
+    n: "01",
+    title: "Audit",
+    body: "Every system that touches a customer, what it holds, and where the same fact is stored twice. We map the joins that do not currently exist, because those are the reports you cannot build.",
+    ends: "A systems map and a written list of what disagrees with what",
+  },
+  {
+    n: "02",
+    title: "Definitions",
+    body: "Agree what a lead, an opportunity, a customer and revenue each mean, in writing, with the people who will argue about it later. This is the step teams skip and the reason most dashboards get abandoned.",
+    ends: "A definitions document signed off by sales, marketing and finance",
+  },
+  {
+    n: "03",
+    title: "Data quality",
+    body: "Deduplicate on deterministic keys first, fuzzy matching second, with a documented rule for which value survives. Rebuild ownership from an agreed source of record. Enforce naming at the point of entry rather than cleaning it later.",
+    ends: "A CRM people quote instead of work around",
+  },
+  {
+    n: "04",
+    title: "Pipelines and automation",
+    body: "Scheduled syncs between the systems, routing and escalation on rules the team agreed, validation that fails loudly, and alerting when a source stops delivering.",
+    ends: "Data arriving on a clock, without anyone exporting anything",
+  },
+  {
+    n: "05",
+    title: "Reporting and handover",
+    body: "A modelled layer above the warehouse so group and team numbers cannot disagree, dashboards built on the agreed definitions, and documentation your team can maintain without us.",
+    ends: "Numbers before the meeting rather than after it",
+  },
+]
+
+const evidence = [
+  {
+    metric: "30 hrs → 2 hrs",
+    label: "Weekly reporting preparation",
+    detail:
+      "Six sources consolidated, validation automated, daily refresh instead of weekly. 93% less manual preparation.",
+    href: "/case-studies#reporting-automation",
+  },
+  {
+    metric: "31% → 0.4%",
+    label: "CRM duplicate rate, sustained",
+    detail:
+      "Deterministic then fuzzy matching with a survivorship rule, running nightly rather than as a one-off cleanup.",
+    href: "/case-studies#crm-data-quality",
+  },
+  {
+    metric: "2 hrs → 4 min",
+    label: "Median first response to an enquiry",
+    detail:
+      "Validation, enrichment and routing on agreed rules, with an SLA clock and escalation. No leads unassigned overnight.",
+    href: "/case-studies#lead-routing",
+  },
+  {
+    metric: "£240k",
+    label: "Pipeline surfaced from existing records",
+    detail:
+      "4,800 dormant records re-scored against last contact, acquisition cost, previous value and stall stage, refreshed daily.",
+    href: "/case-studies#dormant-revenue",
+  },
+  {
+    metric: "9 → 1",
+    label: "Sources conformed to one model",
+    detail:
+      "Three brands, three CRMs, one shared dimensional model. Group and brand numbers now come from the same place.",
+    href: "/case-studies#one-warehouse",
+  },
+  {
+    metric: "4 → 1",
+    label: "Systems to check for one customer",
+    detail:
+      "Lead, call, opportunity and payment signals resolved to a single customer identity. 100% of calls matched to CRM records.",
+    href: "/case-studies#lead-sales-intelligence",
+  },
+]
+
+const comparison = [
+  ["Time to something usable", "Weeks", "6–12 months", "3–6 months, after hiring"],
+  ["Cost shape", "Fixed scope, ends", "Cheap until it is not", "Salary, ongoing"],
+  ["Knows your business", "Learns it", "Already does", "Learns it, then stays"],
+  ["Has done it before", "Repeatedly", "Rarely", "Depends entirely on the hire"],
+  ["Risk if it stalls", "You stop paying", "Sunk months", "You still employ them"],
+  [
+    "Right when",
+    "The problem is defined and crosses systems",
+    "The problem is small and local",
+    "The work never ends",
+  ],
+]
+
+const faqs = [
+  {
+    q: "How long does a RevOps engagement take?",
+    a: "The audit and definitions work is usually two to four weeks. Data quality and pipelines depend entirely on how many systems are involved and how bad the duplicate situation is — that is the part that varies, and it is why we scope it after the audit rather than before.",
+  },
+  {
+    q: "Do we need a data warehouse?",
+    a: "Not always. If everything lives in one CRM and you need better reporting inside it, a warehouse is overhead. If you have several systems that each hold part of the customer, you need somewhere to join them, and doing that inside a CRM tends to end badly.",
+  },
+  {
+    q: "Will this work with our existing tools?",
+    a: "Usually. We work with what you already pay for rather than proposing a migration, because a migration is a project on top of the project you actually have. We will say so if a tool genuinely cannot do what you need.",
+  },
+  {
+    q: "What happens when the engagement ends?",
+    a: "You own everything: the pipelines, the definitions document, the dashboards and the documentation. If we have built something only we can maintain, we have done it wrong.",
+  },
+  {
+    q: "Can you fix the CRM without touching the rest?",
+    a: "Sometimes, and we will tell you when that is true. But the CRM is usually messy because of what flows into it, so cleaning it without fixing the inputs buys about a quarter before it returns.",
+  },
+]
+
 export default function RevenueOperationsConsultantPage() {
   return (
     <>
       <Header />
 
       <main id="main">
-        {/* Hero Section */}
         <section className="border-b border-rule pt-[124px] pb-16 md:pt-[148px] md:pb-20">
           <div className="shell">
             <Reveal>
               <div className="flex flex-wrap items-baseline justify-between gap-x-8 gap-y-2 border-b border-rule pb-5">
                 <p className="marker">Services</p>
-                <Link href="/" className="tag transition-colors hover:text-signal">
-                  ← Back to home
+                <Link href="/services" className="tag transition-colors hover:text-signal">
+                  ← All services
                 </Link>
               </div>
             </Reveal>
 
             <Reveal delay={0.05}>
               <h1 className="mt-10 font-display text-[clamp(2.3rem,5.6vw,4.2rem)] leading-[1.02] font-semibold tracking-[-0.035em]">
-                Revenue Operations Consultant: Align Your Revenue Stack
+                Revenue operations consulting
               </h1>
             </Reveal>
 
             <Reveal delay={0.1}>
-              <p className="lead mt-8">
-                Maximize revenue pipeline efficiency with data-driven RevOps strategy. We align sales, marketing, and customer success through integrated systems, automation, and insights.
+              <p className="lead mt-8 max-w-2xl">
+                Most revenue problems are not sales problems. They are two systems holding the same
+                fact and disagreeing about it. We connect CRM, marketing, finance and support into
+                one system you can actually report on — and agree what the words mean before we
+                build anything.
               </p>
             </Reveal>
+
+            <Reveal delay={0.14}>
+              <div className="mt-10 flex flex-wrap gap-3">
+                <Link href="#contact" className="btn btn-primary">
+                  Discuss a project
+                </Link>
+                <Link href="/case-studies" className="btn btn-secondary">
+                  See selected work
+                </Link>
+              </div>
+            </Reveal>
           </div>
         </section>
 
-        {/* Main Content */}
         <section className="on-paper section">
-          <div className="shell space-y-16 md:space-y-20">
-            {/* CTA Box Above Fold */}
+          <div className="shell border-t border-rule-2">
             <Reveal>
-              <div className="rounded-sm border-2 border-signal/20 bg-signal/5 p-6 md:p-8">
-                <p className="font-semibold text-signal mb-4">Ready to transform your revenue operations?</p>
-                <Link
-                  href="#contact"
-                  className="inline-block px-5 py-2.5 bg-signal text-pit font-semibold rounded-sm hover:bg-signal/90 transition-colors"
-                >
-                  Schedule Your Free RevOps Audit
-                </Link>
-              </div>
+              <article className="grid gap-x-14 gap-y-6 border-b border-rule py-12 md:grid-cols-[minmax(0,0.36fr)_minmax(0,1fr)] md:py-16">
+                <h2 className="font-display text-[clamp(1.5rem,2.9vw,2.05rem)] leading-none font-semibold tracking-[-0.03em] text-bone md:pt-1">
+                  What you say, and what it usually is
+                </h2>
+
+                <div className="min-w-0">
+                  <p className="copy mb-8">
+                    Businesses arrive with a symptom. The diagnosis is almost always somewhere else,
+                    and it is almost always a definition or a join that nobody owns.
+                  </p>
+
+                  <dl>
+                    {symptoms.map((s) => (
+                      <div key={s.said} className="border-b border-rule py-5 last:border-b-0">
+                        <dt className="flex items-baseline gap-4">
+                          <span
+                            aria-hidden
+                            className="mt-[9px] h-[7px] w-[7px] shrink-0 translate-y-[-4px] bg-oxide"
+                          />
+                          <span className="font-display text-[17px] font-semibold text-bone">
+                            &ldquo;{s.said}&rdquo;
+                          </span>
+                        </dt>
+                        <dd className="copy-sm mt-2 pl-[23px]">{s.actual}</dd>
+                      </div>
+                    ))}
+                  </dl>
+                </div>
+              </article>
             </Reveal>
 
-            {/* Section 1: Why RevOps Matters */}
             <Reveal delay={0.05}>
-              <article>
-                <h2 className="font-display text-[1.8rem] md:text-[2.2rem] leading-[1.1] font-semibold mb-6">
-                  Why Your Revenue Operations Strategy Matters
+              <article className="grid gap-x-14 gap-y-6 border-b border-rule py-12 md:grid-cols-[minmax(0,0.36fr)_minmax(0,1fr)] md:py-16">
+                <h2 className="font-display text-[clamp(1.5rem,2.9vw,2.05rem)] leading-none font-semibold tracking-[-0.03em] text-bone md:pt-1">
+                  How an engagement runs
                 </h2>
-                <div className="space-y-4 text-[16px] leading-[1.65] text-bone-2">
-                  <p>
-                    Revenue operations bridges the critical gap between marketing, sales, and customer success. When these teams operate in silos, you lose visibility into the full customer journey—leading to misaligned incentives, duplicated efforts, and leaking pipeline.
-                  </p>
-                  <p>
-                    RevOps creates a unified, data-driven foundation where every team speaks the same language. The result? Faster sales cycles, reduced churn, predictable revenue, and a culture of accountability.
-                  </p>
-                  <p>
-                    <strong>Key outcomes:</strong> Companies with mature RevOps grow 20% faster, close deals 25% quicker, and reduce customer acquisition costs by 30%.
-                  </p>
-                  <p>
-                    <Link href="/services/what-is-revops" className="text-signal hover:underline">
-                      Learn RevOps fundamentals →
-                    </Link>
-                  </p>
-                </div>
-              </article>
-            </Reveal>
 
-            {/* Section 2: Our 5-Step Approach */}
-            <Reveal delay={0.1}>
-              <article>
-                <h2 className="font-display text-[1.8rem] md:text-[2.2rem] leading-[1.1] font-semibold mb-6">
-                  Our 5-Step Revenue Operations Approach
-                </h2>
-                <div className="space-y-8">
-                  {[
-                    {
-                      step: 1,
-                      title: "Audit Current Tech Stack",
-                      desc: "We map your existing tools—HubSpot, Salesforce, Zoho, marketing automation, analytics—and identify data gaps and integration opportunities.",
-                    },
-                    {
-                      step: 2,
-                      title: "Map Data Flows & Revenue Leaks",
-                      desc: "We trace how data moves between systems, identify where it breaks down, and pinpoint where revenue is leaking.",
-                    },
-                    {
-                      step: 3,
-                      title: "Design RevOps Architecture",
-                      desc: "We design a unified RevOps structure: lead routing, attribution models, customer scoring, and KPI dashboards.",
-                    },
-                    {
-                      step: 4,
-                      title: "Implement Automation & Dashboards",
-                      desc: "We build automated workflows, connect your systems, and create real-time dashboards for sales, marketing, and leadership.",
-                    },
-                    {
-                      step: 5,
-                      title: "Monitor & Optimize",
-                      desc: "We establish monitoring protocols, train your team, and continuously optimize as your business evolves.",
-                    },
-                  ].map((item) => (
-                    <div key={item.step} className="flex gap-6">
-                      <div className="flex-shrink-0">
-                        <div className="flex h-8 w-8 items-center justify-center rounded-full bg-signal/20 text-signal font-semibold text-sm">
-                          {item.step}
+                <div className="min-w-0">
+                  <ol className="relative">
+                    <span
+                      aria-hidden
+                      className="absolute top-3 bottom-3 left-[7px] w-px bg-rule md:left-[calc(48px+7px)]"
+                    />
+                    {steps.map((s) => (
+                      <li
+                        key={s.n}
+                        className="relative grid gap-x-10 gap-y-3 pb-10 pl-9 last:pb-0 md:grid-cols-[48px_minmax(0,1fr)] md:pl-0"
+                      >
+                        <span
+                          aria-hidden
+                          className="absolute top-[7px] left-0 h-[15px] w-[15px] border border-signal bg-paper md:left-[48px]"
+                        />
+                        <span
+                          aria-hidden
+                          className="absolute top-[11px] left-1 h-[7px] w-[7px] bg-signal md:left-[52px]"
+                        />
+                        <span className="font-mono text-[12px] tracking-[0.1em] text-bone-3 md:pt-1">
+                          {s.n}
+                        </span>
+                        <div className="md:pl-10">
+                          <h3 className="font-display text-[1.2rem] font-semibold text-bone">
+                            {s.title}
+                          </h3>
+                          <p className="copy-sm mt-2">{s.body}</p>
+                          <p className="copy-sm mt-3 border-l border-rule-2 pl-4">
+                            <span className="tag mb-1 block text-verdigris">Ends with</span>
+                            {s.ends}
+                          </p>
                         </div>
-                      </div>
-                      <div className="flex-grow">
-                        <h3 className="font-semibold text-[16px] mb-2">{item.title}</h3>
-                        <p className="text-[15px] leading-[1.6] text-bone-2">{item.desc}</p>
-                      </div>
-                    </div>
-                  ))}
+                      </li>
+                    ))}
+                  </ol>
                 </div>
               </article>
             </Reveal>
 
-            {/* Section 3: Core Expertise */}
-            <Reveal delay={0.15}>
-              <article>
-                <h2 className="font-display text-[1.8rem] md:text-[2.2rem] leading-[1.1] font-semibold mb-6">
-                  RevOps Services We Deliver
+            <Reveal delay={0.05}>
+              <article className="grid gap-x-14 gap-y-6 border-b border-rule py-12 md:grid-cols-[minmax(0,0.36fr)_minmax(0,1fr)] md:py-16">
+                <h2 className="font-display text-[clamp(1.5rem,2.9vw,2.05rem)] leading-none font-semibold tracking-[-0.03em] text-bone md:pt-1">
+                  What changed, on work we actually did
                 </h2>
-                <div className="space-y-8">
-                  <div>
-                    <h3 className="font-semibold text-[1.1rem] mb-3">CRM Implementation & Integration</h3>
-                    <ul className="space-y-2 text-[15px] leading-[1.6] text-bone-2">
-                      <li>• HubSpot RevOps consulting (workflows, properties, custom objects)</li>
-                      <li>• Salesforce RevOps consulting (automation, flows, role hierarchy)</li>
-                      <li>• Zoho CRM automation and configuration</li>
-                      <li>
-                        • <Link href="/services/crm-integration-services" className="text-signal hover:underline">
-                          Data automation across tools
-                        </Link>
-                      </li>
-                    </ul>
-                  </div>
 
-                  <div>
-                    <h3 className="font-semibold text-[1.1rem] mb-3">Revenue Intelligence</h3>
-                    <ul className="space-y-2 text-[15px] leading-[1.6] text-bone-2">
-                      <li>
-                        • <Link href="/services/marketing-attribution-guide" className="text-signal hover:underline">
-                          Marketing attribution setup
-                        </Link>
-                      </li>
-                      <li>
-                        • <Link href="/services/revenue-attribution-models" className="text-signal hover:underline">
-                          Revenue attribution modeling
-                        </Link>
-                      </li>
-                      <li>
-                        • <Link href="/services/lead-routing-guide" className="text-signal hover:underline">
-                          Lead scoring & routing
-                        </Link>
-                      </li>
-                      <li>• Customer journey analytics and health scoring</li>
-                    </ul>
-                  </div>
+                <div className="min-w-0">
+                  <p className="copy mb-8">
+                    Client names are withheld under confidentiality, so each is identified by sector
+                    on the{" "}
+                    <Link
+                      href="/case-studies"
+                      className="text-signal underline decoration-rule-2 underline-offset-[5px] transition-colors hover:decoration-signal"
+                    >
+                      case studies page
+                    </Link>
+                    . The problem, the work and the result are as they happened.
+                  </p>
 
-                  <div>
-                    <h3 className="font-semibold text-[1.1rem] mb-3">Operational Efficiency</h3>
-                    <ul className="space-y-2 text-[15px] leading-[1.6] text-bone-2">
-                      <li>
-                        • <Link href="/services/data-automation-consultant" className="text-signal hover:underline">
-                          Sales process automation
-                        </Link>
-                      </li>
-                      <li>
-                        • <Link href="/services/automated-reporting-guide" className="text-signal hover:underline">
-                          Reporting & dashboards
-                        </Link>
-                      </li>
-                      <li>• Team training & process documentation</li>
-                    </ul>
+                  <dl>
+                    {evidence.map((e) => (
+                      <div key={e.label} className="border-b border-rule py-5 last:border-b-0">
+                        <dt className="flex flex-wrap items-baseline gap-x-4 gap-y-1">
+                          <span className="font-display text-[1.35rem] font-semibold tracking-[-0.02em] text-signal tabular-nums">
+                            {e.metric}
+                          </span>
+                          <span className="font-display text-[16px] font-medium text-bone">
+                            {e.label}
+                          </span>
+                        </dt>
+                        <dd className="copy-sm mt-2">
+                          {e.detail}{" "}
+                          <Link
+                            href={e.href}
+                            className="text-signal underline decoration-rule-2 underline-offset-[5px] transition-colors hover:decoration-signal"
+                          >
+                            Case study
+                          </Link>
+                          .
+                        </dd>
+                      </div>
+                    ))}
+                  </dl>
+                </div>
+              </article>
+            </Reveal>
+
+            <Reveal delay={0.05}>
+              <article className="grid gap-x-14 gap-y-6 border-b border-rule py-12 md:grid-cols-[minmax(0,0.36fr)_minmax(0,1fr)] md:py-16">
+                <h2 className="font-display text-[clamp(1.5rem,2.9vw,2.05rem)] leading-none font-semibold tracking-[-0.03em] text-bone md:pt-1">
+                  What we own
+                </h2>
+
+                <div className="min-w-0">
+                  <div className="copy space-y-4 [&_strong]:font-semibold [&_strong]:text-bone">
+                    <p>
+                      <strong>The systems layer.</strong>{" "}
+                      <Link
+                        href="/services/crm-integration-services"
+                        className="text-signal underline decoration-rule-2 underline-offset-[5px] transition-colors hover:decoration-signal"
+                      >
+                        CRM integration
+                      </Link>
+                      ,{" "}
+                      <Link
+                        href="/services/crm-data-migration"
+                        className="text-signal underline decoration-rule-2 underline-offset-[5px] transition-colors hover:decoration-signal"
+                      >
+                        migration
+                      </Link>{" "}
+                      and{" "}
+                      <Link
+                        href="/services/crm-data-quality"
+                        className="text-signal underline decoration-rule-2 underline-offset-[5px] transition-colors hover:decoration-signal"
+                      >
+                        data quality
+                      </Link>{" "}
+                      — the plumbing everything else depends on. On{" "}
+                      <Link
+                        href="/services/salesforce-revops-consulting"
+                        className="text-signal underline decoration-rule-2 underline-offset-[5px] transition-colors hover:decoration-signal"
+                      >
+                        Salesforce
+                      </Link>
+                      ,{" "}
+                      <Link
+                        href="/services/hubspot-revops-consulting"
+                        className="text-signal underline decoration-rule-2 underline-offset-[5px] transition-colors hover:decoration-signal"
+                      >
+                        HubSpot
+                      </Link>{" "}
+                      or{" "}
+                      <Link
+                        href="/services/zoho-crm-automation"
+                        className="text-signal underline decoration-rule-2 underline-offset-[5px] transition-colors hover:decoration-signal"
+                      >
+                        Zoho
+                      </Link>
+                      .
+                    </p>
+                    <p>
+                      <strong>The revenue layer.</strong>{" "}
+                      <Link
+                        href="/services/revenue-attribution-models"
+                        className="text-signal underline decoration-rule-2 underline-offset-[5px] transition-colors hover:decoration-signal"
+                      >
+                        Attribution
+                      </Link>
+                      ,{" "}
+                      <Link
+                        href="/services/lead-routing-guide"
+                        className="text-signal underline decoration-rule-2 underline-offset-[5px] transition-colors hover:decoration-signal"
+                      >
+                        routing
+                      </Link>
+                      ,{" "}
+                      <Link
+                        href="/services/lead-scoring-models"
+                        className="text-signal underline decoration-rule-2 underline-offset-[5px] transition-colors hover:decoration-signal"
+                      >
+                        scoring
+                      </Link>{" "}
+                      and{" "}
+                      <Link
+                        href="/services/sales-forecasting"
+                        className="text-signal underline decoration-rule-2 underline-offset-[5px] transition-colors hover:decoration-signal"
+                      >
+                        forecasting
+                      </Link>{" "}
+                      — deciding where a lead goes and what a pipeline number means.
+                    </p>
+                    <p>
+                      <strong>The reporting layer.</strong>{" "}
+                      <Link
+                        href="/services/automated-reporting-guide"
+                        className="text-signal underline decoration-rule-2 underline-offset-[5px] transition-colors hover:decoration-signal"
+                      >
+                        Automated reporting
+                      </Link>
+                      ,{" "}
+                      <Link
+                        href="/services/reporting-dashboard-design"
+                        className="text-signal underline decoration-rule-2 underline-offset-[5px] transition-colors hover:decoration-signal"
+                      >
+                        dashboard design
+                      </Link>{" "}
+                      and the{" "}
+                      <Link
+                        href="/services/kpi-selection-guide"
+                        className="text-signal underline decoration-rule-2 underline-offset-[5px] transition-colors hover:decoration-signal"
+                      >
+                        handful of KPIs
+                      </Link>{" "}
+                      worth putting on a wall.
+                    </p>
+                    <p>
+                      Most engagements start in one layer and end up touching all three, because the
+                      reporting problem is usually a data quality problem wearing a costume.
+                    </p>
                   </div>
                 </div>
               </article>
             </Reveal>
 
-            {/* Section 4: Comparison Table */}
-            <Reveal delay={0.2}>
-              <article>
-                <h2 className="font-display text-[1.8rem] md:text-[2.2rem] leading-[1.1] font-semibold mb-6">
-                  RevOps Consultant vs. DIY vs. In-House
+            <Reveal delay={0.05}>
+              <article className="grid gap-x-14 gap-y-6 border-b border-rule py-12 md:grid-cols-[minmax(0,0.36fr)_minmax(0,1fr)] md:py-16">
+                <h2 className="font-display text-[clamp(1.5rem,2.9vw,2.05rem)] leading-none font-semibold tracking-[-0.03em] text-bone md:pt-1">
+                  Consultant, in-house, or neither
                 </h2>
-                <div className="overflow-x-auto">
-                  <table className="w-full text-[15px] leading-[1.6]">
-                    <thead>
-                      <tr className="border-b-2 border-rule">
-                        <th className="text-left py-3 px-3 font-semibold">Metric</th>
-                        <th className="text-left py-3 px-3 font-semibold">Consultant</th>
-                        <th className="text-left py-3 px-3 font-semibold">DIY</th>
-                        <th className="text-left py-3 px-3 font-semibold">In-House Hire</th>
-                      </tr>
-                    </thead>
-                    <tbody>
-                      {[
-                        ["Speed to Implementation", "Fast (3-6 months)", "6-12 months", "3-6 months"],
-                        ["Cost", "High upfront", "Medium ongoing", "Very High (salary + benefits)"],
-                        ["Expertise", "Full-stack RevOps", "Limited/specialized", "Specialized"],
-                        ["Scalability", "Flexible", "Rigid", "Fixed cost"],
-                        ["Knowledge Transfer", "Documented", "Minimal", "Ongoing"],
-                      ].map((row, i) => (
-                        <tr key={i} className="border-b border-rule hover:bg-signal/5 transition-colors">
-                          <td className="py-3 px-3 font-semibold">{row[0]}</td>
-                          <td className="py-3 px-3">{row[1]}</td>
-                          <td className="py-3 px-3">{row[2]}</td>
-                          <td className="py-3 px-3">{row[3]}</td>
+
+                <div className="min-w-0">
+                  <div className="overflow-x-auto">
+                    <table className="w-full min-w-[560px] text-left">
+                      <thead>
+                        <tr className="border-b border-rule-2">
+                          <th className="tag py-3 pr-4 font-normal">&nbsp;</th>
+                          <th className="tag py-3 pr-4 font-normal text-signal">Consultancy</th>
+                          <th className="tag py-3 pr-4 font-normal">Do it yourself</th>
+                          <th className="tag py-3 font-normal">In-house hire</th>
                         </tr>
-                      ))}
-                    </tbody>
-                  </table>
+                      </thead>
+                      <tbody>
+                        {comparison.map((row) => (
+                          <tr key={row[0]} className="border-b border-rule">
+                            <td className="py-3.5 pr-4 text-[14.5px] font-semibold text-bone">
+                              {row[0]}
+                            </td>
+                            <td className="py-3.5 pr-4 text-[14.5px] text-bone-2">{row[1]}</td>
+                            <td className="py-3.5 pr-4 text-[14.5px] text-bone-2">{row[2]}</td>
+                            <td className="py-3.5 text-[14.5px] text-bone-2">{row[3]}</td>
+                          </tr>
+                        ))}
+                      </tbody>
+                    </table>
+                  </div>
+
+                  <p className="copy mt-6">
+                    We are the wrong answer if the problem lives entirely inside one tool and one
+                    team. Hire someone who knows that tool deeply instead — it will be faster and
+                    cheaper, and we will tell you so on the first call.
+                  </p>
                 </div>
-                <p className="text-[15px] text-bone-2 mt-6">
-                  <strong>Bottom line:</strong> Consultants deliver faster results without adding headcount overhead. You get full-stack expertise, knowledge transfer, and flexibility.
-                </p>
               </article>
             </Reveal>
 
-            {/* Section 5: FAQ */}
-            <Reveal delay={0.25}>
-              <article>
-                <h2 className="font-display text-[1.8rem] md:text-[2.2rem] leading-[1.1] font-semibold mb-6">
-                  Frequently Asked Questions
+            <Reveal delay={0.05}>
+              <article className="grid gap-x-14 gap-y-6 border-b border-rule py-12 md:grid-cols-[minmax(0,0.36fr)_minmax(0,1fr)] md:py-16">
+                <h2 className="font-display text-[clamp(1.5rem,2.9vw,2.05rem)] leading-none font-semibold tracking-[-0.03em] text-bone md:pt-1">
+                  Questions we get asked
                 </h2>
-                <div className="space-y-6">
-                  {[
-                    {
-                      q: "What skills does a RevOps consultant need?",
-                      a: "Strategic thinking, deep CRM expertise, data analysis, automation knowledge, and cross-functional leadership. We bring all of these.",
-                    },
-                    {
-                      q: "How much does RevOps consulting cost?",
-                      a: "Pricing varies by project scope and complexity. Typical engagements range from $10K-50K depending on your stack and goals. We provide custom quotes after discovery.",
-                    },
-                    {
-                      q: "How long does RevOps implementation take?",
-                      a: "Full stack implementation typically takes 3-6 months. Quick wins (lead routing, basic automation) can be live in 4-6 weeks.",
-                    },
-                    {
-                      q: "What's the ROI of hiring a RevOps consultant?",
-                      a: "Typical ROI is 3-5x within the first year through pipeline growth, faster cycles, and operational efficiency gains. Many clients see payback within 6 months.",
-                    },
-                    {
-                      q: "Do you work with my CRM (HubSpot/Salesforce/Zoho)?",
-                      a: "Yes. We have deep expertise across HubSpot, Salesforce, Zoho, and other major platforms. We'll work with whatever your business uses.",
-                    },
-                  ].map((item, i) => (
-                    <details key={i} className="group border-b border-rule py-4 cursor-pointer">
-                      <summary className="font-semibold text-[16px] flex items-center justify-between cursor-pointer hover:text-signal transition-colors">
-                        {item.q}
-                        <span className="text-[12px] ml-4 group-open:rotate-180 transition-transform">▼</span>
-                      </summary>
-                      <p className="mt-4 text-[15px] leading-[1.6] text-bone-2">{item.a}</p>
-                    </details>
-                  ))}
+
+                <div className="min-w-0">
+                  <dl>
+                    {faqs.map((f) => (
+                      <div key={f.q} className="border-b border-rule py-5 last:border-b-0">
+                        <dt className="font-display text-[17px] font-semibold text-bone">{f.q}</dt>
+                        <dd className="copy-sm mt-2">{f.a}</dd>
+                      </div>
+                    ))}
+                  </dl>
                 </div>
               </article>
             </Reveal>
 
-            {/* Mid-Page CTA */}
-            <Reveal delay={0.3}>
-              <div className="rounded-sm border-2 border-signal/20 bg-signal/5 p-6 md:p-8">
-                <p className="font-semibold text-[1.1rem] text-bone mb-3">Ready to transform your revenue operations?</p>
-                <p className="text-[15px] text-bone-2 mb-4">
-                  Get a free RevOps audit and discover where your revenue is leaking.
+            <Reveal delay={0.1}>
+              <div className="panel border-l-2 border-l-signal p-6 md:p-8">
+                <p className="mb-3 font-semibold text-bone">
+                  Tell us what is breaking, not what you think you need
                 </p>
-                <Link
-                  href="#contact"
-                  className="inline-block px-5 py-2.5 bg-signal text-pit font-semibold rounded-sm hover:bg-signal/90 transition-colors"
-                >
-                  Get a Free RevOps Audit
+                <p className="copy mb-5">
+                  Most people arrive with a symptom. Describe it and we will tell you where it
+                  actually starts — including when the answer is that you do not need us.
+                </p>
+                <Link href="#contact" className="btn btn-primary">
+                  Discuss a project
                 </Link>
               </div>
             </Reveal>
           </div>
         </section>
+
+        <RelatedServices current="/services/revenue-operations-consultant" />
 
         <FinalCta />
       </main>

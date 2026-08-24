@@ -4,10 +4,12 @@ import { profile } from "@/content/profile"
 import Header from "@/components/sections/Header"
 import Footer from "@/components/sections/Footer"
 import FinalCta from "@/components/sections/FinalCta"
+import RelatedServices from "@/components/services/RelatedServices"
 import Reveal from "@/components/ui/Reveal"
 
 const title = "CRM Data Migration | Switch Systems Without Losing Data"
-const description = "Plan and execute CRM migrations. HubSpot to Salesforce. Salesforce to Zoho. Clean data, map fields, validate. Zero data loss."
+const description =
+  "Plan and execute CRM migrations. HubSpot to Salesforce. Salesforce to Zoho. Clean data, map fields, validate. Zero data loss."
 
 export const metadata: Metadata = {
   title,
@@ -35,8 +37,8 @@ export default function CrmDataMigrationPage() {
             <Reveal>
               <div className="flex flex-wrap items-baseline justify-between gap-x-8 gap-y-2 border-b border-rule pb-5">
                 <p className="marker">Guide</p>
-                <Link href="/" className="tag transition-colors hover:text-signal">
-                  ← Back to home
+                <Link href="/services" className="tag transition-colors hover:text-signal">
+                  ← All services
                 </Link>
               </div>
             </Reveal>
@@ -49,82 +51,103 @@ export default function CrmDataMigrationPage() {
 
             <Reveal delay={0.1}>
               <p className="lead mt-8">
-                CRM migrations are high-stakes. One mistake and you lose deal history, contact details, audit trails. Plan meticulously. Execute carefully.
+                CRM migrations are high-stakes. One mistake and you lose deal history, contact
+                details, audit trails. Plan meticulously. Execute carefully.
               </p>
             </Reveal>
           </div>
         </section>
 
         <section className="on-paper section">
-          <div className="shell space-y-16 md:space-y-20">
+          <div className="shell border-t border-rule-2">
             <Reveal>
-              <article>
-                <h2 className="font-display text-[1.8rem] md:text-[2.2rem] leading-[1.1] font-semibold mb-6">
+              <article className="grid gap-x-14 gap-y-6 border-b border-rule py-12 md:grid-cols-[minmax(0,0.36fr)_minmax(0,1fr)] md:py-16">
+                <h2 className="font-display text-[clamp(1.5rem,2.9vw,2.05rem)] leading-none font-semibold tracking-[-0.03em] text-bone md:pt-1">
                   Migration Phases
                 </h2>
-                <div className="space-y-8">
-                  {[
-                    {
-                      phase: "Phase 1: Audit & Design (2-4 weeks)",
-                      desc: "Understand old system. Design new system architecture. Plan field mappings.",
-                    },
-                    {
-                      phase: "Phase 2: Data Cleaning (2-4 weeks)",
-                      desc: "Remove duplicates. Validate fields. Standardize formats. Quality check.",
-                    },
-                    {
-                      phase: "Phase 3: Migration Test (1-2 weeks)",
-                      desc: "Dry-run migration. Validate data integrity. Fix issues. Repeat until clean.",
-                    },
-                    {
-                      phase: "Phase 4: Production Cutover (1-2 days)",
-                      desc: "Final migration. Notify teams. Decommission old system. Support go-live.",
-                    },
-                    {
-                      phase: "Phase 5: Stabilization (2-4 weeks)",
-                      desc: "Monitor for issues. Fix data inconsistencies. Train teams thoroughly.",
-                    },
-                  ].map((item) => (
-                    <div key={item.phase}>
-                      <h3 className="font-semibold text-[1.05rem] mb-2">{item.phase}</h3>
-                      <p className="text-[15px] text-bone-2">{item.desc}</p>
-                    </div>
-                  ))}
+
+                <div className="min-w-0">
+                  <div className="space-y-8">
+                    {[
+                      {
+                        phase: "Phase 1: Audit & Design (2-4 weeks)",
+                        desc: "Understand old system. Design new system architecture. Plan field mappings.",
+                      },
+                      {
+                        phase: "Phase 2: Data Cleaning (2-4 weeks)",
+                        desc: "Remove duplicates. Validate fields. Standardize formats. Quality check.",
+                      },
+                      {
+                        phase: "Phase 3: Migration Test (1-2 weeks)",
+                        desc: "Dry-run migration. Validate data integrity. Fix issues. Repeat until clean.",
+                      },
+                      {
+                        phase: "Phase 4: Production Cutover (1-2 days)",
+                        desc: "Final migration. Notify teams. Decommission old system. Support go-live.",
+                      },
+                      {
+                        phase: "Phase 5: Stabilization (2-4 weeks)",
+                        desc: "Monitor for issues. Fix data inconsistencies. Train teams thoroughly.",
+                      },
+                    ].map((item) => (
+                      <div key={item.phase}>
+                        <h3 className="font-semibold text-[1.05rem] mb-2">{item.phase}</h3>
+                        <p className="copy-sm">{item.desc}</p>
+                      </div>
+                    ))}
+                  </div>
                 </div>
               </article>
             </Reveal>
 
             <Reveal delay={0.05}>
-              <article>
-                <h2 className="font-display text-[1.8rem] md:text-[2.2rem] leading-[1.1] font-semibold mb-6">
+              <article className="grid gap-x-14 gap-y-6 border-b border-rule py-12 md:grid-cols-[minmax(0,0.36fr)_minmax(0,1fr)] md:py-16">
+                <h2 className="font-display text-[clamp(1.5rem,2.9vw,2.05rem)] leading-none font-semibold tracking-[-0.03em] text-bone md:pt-1">
                   Common Pitfalls to Avoid
                 </h2>
-                <div className="space-y-4 text-[15px] leading-[1.65] text-bone-2">
-                  <p>• Migrating without cleaning data first. Garbage in, garbage out.</p>
-                  <p>• Failing to map fields correctly. Data ends up in wrong places.</p>
-                  <p>• Not testing thoroughly. Issues discovered live are expensive.</p>
-                  <p>• Rushing go-live. Better to delay and be right than ship broken.</p>
-                  <p>• No rollback plan. What if something breaks? Can you restore?</p>
+
+                <div className="min-w-0">
+                  <ul className="copy">
+                    <li className="flex items-start gap-4 border-b border-rule py-3 last:border-b-0">
+                      <span aria-hidden className="mt-[9px] h-[7px] w-[7px] shrink-0 bg-signal" />
+                      <span>Migrating without cleaning data first. Garbage in, garbage out.</span>
+                    </li>
+                    <li className="flex items-start gap-4 border-b border-rule py-3 last:border-b-0">
+                      <span aria-hidden className="mt-[9px] h-[7px] w-[7px] shrink-0 bg-signal" />
+                      <span>Failing to map fields correctly. Data ends up in wrong places.</span>
+                    </li>
+                    <li className="flex items-start gap-4 border-b border-rule py-3 last:border-b-0">
+                      <span aria-hidden className="mt-[9px] h-[7px] w-[7px] shrink-0 bg-signal" />
+                      <span>Not testing thoroughly. Issues discovered live are expensive.</span>
+                    </li>
+                    <li className="flex items-start gap-4 border-b border-rule py-3 last:border-b-0">
+                      <span aria-hidden className="mt-[9px] h-[7px] w-[7px] shrink-0 bg-signal" />
+                      <span>Rushing go-live. Better to delay and be right than ship broken.</span>
+                    </li>
+                    <li className="flex items-start gap-4 border-b border-rule py-3 last:border-b-0">
+                      <span aria-hidden className="mt-[9px] h-[7px] w-[7px] shrink-0 bg-signal" />
+                      <span>No rollback plan. What if something breaks? Can you restore?</span>
+                    </li>
+                  </ul>
                 </div>
               </article>
             </Reveal>
 
             <Reveal delay={0.1}>
-              <div className="rounded-sm border-2 border-signal/20 bg-signal/5 p-6 md:p-8">
+              <div className="panel border-l-2 border-l-signal p-6 md:p-8">
                 <p className="font-semibold text-bone mb-3">Plan your CRM migration</p>
-                <p className="text-[15px] text-bone-2 mb-4">
+                <p className="copy mb-5">
                   Work with a consultant to plan and execute your CRM switch safely.
                 </p>
-                <Link
-                  href="#contact"
-                  className="inline-block px-5 py-2.5 bg-signal text-pit font-semibold rounded-sm hover:bg-signal/90 transition-colors"
-                >
+                <Link href="#contact" className="btn btn-primary">
                   Migration Planning Session
                 </Link>
               </div>
             </Reveal>
           </div>
         </section>
+
+        <RelatedServices current="/services/crm-data-migration" />
 
         <FinalCta />
       </main>

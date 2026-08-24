@@ -42,6 +42,12 @@ origin — submitting a URL that disclaims itself sends search engines two
 contradictory signals. Posts written for this site are self-canonical and do
 appear.
 
+**Service pages are generated from `src/content/services.ts`.** That module is the
+source of truth for the `/services` index, the related block at the foot of every
+service page, and the service entries in `sitemap.ts`. Adding a page means adding
+it there and creating the route — nothing else. Merged pages redirect from
+`next.config.js`; keep those entries after deleting a route, that is their job.
+
 **Colour literals exist outside the token block.** `@theme` in `globals.css` is
 the source of truth, but the hero's radial gradient (`Hero.tsx`), the two
 generated OG cards (`opengraph-image.tsx` and `blog/[slug]/opengraph-image.tsx`)
@@ -132,7 +138,13 @@ broken deploy.
 - Blog images still load from the personal site's Supabase storage bucket
 - `profile.linkedin` is null until a company LinkedIn page exists; every use site
   already guards on it
-- No inbound links yet. See `docs/backlinks.md` in the sibling repo
+- No inbound links yet. See `docs/backlinks.md` **in this repo** — it covers the
+  two-site problem the sibling doc does not
+- **The eight case studies are word-for-word identical on both live sites**, each
+  claiming the work as its own. Same objection as the testimonials, and these are
+  rendered. Fix before any link building — `docs/backlinks.md` has the options
+- Neither Google Search Console nor Bing Webmaster Tools is set up, so indexation
+  is currently unknown
 - Generated drafts need reviewing before they are worth anything — see
   `docs/auto-blog.md`, and read the note there before switching the pipeline to
   publish automatically
@@ -141,7 +153,13 @@ broken deploy.
 
 `mehrdadie/datalift-site` holds the personal site and the strategy documents:
 `docs/keyword-research.md`, `docs/backlinks.md`, `docs/profile-copy.md`,
-`docs/n8n-template-submission.md`. Those apply to both businesses.
+`docs/n8n-template-submission.md`.
+
+Those were written for the personal site and mostly transfer, with one exception:
+both sites target the same keywords, with the same person, the same components
+and the same case studies behind them. Running the same backlink playbook on both
+splits the authority and looks manipulative. `docs/backlinks.md` in this repo
+covers that; read it before acting on the sibling one.
 
 <!-- BEGIN:nextjs-agent-rules -->
 

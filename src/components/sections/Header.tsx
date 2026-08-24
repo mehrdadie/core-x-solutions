@@ -46,13 +46,20 @@ export default function Header() {
             height={100}
             className="h-[19px] w-auto sm:h-[21px]"
           />
-          <span aria-hidden className="hidden h-4 w-px bg-rule-2 lg:inline-block" />
-          <span className="tag hidden lg:inline">{profile.shortRole}</span>
+          {/* No role lockup here. The shell caps at 1320px, so the bar's content
+              box is 1224px however wide the window gets; wordmark + divider +
+              role (323) and the nav (917) want 1264 of it. There is no viewport
+              where both fit, and flex paid the 40px by wrapping the one nav
+              label that is two words. The hero says what we do a screen later. */}
         </a>
 
-        <nav aria-label="Primary" className="hidden items-center gap-9 md:flex">
+        <nav aria-label="Primary" className="hidden items-center gap-6 lg:flex xl:gap-9">
           {nav.map((item, i) => (
-            <a key={item.href} href={item.href} className="group tag flex items-baseline gap-1.5 hover:text-bone">
+            <a
+              key={item.href}
+              href={item.href}
+              className="group tag flex shrink-0 items-baseline gap-1.5 whitespace-nowrap hover:text-bone"
+            >
               <span className="text-bone-3 group-hover:text-signal">0{i + 1}</span>
               {item.label}
             </a>
@@ -64,7 +71,7 @@ export default function Header() {
 
         <button
           type="button"
-          className="-mr-2 inline-flex h-10 w-10 items-center justify-center text-bone md:hidden"
+          className="-mr-2 inline-flex h-10 w-10 items-center justify-center text-bone lg:hidden"
           aria-label={open ? "Close menu" : "Open menu"}
           aria-expanded={open}
           aria-controls="mobile-nav"
@@ -74,7 +81,7 @@ export default function Header() {
         </button>
       </div>
 
-      <div id="mobile-nav" hidden={!open} className="border-t border-rule bg-ground md:hidden">
+      <div id="mobile-nav" hidden={!open} className="border-t border-rule bg-ground lg:hidden">
         <div className="shell flex flex-col py-4">
           {nav.map((item, i) => (
             <a
