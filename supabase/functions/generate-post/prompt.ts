@@ -33,7 +33,12 @@ export type SiteContext = {
 /**
  * The site's own pages, for internal links. Kept here rather than read from
  * the repo because the function has no filesystem — if a services page is
- * added or renamed, this list needs the same edit.
+ * added, renamed or deleted, this list needs the same edit.
+ *
+ * `node scripts/check-service-links.mjs` fails when it drifts. It is worth
+ * running: four of these pages were merged away on main while this file still
+ * offered them to the writer, and a link the generator emits to a page that no
+ * longer exists is a 404 in a published article.
  */
 export const SERVICE_PAGES = [
   "/services/revenue-operations-consultant",
@@ -57,11 +62,7 @@ export const SERVICE_PAGES = [
   "/services/lead-qualification-frameworks",
   "/services/deal-health-scoring",
   "/services/win-loss-analysis",
-  "/services/customer-churn-prediction",
-  "/services/upsell-cross-sell-scoring",
   "/services/account-expansion-strategy",
-  "/services/renewal-automation",
-  "/services/email-engagement-tracking",
   "/services/sales-activity-tracking",
   "/services/sales-methodology-standardization",
   "/services/account-health-scoring",
