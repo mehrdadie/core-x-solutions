@@ -33,6 +33,7 @@ export type Post = {
   robots_follow: boolean
   cover_image_url: string | null
   cover_image_alt: string | null
+  cover_image_caption: string | null
   og_title: string | null
   og_description: string | null
   og_image_url: string | null
