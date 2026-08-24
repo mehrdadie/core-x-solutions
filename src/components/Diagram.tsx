@@ -101,15 +101,20 @@ export default function Diagram({ spec }: { spec: DiagramSpec }) {
 /* ── Flow ─────────────────────────────────────────────────────────────────── */
 
 /**
- * A path between systems. Wraps rather than scrolls, because a five-stop
- * journey squeezed onto a 360px viewport is unreadable in one line and fine
- * in two.
+ * A path between systems. Wraps onto more rows rather than scrolling, because
+ * a five-stop journey squeezed onto a 360px viewport is unreadable in one line
+ * and fine in two.
+ *
+ * The column count and the arrow suppression live together in `.flow-rail` in
+ * globals.css: the connector has to vanish at the end of each visual row, and
+ * knowing where the rows end means stating the columns rather than letting
+ * flex-wrap decide.
  */
 function Flow({ steps }: { steps: NonNullable<DiagramSpec["steps"]> }) {
   return (
-    <ol className="flex flex-wrap items-stretch gap-y-4">
+    <ol className="flow-rail">
       {steps.map((step, i) => (
-        <li key={i} className="flex min-w-0 flex-1 basis-[180px] items-stretch">
+        <li key={i} className="flex min-w-0 items-stretch">
           <div className="min-w-0 flex-1 border-l-2 border-signal pl-3.5">
             <p className="tag flex items-baseline gap-2">
               <span className="text-signal tabular-nums">{String(i + 1).padStart(2, "0")}</span>
@@ -123,20 +128,14 @@ function Flow({ steps }: { steps: NonNullable<DiagramSpec["steps"]> }) {
             ) : null}
           </div>
 
-          {i < steps.length - 1 ? (
-            <span
-              aria-hidden
-              className="flex w-7 shrink-0 items-center justify-center text-bone-3"
-            >
-              <svg width="14" height="10" viewBox="0 0 14 10" fill="none">
-                <path
-                  d="M0 5h12M8.5 1.5 12 5l-3.5 3.5"
-                  stroke="currentColor"
-                  strokeWidth="1.25"
-                />
-              </svg>
-            </span>
-          ) : null}
+          <span
+            aria-hidden
+            className="flow-arrow w-7 shrink-0 items-center justify-center text-bone-3"
+          >
+            <svg width="14" height="10" viewBox="0 0 14 10" fill="none">
+              <path d="M0 5h12M8.5 1.5 12 5l-3.5 3.5" stroke="currentColor" strokeWidth="1.25" />
+            </svg>
+          </span>
         </li>
       ))}
     </ol>

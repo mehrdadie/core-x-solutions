@@ -256,6 +256,57 @@
     font-size: 11.5px;
   }
 
+  /* Flow diagrams ---------------------------------------------------- */
+  /* The connector has to disappear at the end of each visual row, or a wrapped
+     five-step flow ends row one with an arrow pointing into whitespace. CSS has
+     no "last in row" selector, so the column count is stated explicitly here
+     rather than left to flex-wrap, where the wrap point is unknowable. */
+  .flow-rail {
+    display: grid;
+    grid-template-columns: 1fr;
+    row-gap: 20px;
+  }
+
+  /* Stacked in one column, a right-pointing arrow would be describing a
+     direction the layout does not have. */
+  .flow-rail .flow-arrow {
+    display: none;
+  }
+
+  @media (min-width: 640px) {
+    .flow-rail {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+
+    .flow-rail .flow-arrow {
+      display: flex;
+    }
+
+    .flow-rail > li:nth-child(2n) .flow-arrow {
+      display: none;
+    }
+  }
+
+  @media (min-width: 1024px) {
+    .flow-rail {
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+    }
+
+    .flow-rail > li:nth-child(2n) .flow-arrow {
+      display: flex;
+    }
+
+    .flow-rail > li:nth-child(3n) .flow-arrow {
+      display: none;
+    }
+  }
+
+  /* Last, so it beats the row-end rules above on source order: the final step
+     continues nowhere regardless of where it lands. */
+  .flow-rail > li:last-child .flow-arrow {
+    display: none;
+  }
+
   .chip {
     display: inline-flex;
     align-items: center;

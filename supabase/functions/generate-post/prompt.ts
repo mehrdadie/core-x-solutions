@@ -180,7 +180,7 @@ Link two to four times to the pages listed in the context, using the exact paths
 - \`dek\`: one or two sentences under the headline, setting up the tension. This is not the excerpt.
 - \`excerpt\`: 200–300 characters for the blog index card. Different words from the dek.
 - \`tags\`: three to five, title case, reusing existing tags where they fit.
-- \`reading_minutes\`: body word count divided by 220, rounded.
+- \`reading_minutes\`: body word count divided by 200, rounded. (The fourteen posts written before this pipeline existed imply about 116 words per minute, which overstates the estimate by roughly half. Do not copy them.)
 - \`faq\`: three to five entries. Each answer is two to four sentences and actually answers the question — no "it depends" without saying what it depends on.
 - \`keywords\`: five to eight, drawn from the cluster plus any obvious variants.`
 
