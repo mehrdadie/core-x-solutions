@@ -146,9 +146,11 @@ update public.posts
  where slug = '<slug>';
 ```
 
-That single statement does everything else: the blog index and the post page
-pick it up within the 10-minute ISR window, `sitemap.ts` lists it, and the
-`posts_notify_indexnow_update` trigger pings Bing, Yandex, Seznam and Naver.
+That single statement does everything else. Two triggers fire on the transition:
+`posts_notify_indexnow_update` pings Bing, Yandex, Seznam and Naver, and
+`posts_revalidate_update` tells the site to drop its cached listings, so the
+post appears on `/blog` and in the sitemap straight away rather than up to ten
+minutes later.
 
 Reject one instead:
 
@@ -158,6 +160,45 @@ delete from public.posts where slug = '<slug>';
 update public.content_topics set status = 'skipped' where cluster = '<cluster>';
 update public.content_topics set status = 'pending', attempts = 0 where cluster = '<cluster>';
 ```
+
+---
+
+## Why a published post appears instantly
+
+The post page was never the slow part. `dynamicParams` renders an unknown slug
+on request, so a post is reachable at its URL the moment it goes live.
+
+`/blog` and `/sitemap.xml` are the ones that lagged: both cache their whole
+list for ten minutes, which is how a post ends up published and invisible at
+the same time.
+
+A trigger on `public.posts` now POSTs to `/api/revalidate` whenever a post is
+published, edited while published, withdrawn, or deleted — the same shape as
+`notify_indexnow`. The endpoint marks `/blog`, `/sitemap.xml` and the post's own
+path stale, and the next visitor gets the rebuilt version.
+
+It needs a shared secret on both sides:
+
+| Where | Name |
+|---|---|
+| Vercel → Environment Variables | `REVALIDATE_SECRET` |
+| Supabase Vault | `revalidate_secret` (same value) and `revalidate_url` |
+
+```sql
+select vault.create_secret('https://core-x.solutions/api/revalidate', 'revalidate_url');
+select vault.create_secret('<same value as REVALIDATE_SECRET>', 'revalidate_secret');
+```
+
+Until both exist the trigger is a silent no-op and the ten-minute window simply
+stays in force — a missing secret must never fail the transaction that is
+trying to publish a post. Check it is working with:
+
+```sql
+select status_code, created from net._http_response order by created desc limit 5;
+```
+
+A 503 means the site has no `REVALIDATE_SECRET`; a 401 means the two values do
+not match.
 
 ---
 

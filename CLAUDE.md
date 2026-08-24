@@ -113,6 +113,15 @@ that dies leaves one reclaimable topic and a double-fire takes two different
 ones. `select * from public.content_queue;` is the view worth knowing: failures
 first, then drafts awaiting review, then the backlog.
 
+**Publishing is instant, but only because the database says so.** `/blog` and
+`/sitemap.xml` cache their lists for ten minutes, so a published post used to be
+live at its own URL and absent from every listing until the window expired. A
+trigger (`notify_revalidate`) POSTs to `/api/revalidate`, which marks both paths
+plus the post's own path stale. Needs `REVALIDATE_SECRET` in Vercel matching
+`revalidate_secret` in Vault, plus `revalidate_url`. Missing secrets are a
+silent no-op that degrades to the old ten-minute behaviour rather than failing
+the publish.
+
 ## Publishing a post
 
 Insert a row into `public.posts` with `status = 'published'` and a
