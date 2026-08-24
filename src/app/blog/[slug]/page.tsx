@@ -195,8 +195,14 @@ export default async function PostPage({ params }: Params) {
 
         <article className="on-paper section">
           <div className="shell grid gap-14 lg:grid-cols-[minmax(0,0.22fr)_minmax(0,1fr)] lg:gap-16">
+            {/* min-w-0 on both columns: a grid item defaults to min-width:auto,
+                so without it the column refuses to shrink below its widest child
+                and the whole page scrolls sideways on a phone. */}
             {headings.length > 1 ? (
-              <nav aria-label="On this page" className="lg:sticky lg:top-28 lg:self-start">
+              <nav
+                aria-label="On this page"
+                className="min-w-0 lg:sticky lg:top-28 lg:self-start"
+              >
                 <p className="tag border-b border-rule-2 pb-3">Contents</p>
                 <ol>
                   {headings.map((h, i) => (
@@ -205,10 +211,13 @@ export default async function PostPage({ params }: Params) {
                         href={`#${h.id}`}
                         className="flex gap-3 border-b border-rule py-3 text-[15px] leading-snug transition-colors hover:text-signal"
                       >
-                        <span className="font-mono text-[12px] text-bone-3 tabular-nums">
+                        <span className="shrink-0 font-mono text-[12px] text-bone-3 tabular-nums">
                           {String(i + 1).padStart(2, "0")}
                         </span>
-                        {h.text}
+                        {/* The heading has to be its own element. As a bare text
+                            node it became an anonymous flex item, which cannot
+                            be given min-width:0 and so never wrapped. */}
+                        <span className="min-w-0">{h.text}</span>
                       </a>
                     </li>
                   ))}
@@ -218,7 +227,9 @@ export default async function PostPage({ params }: Params) {
               <div aria-hidden />
             )}
 
-            <div>
+            {/* Wide children (tables, code, diagrams) scroll inside their own
+                box, but only if this column may be narrower than they are. */}
+            <div className="min-w-0">
               {post.cover_image_url ? (
                 <figure className="mb-14 max-w-[76ch] border border-rule">
                   {/* Plain img: a remote Supabase URL at one fixed size, so
