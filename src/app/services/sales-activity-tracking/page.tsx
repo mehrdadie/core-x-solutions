@@ -7,9 +7,9 @@ import FinalCta from "@/components/sections/FinalCta"
 import RelatedServices from "@/components/services/RelatedServices"
 import Reveal from "@/components/ui/Reveal"
 
-const title = "Sales Activity Tracking | The Leading Indicators, and the Ones That Lie"
+const title = "Sales Activity Tracking | The Signals That Predict Pipeline"
 const description =
-  "Calls, emails, meetings and email engagement — which activity data predicts pipeline, which is theatre, and how to capture it without asking reps to log anything."
+  "Calls, emails and meetings — which activity data predicts pipeline, which is theatre, and how to capture it without asking reps to log anything."
 
 export const metadata: Metadata = {
   title,
@@ -22,6 +22,7 @@ export const metadata: Metadata = {
     title,
     description,
     locale: "en_GB",
+    images: [{ url: "/services/opengraph-image", width: 1200, height: 630 }],
   },
   twitter: { card: "summary_large_image", title, description },
 }

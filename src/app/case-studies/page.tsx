@@ -6,6 +6,7 @@ import Footer from "@/components/sections/Footer"
 import FinalCta from "@/components/sections/FinalCta"
 import CaseStudyArticle from "@/components/sections/CaseStudyArticle"
 import Reveal from "@/components/ui/Reveal"
+import CollectionSchema from "@/components/CollectionSchema"
 
 const title = `Case studies | ${profile.name}`
 
@@ -20,6 +21,7 @@ export const metadata: Metadata = {
     title,
     description: caseStudiesPage.metaDescription,
     locale: "en_GB",
+    images: [{ url: "/opengraph-image", width: 1200, height: 630 }],
   },
   twitter: { card: "summary_large_image", title, description: caseStudiesPage.metaDescription },
 }
@@ -27,6 +29,8 @@ export const metadata: Metadata = {
 export default function CaseStudiesPage() {
   return (
     <>
+      <CollectionSchema path="/case-studies" name="Case studies" description="Selected engagements across CRM integration, reporting and revenue operations." />
+
       <Header />
 
       <main id="main">

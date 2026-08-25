@@ -9,7 +9,7 @@ import Reveal from "@/components/ui/Reveal"
 
 const title = "Account Health Scoring | Churn Risk and Expansion From One Score"
 const description =
-  "The signals that predict churn are the same ones that predict expansion. How to build one account health score, what it should weigh, and the renewal workflow it feeds."
+  "The signals that predict churn also predict expansion. How to build one account health score, what it should weigh, and the renewal workflow it feeds."
 
 export const metadata: Metadata = {
   title,
@@ -22,6 +22,7 @@ export const metadata: Metadata = {
     title,
     description,
     locale: "en_GB",
+    images: [{ url: "/services/opengraph-image", width: 1200, height: 630 }],
   },
   twitter: { card: "summary_large_image", title, description },
 }

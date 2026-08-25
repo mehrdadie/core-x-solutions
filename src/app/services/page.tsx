@@ -6,6 +6,7 @@ import Header from "@/components/sections/Header"
 import Footer from "@/components/sections/Footer"
 import FinalCta from "@/components/sections/FinalCta"
 import Reveal from "@/components/ui/Reveal"
+import CollectionSchema from "@/components/CollectionSchema"
 
 const title = `Services | ${profile.name}`
 const description =
@@ -22,6 +23,7 @@ export const metadata: Metadata = {
     title,
     description,
     locale: "en_GB",
+    images: [{ url: "/services/opengraph-image", width: 1200, height: 630 }],
   },
   twitter: { card: "summary_large_image", title, description },
 }
@@ -60,6 +62,8 @@ const triage = [
 export default function ServicesIndexPage() {
   return (
     <>
+      <CollectionSchema path="/services" name="Services" description="Data, automation and revenue operations services across CRM, reporting, attribution and pipeline." />
+
       <Header />
 
       <main id="main">

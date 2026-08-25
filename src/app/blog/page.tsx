@@ -6,6 +6,7 @@ import Header from "@/components/sections/Header"
 import Footer from "@/components/sections/Footer"
 import FinalCta from "@/components/sections/FinalCta"
 import Reveal from "@/components/ui/Reveal"
+import CollectionSchema from "@/components/CollectionSchema"
 
 /** Rebuilt at most every ten minutes; new posts appear without a redeploy. */
 export const revalidate = 600
@@ -25,6 +26,7 @@ export const metadata: Metadata = {
     title,
     description,
     locale: "en_GB",
+    images: [{ url: "/opengraph-image", width: 1200, height: 630 }],
   },
   twitter: { card: "summary_large_image", title, description },
 }
@@ -34,6 +36,8 @@ export default async function BlogIndex() {
 
   return (
     <>
+      <CollectionSchema path="/blog" name="Writing" description="Notes on revenue operations, CRM architecture, attribution and automation." />
+
       <Header />
 
       <main id="main">

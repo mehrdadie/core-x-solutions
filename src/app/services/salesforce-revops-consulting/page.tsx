@@ -9,7 +9,7 @@ import Reveal from "@/components/ui/Reveal"
 
 const title = "Salesforce RevOps Consulting | Governance, Flows and Reporting"
 const description =
-  "Salesforce RevOps: automation order of execution, flow governance, sharing model, and the org debt that makes reporting unreliable. Work across six Salesforce engagements."
+  "Salesforce RevOps: order of execution, flow governance, the sharing model, and the org debt that quietly makes your reporting unreliable."
 
 export const metadata: Metadata = {
   title,
@@ -22,6 +22,7 @@ export const metadata: Metadata = {
     title,
     description,
     locale: "en_GB",
+    images: [{ url: "/services/opengraph-image", width: 1200, height: 630 }],
   },
   twitter: { card: "summary_large_image", title, description },
 }
