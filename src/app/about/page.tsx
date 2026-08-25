@@ -1,6 +1,7 @@
 import type { Metadata } from "next"
 import Link from "next/link"
-import { about, profile } from "@/content/profile"
+import Image from "next/image"
+import { about, principal, profile } from "@/content/profile"
 import Header from "@/components/sections/Header"
 import Footer from "@/components/sections/Footer"
 import FinalCta from "@/components/sections/FinalCta"
@@ -12,16 +13,20 @@ import CollectionSchema from "@/components/CollectionSchema"
  * link resolved but `/about` itself returned 404 — the URL anyone types, and
  * the one Google looks for when working out who is behind a site.
  *
- * Deliberately company-voiced and deliberately thin on biography. The strongest
- * signal this page could carry is a named person with verifiable credentials,
- * and inventing one would repeat the mistake already recorded against the
- * testimonials and the case studies in CLAUDE.md. Everything here is either
- * true or absent.
+ * Company-voiced by decision (see CLAUDE.md), but no longer anonymous. The page
+ * used to be thin on biography on the argument that inventing credentials would
+ * repeat the testimonials mistake — which was right about invention and wrong
+ * about omission. Naming the person who does the work is not a claim that needs
+ * sourcing; it is the fact a buyer is looking for hardest, and withholding it
+ * made a one-person practice read as a studio hiding its size.
+ *
+ * The optional parts of `principal` — the photograph and the record — still
+ * render only when they exist. Everything here is either true or absent.
  */
 
 const title = `About | ${profile.name}`
 const description =
-  "A data, automation and revenue operations consultancy. What we work on, how engagements run, and the problems we are genuinely useful for."
+  "A data, automation and revenue operations consultancy run by Mehrdad Fashami. What we work on, how engagements run, and the problems we are genuinely useful for."
 
 export const metadata: Metadata = {
   title,
@@ -118,6 +123,57 @@ export default function AboutPage() {
               </div>
 
               <h2 className="mt-14 font-display text-[clamp(1.6rem,3vw,2.1rem)] leading-[1.12] font-semibold tracking-[-0.028em] text-bone">
+                {principal.heading}
+              </h2>
+
+              <div className="mt-7 grid gap-8 sm:grid-cols-[minmax(0,1fr)] md:grid-cols-[minmax(0,0.32fr)_minmax(0,1fr)] md:gap-10">
+                {principal.photo ? (
+                  <div className="relative aspect-[4/5] w-full max-w-[220px] overflow-hidden bg-paper-2">
+                    <Image
+                      src={principal.photo}
+                      alt={principal.photoAlt ?? principal.name}
+                      fill
+                      sizes="220px"
+                      className="object-cover"
+                    />
+                  </div>
+                ) : null}
+
+                <div className={principal.photo ? "min-w-0" : "min-w-0 md:col-span-2"}>
+                  <p className="font-display text-[1.15rem] leading-tight font-semibold text-bone">
+                    {principal.name}
+                  </p>
+                  <p className="tag mt-1.5">{principal.title}</p>
+                  {principal.record ? <p className="copy-sm mt-3">{principal.record}</p> : null}
+
+                  <div className="prose-w mt-5 space-y-5 text-[16.5px] leading-[1.68] text-bone-2">
+                    {principal.paragraphs.map((p) => (
+                      <p key={p.slice(0, 24)}>{p}</p>
+                    ))}
+                  </div>
+
+                  <p className="copy-sm mt-5">
+                    Start with{" "}
+                    <Link
+                      href={`/blog/${principal.writingSlug}`}
+                      className="text-signal underline decoration-rule-2 underline-offset-[5px] transition-colors hover:decoration-signal"
+                    >
+                      why your CRM and your finance system never agree
+                    </Link>
+                    , or the wider practice at{" "}
+                    <a
+                      href={principal.site}
+                      rel="noreferrer noopener"
+                      className="text-signal underline decoration-rule-2 underline-offset-[5px] transition-colors hover:decoration-signal"
+                    >
+                      mehrdadfashami.com
+                    </a>
+                    .
+                  </p>
+                </div>
+              </div>
+
+              <h2 className="mt-14 font-display text-[clamp(1.6rem,3vw,2.1rem)] leading-[1.12] font-semibold tracking-[-0.028em] text-bone">
                 What we turn down
               </h2>
 
@@ -133,6 +189,13 @@ export default function AboutPage() {
 
             <div className="min-w-0 lg:sticky lg:top-24 lg:self-start">
               <dl className="border-t border-rule-2">
+                <div className="grid gap-1.5 border-b border-rule py-5">
+                  <dt className="tag">Principal</dt>
+                  <dd className="text-[16.5px] leading-[1.6] text-bone-2">
+                    {principal.name} &middot; {principal.title}
+                  </dd>
+                </div>
+
                 <div className="grid gap-1.5 border-b border-rule py-5">
                   <dt className="tag">Practice</dt>
                   <dd className="text-[16.5px] leading-[1.6] text-bone-2">

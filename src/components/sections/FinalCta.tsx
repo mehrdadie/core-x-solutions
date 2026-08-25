@@ -1,5 +1,5 @@
 import Link from "next/link"
-import { finalCta, hero, profile } from "@/content/profile"
+import { engagementFloor, finalCta, hero, profile } from "@/content/profile"
 import Reveal from "@/components/ui/Reveal"
 
 /**
@@ -28,7 +28,12 @@ export default function FinalCta() {
 
             <p className="lead prose-w mt-8">{finalCta.body}</p>
 
-            <p className="prose-w mt-5 text-[15.5px] leading-[1.65] text-bone-3">{finalCta.shape}</p>
+            {/* The floor is appended rather than written into `shape`, so the
+                sentence stays true while `engagementFloor` is null. */}
+            <p className="prose-w mt-5 text-[15.5px] leading-[1.65] text-bone-3">
+              {finalCta.shape}
+              {engagementFloor ? ` Engagements start at ${engagementFloor}.` : ""}
+            </p>
 
             <div className="mt-10 flex flex-wrap items-center gap-3">
               <Link href="/contact" className="btn btn-primary">

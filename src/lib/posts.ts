@@ -63,12 +63,16 @@ export type PostCard = Pick<
   | "published_at"
   | "cover_image_url"
   | "cover_image_alt"
+  // The index used to be the one page about the writing that did not say who
+  // wrote it, which is a strange omission on a practice whose argument is that
+  // a person owns the problem.
+  | "author_name"
   // Carried so the sitemap can tell an original from a cross-published copy.
   | "canonical_url"
 >
 
 const CARD_COLUMNS =
-  "slug,title,dek,excerpt,category,tags,reading_minutes,published_at,cover_image_url,cover_image_alt,canonical_url"
+  "slug,title,dek,excerpt,category,tags,reading_minutes,published_at,cover_image_url,cover_image_alt,author_name,canonical_url"
 
 function client() {
   if (!SUPABASE_URL || !SUPABASE_KEY) return null

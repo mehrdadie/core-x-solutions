@@ -86,6 +86,28 @@ and what happens after it. The four symptom openers in `FinalCta` stay as
 `#contact` on service pages is fine: those pages render `FinalCta`, so the
 anchor resolves on the page the reader is already on.
 
+**The practice is named, and still speaks as "we".** `principal` in
+`profile.ts` carries Mehrdad Fashami's name and title; /about opens a "Who you
+would be working with" section on it, the fact table names him, the blog index
+carries his byline and `StructuredData.tsx` emits a `Person` node the
+`Organization` points at as `founder`. The company voice stays — that is the fork
+decision, and naming who does the work is not the same as unwinding it. `photo`
+and `record` are null and every use site guards on null, so the page claims no
+photograph and no career history it cannot support.
+
+**The services index leads with three jobs, not thirty-one.** The numbered index
+is still there and no URL was given up, but it now sits under a block naming what
+the practice is actually hired for — the numbers do not match, the leads do not
+get owned, the report is still a Monday export — each pointing at one of the
+three core pages. A reader who meets thirty-one rows before meeting an argument
+asks for a quote on a line item.
+
+**There is a place for a price, and it is empty.** `engagementFloor` in
+`profile.ts` is null. Set it to a string and it appears in the closing CTA and in
+the /contact cost answer; leave it null and both read correctly without it. The
+`finalCta.shape` sentence is the screen that works in the meantime — fixed scope
+or retainer, never hourly.
+
 **The logo is a hand-built SVG, not an exported asset.**
 `public/core-x-logo.svg` is the CORE-X wordmark, drawn on a 654x100 grid (cap
 height 100, stroke 19, letters at x = 0/122/244/366/484/554). `src/app/icon.svg`
@@ -172,10 +194,13 @@ broken deploy.
   optional field renders **only when non-null** — so /privacy and /terms
   currently make no claim they cannot support. Fill them in and both pages pick
   them up; nothing else needs editing
-- The About slot carries a stock team photo (`public/team-placeholder.webp`).
-  Those are not Core-X people. Same problem as the testimonials: a visitor reads
-  the slot as "this is who you would be working with". Replace with a real photo,
-  or restore the `CX` mark, before this reaches `main`
+- The About slot no longer carries the stock team photo — it was deleted, and the
+  slot falls back to the wordmark. Set `principal.photo` to a real photograph of
+  Mehrdad and both /about and the home slot pick it up
+- `principal.record` is null. One line of checkable history (years, previous
+  roles) is the cheapest remaining credibility gain on the site
+- `engagementFloor` is null. A stated floor is what makes an hourly brief
+  self-select out; the shape sentence alone does not
 - `www.core-x.solutions` certificate — verify it issued; set apex as primary domain
 - Blog images still load from the personal site's Supabase storage bucket
 - `profile.linkedin` is null until a company LinkedIn page exists; every use site

@@ -1,4 +1,4 @@
-import { about, profile } from "@/content/profile"
+import { about, principal, profile } from "@/content/profile"
 
 /** Organization + ProfessionalService schema, rendered once on the home page. */
 export default function StructuredData() {
@@ -30,6 +30,22 @@ export default function StructuredData() {
            them would be worse than omitting the property. */
         sameAs: profile.linkedin ? [profile.linkedin] : undefined,
         knowsAbout: about.tags,
+        /* The practice is one person, and the entity graph should say so. This
+           is what lets a search engine connect the company, the byline on the
+           articles and the personal practice site as the same operator rather
+           than three unrelated things competing for the same terms. */
+        founder: { "@id": `${profile.url}/#principal` },
+      },
+      {
+        "@type": "Person",
+        "@id": `${profile.url}/#principal`,
+        name: principal.name,
+        jobTitle: principal.title,
+        url: `${profile.url}/about`,
+        worksFor: { "@id": `${profile.url}/#organization` },
+        knowsAbout: about.tags,
+        sameAs: [principal.site],
+        ...(principal.photo ? { image: `${profile.url}${principal.photo}` } : {}),
       },
       {
         "@type": "ProfessionalService",

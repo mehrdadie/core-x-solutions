@@ -35,7 +35,11 @@ const POST_STATUS = Deno.env.get("GENERATOR_POST_STATUS") ?? "draft"
 /** Optional second credential, if you would rather not hand out the service key. */
 const GENERATOR_SECRET = Deno.env.get("GENERATOR_SECRET")
 
-const AUTHOR = "Core-X Solutions"
+/* The byline. The practice keeps its company voice, but the writing carries
+   the name of the person whose reasoning it is — the blog index shows it, and
+   the Person node in the site's structured data points back at /about. */
+const AUTHOR = "Mehrdad Fashami"
+const AUTHOR_URL = "https://core-x.solutions/about"
 
 /* ── Validation ───────────────────────────────────────────────────────────── */
 
@@ -295,6 +299,7 @@ Deno.serve(async (req: Request) => {
         tags: draft.tags,
         reading_minutes: draft.reading_minutes,
         author_name: AUTHOR,
+        author_url: AUTHOR_URL,
         seo_title: draft.seo_title,
         seo_description: description,
         focus_keyword: topic.focus_keyword,

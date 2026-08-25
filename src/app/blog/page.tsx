@@ -85,6 +85,7 @@ export default async function BlogIndex() {
                         {post.reading_minutes ? (
                           <p className="tag md:mt-1.5">{post.reading_minutes} min read</p>
                         ) : null}
+                        <p className="tag md:mt-1.5 md:text-bone-2">{post.author_name}</p>
                       </div>
 
                       <div>

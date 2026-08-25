@@ -15,6 +15,53 @@ export const profile = {
   location: "Working internationally",
 } as const
 
+/**
+ * The named principal.
+ *
+ * The site keeps its company voice — that fork decision is recorded in
+ * CLAUDE.md and is not what this block changes. What it changes is that a buyer
+ * can no longer read the whole site without learning whose judgement they would
+ * be buying, which was the single largest hole in it: eight case studies, a
+ * turn-down list and a written scope, all unsigned.
+ *
+ * Every field here has to be checkable, and the optional ones render only when
+ * set — the same rule as `content/legal.ts`. `photo` stays null until there is a
+ * real photograph of him: a named person beside a stock group shot is worse than
+ * no photograph at all. `record` stays null until there are years and roles
+ * somebody could verify. Do not fill either from imagination; that is the
+ * mistake already recorded against the testimonials below.
+ */
+export const principal = {
+  name: "Mehrdad Fashami",
+  title: "Principal consultant",
+  /** A path under /public, once a real photograph exists. */
+  photo: null as string | null,
+  photoAlt: null as string | null,
+  /** e.g. "Fourteen years across ...". Null until it is a checkable fact. */
+  record: null as string | null,
+  /** The personal practice site, which carries the same byline. */
+  site: "https://mehrdadfashami.com",
+  heading: "Who you would be working with",
+  paragraphs: [
+    "The work is done by Mehrdad Fashami. Not scoped by one person and handed to another — the map, the argument about which system owns which field, and the pipelines that come out of it are the same pair of hands. That is why the engagement list is short and why \u201cselected projects\u201d is a description rather than a marketing line.",
+    "He writes most of what is on this site, under his own name where the piece is his. If you want to know how he reasons about a system before you write anything, that is the faster read \u2014 the case studies say what changed, the writing says how the decision was made.",
+  ],
+  /** The bylined article that shows the reasoning, linked from /about. */
+  writingSlug: "why-your-crm-and-finance-system-never-agree",
+} as const
+
+/**
+ * The commercial floor, said once and in the positive.
+ *
+ * Null until there is a number to state. Everything that renders it guards on
+ * null, so the site never implies a price it has not set — but until it is set,
+ * the only screen against an hourly brief is the shape sentence in `finalCta`,
+ * which tells a cheap shopper what this is not without telling a serious buyer
+ * what it costs. Set it to a string like "\u00a38,000" and it appears on
+ * /contact and in the closing block.
+ */
+export const engagementFloor = null as string | null
+
 /** Anchors are rooted so the nav resolves from the sub-pages too. */
 export const nav = [
   { label: "Services", href: "/services" },

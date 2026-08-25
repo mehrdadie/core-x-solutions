@@ -1,6 +1,6 @@
 import type { Metadata } from "next"
 import Link from "next/link"
-import { profile } from "@/content/profile"
+import { engagementFloor, profile } from "@/content/profile"
 import Header from "@/components/sections/Header"
 import Footer from "@/components/sections/Footer"
 import Reveal from "@/components/ui/Reveal"
@@ -57,7 +57,10 @@ const asked = [
   },
   {
     q: "What does it cost?",
-    a: "Engagements are scoped to an outcome and priced as a fixed scope or a retainer, never by the hour. You get the number in writing before anything is built. If the work is small enough to bill hourly, we will tell you that instead of quoting for it.",
+    a:
+      "Engagements are scoped to an outcome and priced as a fixed scope or a retainer, never by the hour." +
+      (engagementFloor ? ` The floor is ${engagementFloor}.` : "") +
+      " You get the number in writing before anything is built. If the work is small enough to bill hourly, we will tell you that instead of quoting for it.",
   },
   {
     q: "What happens when it ends?",
