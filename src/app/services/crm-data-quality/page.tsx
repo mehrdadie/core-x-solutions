@@ -82,8 +82,11 @@ export default function CrmDataQualityPage() {
                       their own spreadsheets. The system becomes useless.
                     </p>
                     <p>
-                      <strong>Cost: 20% of your revenue is at risk.</strong> That's industry average
-                      for data quality issues.
+                      <strong>The cost is real, and it is local.</strong> There is no industry
+                      average worth quoting: what bad records cost you depends on how much of your
+                      revenue depends on a record being right. Count the deals that went to the
+                      wrong owner last quarter and the renewals that went to a dead address. That
+                      number is yours, and it is the only one worth arguing from.
                     </p>
                   </div>
                 </div>

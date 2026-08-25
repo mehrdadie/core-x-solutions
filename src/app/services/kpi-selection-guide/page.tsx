@@ -9,7 +9,7 @@ import Reveal from "@/components/ui/Reveal"
 
 const title = "KPI Selection Guide | Choose the Right Metrics"
 const description =
-  "Select the right KPIs for your business. Revenue KPIs, pipeline KPIs, efficiency KPIs. Measure what matters. Drive behavior with metrics."
+  "Select the right KPIs for your business. Revenue KPIs, pipeline KPIs, efficiency KPIs. Measure what matters. Drive behaviour with metrics."
 
 export const metadata: Metadata = {
   title,

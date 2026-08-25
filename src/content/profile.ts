@@ -31,7 +31,7 @@ export const hero = {
   headingAccent: "behind your business.",
   body:
     "Data, CRM, marketing, sales and operations — connected into one system that gives you clearer decisions, better visibility and less manual work.",
-  primaryCta: { label: "Discuss a project", href: "#contact" },
+  primaryCta: { label: "Discuss a project", href: "/contact" },
   secondaryCta: { label: "See selected work", href: "#work" },
   trust: "Taking on new work.",
 } as const
@@ -667,6 +667,14 @@ export const finalCta = {
     "Tell us what is not working, what is still manual, or what you cannot currently see clearly. If it is not something we should take on, we will tell you that too.",
   primary: "Discuss a project",
   secondary: "Email us",
+  /**
+   * The commercial screen, said once in the positive. The rest of the site says
+   * it in negatives — no hourly tickets, no one-off charts — which reads as
+   * modesty rather than as a floor. This is the sentence a cheap brief bounces
+   * off.
+   */
+  shape:
+    "Engagements are scoped to an outcome and priced as a fixed scope or a retainer, not by the hour. If the work is small enough to bill hourly, it is not work we should be taking.",
   prompts: [
     "Our numbers do not match between systems",
     "Reporting takes too long every week",

@@ -83,7 +83,7 @@ export default function LeadQualificationFrameworksPage() {
                       },
                       {
                         framework: "CHAMP",
-                        elements: "Challenges, Authority, Money, Prioritization",
+                        elements: "Challenges, Authority, Money, Prioritisation",
                         use: "Modern sales. Best for: shorter cycles",
                       },
                     ].map((item) => (

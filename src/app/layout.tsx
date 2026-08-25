@@ -47,7 +47,6 @@ export const metadata: Metadata = {
     "revenue operations consultant",
     "marketing attribution consultant",
     "fractional head of data",
-    "freelance data consultant",
     "CRM data quality consultant",
     "lead to revenue reporting",
     "revenue attribution",

@@ -122,11 +122,11 @@ export default function LeadRoutingGuidePage() {
                       },
                       {
                         model: "Round-Robin",
-                        desc: "Distribute evenly across available reps in turn. Best for: standardized sales processes.",
+                        desc: "Distribute evenly across available reps in turn. Best for: standardised sales processes.",
                       },
                       {
                         model: "Score-Based",
-                        desc: "Route high-value leads to senior reps, lower-value to junior reps. Best for: optimizing team productivity.",
+                        desc: "Route high-value leads to senior reps, lower-value to junior reps. Best for: optimising team productivity.",
                       },
                     ].map((item) => (
                       <div key={item.model} className="border-l-2 border-signal pl-6">

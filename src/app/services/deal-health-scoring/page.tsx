@@ -9,7 +9,7 @@ import Reveal from "@/components/ui/Reveal"
 
 const title = "Deal Health Scoring | Identify At-Risk Deals Early"
 const description =
-  "Score deal health in real-time. Identify at-risk deals, prioritize manager attention, reduce slippage. Automated deal monitoring for better forecasts."
+  "Score deal health in real-time. Identify at-risk deals, prioritise manager attention, reduce slippage. Automated deal monitoring for better forecasts."
 
 export const metadata: Metadata = {
   title,

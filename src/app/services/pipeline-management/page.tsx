@@ -70,7 +70,7 @@ export default function PipelineManagementPage() {
                 <div className="min-w-0">
                   <div className="copy space-y-4 [&_strong]:font-semibold [&_strong]:text-bone">
                     {[
-                      ["Total Pipeline Value", "$5M total, compare to quota"],
+                      ["Total Pipeline Value", "£5m total, compare to quota"],
                       ["Pipeline by Stage", "Leads, prospects, demos, proposals, negotiations"],
                       ["Aging Pipeline", "How old are deals? Are they stalled?"],
                       ["Deal Slippage", "Deals moved past close date without closing"],

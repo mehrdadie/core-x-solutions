@@ -7,9 +7,9 @@ import FinalCta from "@/components/sections/FinalCta"
 import RelatedServices from "@/components/services/RelatedServices"
 import Reveal from "@/components/ui/Reveal"
 
-const title = "Sales Methodology Standardization | Align Your Sales Team"
+const title = "Sales Methodology Standardisation | Align Your Sales Team"
 const description =
-  "Standardize sales processes across your team. One shared methodology, one qualification framework, one playbook. Drive consistency and scaling."
+  "Standardise sales processes across your team. One shared methodology, one qualification framework, one playbook. Drive consistency and scaling."
 
 export const metadata: Metadata = {
   title,
@@ -52,7 +52,7 @@ export default function SalesMethodologyStandardizationPage() {
 
             <Reveal delay={0.1}>
               <p className="lead mt-8">
-                Without standardized process, every rep sells their own way. Wins are inconsistent.
+                Without standardised process, every rep sells their own way. Wins are inconsistent.
                 Onboarding new reps is chaos. Build one shared methodology.
               </p>
             </Reveal>
@@ -135,7 +135,7 @@ export default function SalesMethodologyStandardizationPage() {
               <div className="panel border-l-2 border-l-signal p-6 md:p-8">
                 <p className="font-semibold text-bone mb-3">Build your sales methodology</p>
                 <p className="copy mb-5">
-                  Work with a consultant to document and standardize your team's process.
+                  Work with a consultant to document and standardise your team's process.
                 </p>
                 <Link href="#contact" className="btn btn-primary">
                   Start Methodology Project

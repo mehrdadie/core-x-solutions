@@ -58,6 +58,34 @@ Post diagrams are the exception that proves it: `Diagram.tsx` uses the token
 classes rather than literals, which is what lets one component read correctly on
 both the dark ground and the paper ground the article body sits on.
 
+**The site is `en_GB`, and the service pages were not.** Hand-written copy uses
+`-ise`/`-our`/`-yse` (`summarises`, `standardised`, `behaviour`) and prices in
+sterling; the keyword-built service pages arrived with `optimize`, `Behaviors`
+and dollar examples. They have been corrected. The slug
+`/services/sales-methodology-standardization` keeps its US spelling — it is a
+URL, and changing it would need a redirect for nothing.
+
+**Nothing on a service page states a statistic it cannot source.** Four pages
+carried claims of the "3-5x ROI within 18 months" / "20% of your revenue is at
+risk — that is industry average" kind. They are gone. Where a section needed a
+number, it now names the metric the work moves rather than predicting how far it
+moves it. A figure on this site should be traceable to an engagement or to the
+reader's own system.
+
+**Case visuals that show one path are labelled `Illustrative`.** The case-02
+timeline, the case-03 bars and the case-06 transcript sit next to numbers that
+were measured across a whole engagement. `Reconstructed` in `CaseVisuals.tsx`
+marks the three, which is what protects the measured figures beside them — an
+unlabelled example next to a real number invites a sceptical reader to discount
+both.
+
+**The primary CTA goes to `/contact`, not to a `mailto:`.** Hero, header and the
+`FinalCta` button all land on the page that says what to put in the first email
+and what happens after it. The four symptom openers in `FinalCta` stay as
+`mailto:` links — they carry their own subject line, which is the qualification.
+`#contact` on service pages is fine: those pages render `FinalCta`, so the
+anchor resolves on the page the reader is already on.
+
 **The logo is a hand-built SVG, not an exported asset.**
 `public/core-x-logo.svg` is the CORE-X wordmark, drawn on a 654x100 grid (cap
 height 100, stroke 19, letters at x = 0/122/244/366/484/554). `src/app/icon.svg`

@@ -7,7 +7,7 @@ import FinalCta from "@/components/sections/FinalCta"
 import RelatedServices from "@/components/services/RelatedServices"
 import Reveal from "@/components/ui/Reveal"
 
-const title = "Revenue Attribution Models | Guide to Revenue Modeling"
+const title = "Revenue Attribution Models | Guide to Revenue Modelling"
 const description =
   "Master revenue attribution models (first-touch, last-touch, linear, time-decay, data-driven). Learn which model works best for your revenue operations."
 
@@ -106,13 +106,13 @@ export default function RevenueAttributionModelsPage() {
                     {[
                       {
                         model: "First-Touch Attribution",
-                        pros: "Simple, prioritizes awareness",
+                        pros: "Simple, prioritises awareness",
                         cons: "Ignores middle/bottom-funnel efforts",
                         use: "Brand building, awareness campaigns",
                       },
                       {
                         model: "Last-Touch Attribution",
-                        pros: "Simple, prioritizes conversion",
+                        pros: "Simple, prioritises conversion",
                         cons: "Ignores nurturing, inflates sales credit",
                         use: "Direct-response, paid search",
                       },

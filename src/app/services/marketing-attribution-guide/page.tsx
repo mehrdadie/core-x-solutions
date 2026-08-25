@@ -9,7 +9,7 @@ import Reveal from "@/components/ui/Reveal"
 
 const title = "Marketing Attribution Guide | Track Campaign ROI"
 const description =
-  "Master marketing attribution. Track which campaigns and channels drive qualified leads. Measure ROI accurately and optimize your marketing spend."
+  "Master marketing attribution. Track which campaigns and channels drive qualified leads. Measure ROI accurately and optimise your marketing spend."
 
 export const metadata: Metadata = {
   title,
@@ -53,7 +53,7 @@ export default function MarketingAttributionGuidePage() {
             <Reveal delay={0.1}>
               <p className="lead mt-8">
                 Stop guessing which campaigns drive revenue. Master marketing attribution to measure
-                true ROI, optimize budgets, and build credibility with leadership.
+                true ROI, optimise budgets, and build credibility with leadership.
               </p>
             </Reveal>
           </div>
@@ -170,7 +170,10 @@ export default function MarketingAttributionGuidePage() {
                           • Lead quality visibility: know which channels deliver highest-intent
                           leads
                         </li>
-                        <li>• Budget optimization: shift 20%+ of spend to highest-ROI channels</li>
+                        <li>
+                          • Budget decisions with a source: which channels produced revenue, not
+                          which produced leads
+                        </li>
                         <li>
                           • Forecast confidence: accurate attribution → accurate pipeline forecasts
                         </li>

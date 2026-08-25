@@ -52,9 +52,11 @@ export default function WhatIsRevOpsPage() {
 
             <Reveal delay={0.1}>
               <p className="lead mt-8">
-                RevOps is the alignment of sales, marketing, and customer success operations with
-                data, technology, and process. It's the bridge that connects teams, systems, and
-                strategies into a unified revenue engine.
+                RevOps is the discipline of making sales, marketing, finance and customer success
+                run on one set of definitions, one set of systems and one version of the number.
+                Most of the job is not technology. It is deciding, in writing, which system owns
+                which fact, and getting the people who disagree about a definition to commit to
+                one.
               </p>
             </Reveal>
           </div>
@@ -102,7 +104,7 @@ export default function WhatIsRevOpsPage() {
                       },
                       {
                         pillar: "Process",
-                        desc: "Standardized workflows. Consistent lead qualification, routing, and handoff processes ensure predictability and accountability.",
+                        desc: "Standardised workflows. Consistent lead qualification, routing, and handoff processes ensure predictability and accountability.",
                       },
                       {
                         pillar: "Technology",
@@ -163,8 +165,9 @@ export default function WhatIsRevOpsPage() {
                     </table>
                   </div>
                   <p className="copy-sm">
-                    <strong>The key difference:</strong> Sales ops optimizes the sales team. RevOps
-                    optimizes the entire revenue engine—from lead to customer.
+                    <strong>The key difference:</strong> sales ops makes the sales team work
+                    better. RevOps makes marketing, sales and finance agree &mdash; from the first
+                    click to the paid invoice.
                   </p>
                 </div>
               </article>
@@ -179,9 +182,9 @@ export default function WhatIsRevOpsPage() {
                 <div className="min-w-0">
                   <div className="copy space-y-4 [&_strong]:font-semibold [&_strong]:text-bone">
                     <p>
-                      <strong>3-5x ROI within 18 months.</strong> Companies with mature RevOps see
-                      faster pipeline growth, higher close rates, and lower customer acquisition
-                      costs.
+                      <strong>The arguments stop.</strong> When marketing, sales and finance have
+                      agreed what a qualified lead is and what counts as revenue, the weekly meeting
+                      is about the business rather than about whose export is right.
                     </p>
                     <p>
                       <strong>Faster decision-making.</strong> Real-time dashboards and unified data
@@ -192,7 +195,7 @@ export default function WhatIsRevOpsPage() {
                       duplicate work, conflicting numbers, and finger-pointing between teams.
                     </p>
                     <p>
-                      <strong>Predictable revenue.</strong> Standardized processes mean you can
+                      <strong>Predictable revenue.</strong> Standardised processes mean you can
                       forecast accurately and scale without chaos.
                     </p>
                   </div>
@@ -226,7 +229,7 @@ export default function WhatIsRevOpsPage() {
                             "Implement",
                             "Connect your systems, build automations, train your team.",
                           ],
-                          ["Optimize", "Monitor, iterate, and evolve as your business grows."],
+                          ["Optimise", "Monitor, iterate, and evolve as your business grows."],
                         ].map(([step, desc], i) => (
                           <li key={i} className="copy-sm">
                             <strong>{step}:</strong> {desc}

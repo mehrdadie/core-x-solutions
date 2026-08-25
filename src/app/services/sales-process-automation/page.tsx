@@ -52,8 +52,9 @@ export default function SalesProcessAutomationPage() {
 
             <Reveal delay={0.1}>
               <p className="lead mt-8">
-                Reps spend 30% of their time on admin: logging calls, scheduling follow-ups,
-                updating deals. Automation reclaims 10+ hours per week.
+                Logging calls, scheduling follow-ups, updating deal stages. None of it is selling,
+                and all of it is done by the person you hired to sell. Automation moves that work to
+                the system that already holds the data.
               </p>
             </Reveal>
           </div>
@@ -117,7 +118,7 @@ export default function SalesProcessAutomationPage() {
                       need manager attention.
                     </p>
                     <p>
-                      <strong>Phase 4 (Ongoing):</strong> Continuous optimization. Monitor adoption,
+                      <strong>Phase 4 (Ongoing):</strong> Continuous optimisation. Monitor adoption,
                       iterate, add new automations.
                     </p>
                     <p>
