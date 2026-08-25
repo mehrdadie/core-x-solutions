@@ -7,7 +7,7 @@ import FinalCta from "@/components/sections/FinalCta"
 import RelatedServices from "@/components/services/RelatedServices"
 import Reveal from "@/components/ui/Reveal"
 
-const title = "Automated Reporting Guide | Real-Time Sales & Marketing Dashboards"
+const title = "Automated Reporting | Real-Time Sales & Marketing Dashboards"
 const description =
   "Build automated dashboards for sales, marketing, and leadership. Real-time pipeline visibility, forecasts, and metrics. No more manual reports."
 
@@ -22,6 +22,7 @@ export const metadata: Metadata = {
     title,
     description,
     locale: "en_GB",
+    images: [{ url: "/services/opengraph-image", width: 1200, height: 630 }],
   },
   twitter: { card: "summary_large_image", title, description },
 }

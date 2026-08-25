@@ -1,20 +1,66 @@
 import Link from "next/link"
-import { moneyPage, relatedServices } from "@/content/services"
+import { profile } from "@/content/profile"
+import { moneyPage, relatedServices, serviceByHref } from "@/content/services"
 import Reveal from "@/components/ui/Reveal"
 
 /**
  * The foot of every service page: the rest of the cluster this one belongs to,
  * derived from the index rather than listed by hand, so a new page appears in
  * its siblings' related blocks the moment it is added to `content/services`.
+ *
+ * It also emits the page's structured data. That lives here rather than in each
+ * page because all 31 of them already render this component with their own
+ * path, and `content/services` already knows every page's label and blurb — so
+ * one file gives the whole cluster breadcrumbs and Service markup, and a new
+ * page gets both for free. Before this, every service page shipped with no
+ * structured data at all.
  */
 export default function RelatedServices({ current }: { current: string }) {
   const related = relatedServices(current)
   if (!related || related.siblings.length === 0) return null
 
   const { group, siblings } = related
+  const self = serviceByHref(current)
+  const url = `${profile.url}${current}`
+
+  const graph: Record<string, unknown>[] = [
+    {
+      "@type": "BreadcrumbList",
+      "@id": `${url}#breadcrumb`,
+      itemListElement: [
+        { "@type": "ListItem", position: 1, name: "Home", item: profile.url },
+        { "@type": "ListItem", position: 2, name: "Services", item: `${profile.url}/services` },
+        ...(self
+          ? [{ "@type": "ListItem", position: 3, name: self.label, item: url }]
+          : []),
+      ],
+    },
+  ]
+
+  if (self) {
+    graph.push({
+      "@type": "Service",
+      "@id": `${url}#service`,
+      name: self.label,
+      description: self.blurb,
+      url,
+      category: group.label,
+      provider: {
+        "@type": "Organization",
+        name: profile.name,
+        url: profile.url,
+      },
+    })
+  }
 
   return (
     <section aria-label="Related services" className="section border-t border-rule">
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify({ "@context": "https://schema.org", "@graph": graph }),
+        }}
+      />
       <div className="shell">
         <Reveal>
           <div className="flex flex-wrap items-baseline justify-between gap-x-8 gap-y-3 border-b border-rule-2 pb-4">

@@ -9,7 +9,7 @@ import Reveal from "@/components/ui/Reveal"
 
 const title = "Revenue Operations Consultant | Core-X Solutions"
 const description =
-  "A RevOps consultancy that connects CRM, marketing, finance and support into one system you can report on. What we own, how an engagement runs, and what changed for the businesses we did it for."
+  "A RevOps consultancy connecting CRM, marketing, finance and support into one system you can report on. What we own, and how an engagement runs."
 
 export const metadata: Metadata = {
   title,
@@ -22,6 +22,7 @@ export const metadata: Metadata = {
     title,
     description,
     locale: "en_GB",
+    images: [{ url: "/services/opengraph-image", width: 1200, height: 630 }],
   },
   twitter: { card: "summary_large_image", title, description },
 }

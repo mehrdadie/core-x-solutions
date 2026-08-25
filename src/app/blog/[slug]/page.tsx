@@ -57,16 +57,22 @@ export async function generateMetadata({ params }: Params): Promise<Metadata> {
       modifiedTime: post.updated_at,
       authors: [post.author_url ?? profile.url],
       tags: post.tags,
-      images: image
-        ? [
-            {
-              url: image,
-              width: post.og_image_width ?? 1200,
-              height: post.og_image_height ?? 630,
-              alt: post.og_image_alt ?? post.cover_image_alt ?? post.title,
-            },
-          ]
-        : undefined,
+      // Spread rather than `images: undefined`. An explicitly-present-but-
+      // undefined key counts as "this page has no images" and suppresses the
+      // generated card from opengraph-image.tsx; omitting the key lets it
+      // through. Every post was shipping without an og:image because of this.
+      ...(image
+        ? {
+            images: [
+              {
+                url: image,
+                width: post.og_image_width ?? 1200,
+                height: post.og_image_height ?? 630,
+                alt: post.og_image_alt ?? post.cover_image_alt ?? post.title,
+              },
+            ],
+          }
+        : {}),
     },
     twitter: {
       card: (post.twitter_card as "summary_large_image") ?? "summary_large_image",
@@ -106,16 +112,16 @@ export default async function PostPage({ params }: Params) {
         url: post.author_url ?? profile.url,
       },
       publisher: { "@type": "Organization", name: profile.name, url: profile.url },
-      ...(image
-        ? {
-            image: {
-              "@type": "ImageObject",
-              url: image,
-              width: post.og_image_width ?? 1200,
-              height: post.og_image_height ?? 630,
-            },
-          }
-        : {}),
+      // Article markup without an image is a documented Google warning, and 19
+      // of 20 posts had none because only one has a hand-made cover. Every post
+      // does have a generated card at its own opengraph-image route, so fall
+      // back to that rather than omitting the property.
+      image: {
+        "@type": "ImageObject",
+        url: image ?? `${profile.url}/blog/${post.slug}/opengraph-image`,
+        width: image ? (post.og_image_width ?? 1200) : 1200,
+        height: image ? (post.og_image_height ?? 630) : 630,
+      },
     },
     {
       "@type": "BreadcrumbList",

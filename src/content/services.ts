@@ -212,3 +212,12 @@ export function relatedServices(
   if (!group) return null
   return { group, siblings: group.items.filter((item) => item.href !== href) }
 }
+
+/** One service by its path. Used for breadcrumbs and structured data. */
+export function serviceByHref(href: string): ServiceItem | null {
+  for (const group of serviceGroups) {
+    const item = group.items.find((i) => i.href === href)
+    if (item) return item
+  }
+  return null
+}

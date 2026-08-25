@@ -9,7 +9,7 @@ import Reveal from "@/components/ui/Reveal"
 
 const title = "Data Automation Consultant | Pipelines That Run Without You"
 const description =
-  "What to automate, what to leave alone, and how to build pipelines that fail loudly instead of quietly. Scheduling, idempotency, validation and alerting — with worked examples."
+  "What to automate, what to leave alone, and how to build pipelines that fail loudly rather than quietly. Scheduling, idempotency, validation and alerting."
 
 export const metadata: Metadata = {
   title,
@@ -22,6 +22,7 @@ export const metadata: Metadata = {
     title,
     description,
     locale: "en_GB",
+    images: [{ url: "/services/opengraph-image", width: 1200, height: 630 }],
   },
   twitter: { card: "summary_large_image", title, description },
 }

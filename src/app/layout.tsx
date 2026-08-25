@@ -70,11 +70,17 @@ export const metadata: Metadata = {
     title,
     description,
     locale: "en_GB",
+    // A default card for every page that does not generate its own. The
+    // opengraph-image.tsx file convention applies only to its own segment and
+    // is not inherited by children, so without this the 31 service pages, the
+    // blog index and the case studies all shared to social as a bare link.
+    images: [{ url: "/opengraph-image", width: 1200, height: 630, alt: title }],
   },
   twitter: {
     card: "summary_large_image",
     title,
     description,
+    images: [{ url: "/opengraph-image", alt: title }],
   },
   robots: {
     index: true,

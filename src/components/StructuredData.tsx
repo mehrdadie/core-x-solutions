@@ -13,9 +13,21 @@ export default function StructuredData() {
         email: `mailto:${profile.email}`,
         description: about.paragraphs[0],
         slogan: profile.role,
-        /* No logo node yet: an ImageObject pointing at a file that does not
-           exist is worse than omitting it, because it invalidates the whole
-           node. Add one here once there is a real mark. */
+        /* The wordmark, which is what Google reads for the brand entity. The
+           note that used to sit here said to add this "once there is a real
+           mark" — public/core-x-logo.svg has existed since the rebrand, so the
+           node was simply never caught up. Dimensions are the file's own
+           viewBox, not guesses. */
+        logo: {
+          "@type": "ImageObject",
+          url: `${profile.url}/core-x-logo.svg`,
+          width: 654,
+          height: 100,
+        },
+        /* sameAs is what ties this site to the same company elsewhere, and is
+           the single strongest brand-entity signal after inbound links. It
+           stays empty until there are real profiles to point at — inventing
+           them would be worse than omitting the property. */
         sameAs: profile.linkedin ? [profile.linkedin] : undefined,
         knowsAbout: about.tags,
       },
