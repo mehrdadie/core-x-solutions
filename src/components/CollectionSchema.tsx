@@ -1,8 +1,8 @@
 import { profile } from "@/content/profile"
 
 /**
- * Breadcrumb and CollectionPage markup for the three index pages — /services,
- * /blog and /case-studies.
+ * Breadcrumb and page-type markup for the pages that are not articles or
+ * services: the three indexes, plus About and Contact.
  *
  * They had no structured data at all, which mattered more than it looks: these
  * are the pages Google picks from when it decides whether to show sitelinks
@@ -17,16 +17,19 @@ export default function CollectionSchema({
   path,
   name,
   description,
+  type = "CollectionPage",
 }: {
   path: string
   name: string
   description: string
+  /** AboutPage and ContactPage are the same shape; only the label differs. */
+  type?: "CollectionPage" | "AboutPage" | "ContactPage" | "WebPage"
 }) {
   const url = `${profile.url}${path}`
 
   const graph = [
     {
-      "@type": "CollectionPage",
+      "@type": type,
       "@id": `${url}#page`,
       name,
       description,

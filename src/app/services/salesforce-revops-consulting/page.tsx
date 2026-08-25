@@ -258,8 +258,7 @@ export default function SalesforceRevOpsConsultingPage() {
                         className="text-signal underline decoration-rule-2 underline-offset-[5px] transition-colors hover:decoration-signal"
                       >
                         Case study
-                      </Link>
-                      .
+                      </Link>.
                     </p>
                     <p>
                       <strong>An inbound-led services business</strong> had enquiries landing in a
@@ -273,8 +272,7 @@ export default function SalesforceRevOpsConsultingPage() {
                         className="text-signal underline decoration-rule-2 underline-offset-[5px] transition-colors hover:decoration-signal"
                       >
                         Case study
-                      </Link>
-                      .
+                      </Link>.
                     </p>
                     <p>
                       Also on Salesforce:{" "}
@@ -297,8 +295,7 @@ export default function SalesforceRevOpsConsultingPage() {
                         className="text-signal underline decoration-rule-2 underline-offset-[5px] transition-colors hover:decoration-signal"
                       >
                         four systems resolved to one customer view
-                      </Link>
-                      .
+                      </Link>.
                     </p>
                   </div>
                 </div>

@@ -1,6 +1,7 @@
 import type { MetadataRoute } from "next"
 import { profile } from "@/content/profile"
 import { getPosts } from "@/lib/posts"
+import { legalUpdated } from "@/content/legal"
 import { moneyPage, serviceGroups } from "@/content/services"
 
 /** Regenerated on the same cadence as the blog, so new posts get listed. */
@@ -78,5 +79,32 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
       changeFrequency: "monthly" as const,
       priority: 0.6,
     })),
+    // Identity and legal. Low priority — nobody searches for these — but they
+    // are the pages a buyer and a crawler both check to decide whether a site
+    // belongs to a real business, so they have to be discoverable.
+    {
+      url: `${profile.url}/about`,
+      lastModified: new Date(),
+      changeFrequency: "monthly",
+      priority: 0.7,
+    },
+    {
+      url: `${profile.url}/contact`,
+      lastModified: new Date(),
+      changeFrequency: "monthly",
+      priority: 0.7,
+    },
+    {
+      url: `${profile.url}/privacy`,
+      lastModified: new Date(legalUpdated),
+      changeFrequency: "yearly",
+      priority: 0.2,
+    },
+    {
+      url: `${profile.url}/terms`,
+      lastModified: new Date(legalUpdated),
+      changeFrequency: "yearly",
+      priority: 0.2,
+    },
   ]
 }
