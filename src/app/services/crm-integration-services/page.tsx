@@ -266,8 +266,7 @@ export default function CrmIntegrationServicesPage() {
                         className="text-signal underline decoration-rule-2 underline-offset-[5px] transition-colors hover:decoration-signal"
                       >
                         Full case study
-                      </Link>
-                      .
+                      </Link>.
                     </p>
                     <p>
                       The same pattern at larger scale:{" "}
@@ -336,8 +335,7 @@ export default function CrmIntegrationServicesPage() {
                         className="text-signal underline decoration-rule-2 underline-offset-[5px] transition-colors hover:decoration-signal"
                       >
                         Zoho
-                      </Link>
-                      .
+                      </Link>.
                     </p>
                   </div>
                 </div>

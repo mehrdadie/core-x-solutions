@@ -93,8 +93,7 @@ export default function SalesCycleAnalysisPage() {
                         className="text-signal underline decoration-rule-2 underline-offset-[5px] transition-colors hover:decoration-signal"
                       >
                         RevOps consultant
-                      </Link>
-                      .
+                      </Link>.
                     </p>
                   </div>
                 </div>

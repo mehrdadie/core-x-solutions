@@ -273,8 +273,7 @@ export default function SalesActivityTrackingPage() {
                         className="text-signal underline decoration-rule-2 underline-offset-[5px] transition-colors hover:decoration-signal"
                       >
                         Case study
-                      </Link>
-                      .
+                      </Link>.
                     </p>
                     <p>
                       <strong>An inbound-led services business</strong> had enquiries landing in a
@@ -290,8 +289,7 @@ export default function SalesActivityTrackingPage() {
                         className="text-signal underline decoration-rule-2 underline-offset-[5px] transition-colors hover:decoration-signal"
                       >
                         Case study
-                      </Link>
-                      .
+                      </Link>.
                     </p>
                     <p>
                       Both worked for the same reason: the measure was taken from a system that

@@ -279,8 +279,7 @@ export default function DataAutomationConsultantPage() {
                         className="text-signal underline decoration-rule-2 underline-offset-[5px] transition-colors hover:decoration-signal"
                       >
                         Full case study
-                      </Link>
-                      .
+                      </Link>.
                     </p>
                     <p>
                       Note what did not get automated: the 2 hours that remain are review and
@@ -304,8 +303,7 @@ export default function DataAutomationConsultantPage() {
                     className="text-signal underline decoration-rule-2 underline-offset-[5px] transition-colors hover:decoration-signal"
                   >
                     automated reporting
-                  </Link>
-                  .
+                  </Link>.
                 </p>
                 <Link href="#contact" className="btn btn-primary">
                   Discuss a project

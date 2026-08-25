@@ -368,8 +368,7 @@ export default function AccountHealthScoringPage() {
                         className="text-signal underline decoration-rule-2 underline-offset-[5px] transition-colors hover:decoration-signal"
                       >
                         Full case study
-                      </Link>
-                      .
+                      </Link>.
                     </p>
                   </div>
                 </div>

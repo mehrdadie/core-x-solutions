@@ -309,8 +309,7 @@ export default function RevenueOperationsConsultantPage() {
                       className="text-signal underline decoration-rule-2 underline-offset-[5px] transition-colors hover:decoration-signal"
                     >
                       case studies page
-                    </Link>
-                    . The problem, the work and the result are as they happened.
+                    </Link>. The problem, the work and the result are as they happened.
                   </p>
 
                   <dl>
@@ -331,8 +330,7 @@ export default function RevenueOperationsConsultantPage() {
                             className="text-signal underline decoration-rule-2 underline-offset-[5px] transition-colors hover:decoration-signal"
                           >
                             Case study
-                          </Link>
-                          .
+                          </Link>.
                         </dd>
                       </div>
                     ))}
@@ -391,8 +389,7 @@ export default function RevenueOperationsConsultantPage() {
                         className="text-signal underline decoration-rule-2 underline-offset-[5px] transition-colors hover:decoration-signal"
                       >
                         Zoho
-                      </Link>
-                      .
+                      </Link>.
                     </p>
                     <p>
                       <strong>The revenue layer.</strong>{" "}

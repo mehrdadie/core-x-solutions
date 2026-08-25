@@ -139,6 +139,11 @@ broken deploy.
 ## Open items
 
 - Real testimonials, then re-add `<Testimonials />` to the page
+- `src/content/legal.ts` holds the legal identity and is the only place it is
+  stated. `companyNumber`, `jurisdiction` and `address` are null, and every
+  optional field renders **only when non-null** — so /privacy and /terms
+  currently make no claim they cannot support. Fill them in and both pages pick
+  them up; nothing else needs editing
 - The About slot carries a stock team photo (`public/team-placeholder.webp`).
   Those are not Core-X people. Same problem as the testimonials: a visitor reads
   the slot as "this is who you would be working with". Replace with a real photo,
