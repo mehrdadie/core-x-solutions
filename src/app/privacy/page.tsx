@@ -4,11 +4,18 @@ import { legalEntity } from "@/content/legal"
 import LegalDocument, { Clause } from "@/components/LegalDocument"
 
 /**
- * Written to what this site actually does, which is very little: no analytics,
- * no cookies, no tracking pixels, and no forms — every call to action is a
- * `mailto:`. A boilerplate policy describing cookie banners and advertising
- * partners would be inaccurate, and an inaccurate privacy policy is worse than
- * a short true one.
+ * Written to what this site actually does, and rewritten when that changed.
+ *
+ * It used to say "no analytics — no Google Analytics, no Plausible, no PostHog,
+ * nothing". PostHog now runs on every page, in cookieless mode, with session
+ * replay on. The claim that survived is the one about cookies: nothing is
+ * written to the visitor's device, which is why there is still no banner. The
+ * claim that did not survive has been replaced rather than softened, because a
+ * privacy policy that undersells session recording is worse than no policy at
+ * all — and this is a consultancy that sells data governance.
+ *
+ * If `COOKIELESS` in `lib/analytics.ts` is ever changed to 'on_reject', this
+ * page describes the wrong arrangement and has to be rewritten again.
  *
  * Optional identity fields render only when `content/legal.ts` has them, so
  * this page never claims a company number or address the business has not
@@ -17,7 +24,7 @@ import LegalDocument, { Clause } from "@/components/LegalDocument"
 
 const title = `Privacy policy | ${profile.name}`
 const description =
-  "What this site collects, which is almost nothing: no analytics, no cookies, no tracking. What happens if you email us, and how to ask us to delete it."
+  "What this site measures and how: cookieless analytics, session replay, no cookies and no banner. What happens if you email us, and how to opt out."
 
 export const metadata: Metadata = {
   title,
@@ -44,7 +51,7 @@ export default function PrivacyPage() {
       path="/privacy"
       name="Privacy policy"
       description={description}
-      intro="This site sets no cookies, runs no analytics and has no forms. That makes this policy shorter than most, and everything in it is a description of what actually happens rather than what might."
+      intro="This site sets no cookies and has no forms, but it does measure how people use it — including recordings of page interactions. Everything below is a description of what actually happens rather than what might, including the parts that are awkward to write down."
     >
       <Clause title="Who is responsible">
         <p>
@@ -67,16 +74,72 @@ export default function PrivacyPage() {
         </p>
       </Clause>
 
-      <Clause title="What this site does not do">
+      <Clause title="No cookies, and therefore no banner">
         <p>
-          It does not set cookies. It runs no analytics — no Google Analytics, no Plausible, no
-          PostHog, nothing. It carries no advertising or social tracking pixels. It has no contact
-          form, no newsletter signup and no account system, so there is nothing on the site that
-          asks you for personal data.
+          This site sets no cookies. It writes nothing to local storage or session storage either.
+          Nothing at all is stored on your device by us, which is the reason there is no consent
+          banner: a banner exists to ask permission to store something, and there is nothing to
+          ask about.
         </p>
         <p>
-          If you have arrived here expecting a cookie banner, its absence is the reason there is
-          not one.
+          It carries no advertising or social tracking pixels, and it has no contact form, no
+          newsletter signup and no account system, so nothing on the site asks you for personal
+          data. The only way to give us any is to email us.
+        </p>
+      </Clause>
+
+      <Clause title="What we do measure, and how">
+        <p>
+          <strong className="font-semibold text-bone">Analytics.</strong> We use{" "}
+          <a
+            href="https://posthog.com"
+            target="_blank"
+            rel="noreferrer noopener"
+            className="text-signal underline decoration-signal/40 underline-offset-4 transition-colors hover:decoration-signal"
+          >
+            PostHog
+          </a>{" "}
+          to see which pages get read, which links get clicked, and where people give up. It runs in
+          cookieless mode: instead of tagging your browser with an identifier that persists, PostHog
+          derives a rotating identifier server-side. It does not survive from one day to the next,
+          so if you come back next week you are a new visitor as far as our numbers are concerned.
+          That is a deliberate trade — worse analytics, in exchange for not following anyone around.
+        </p>
+        <p>
+          <strong className="font-semibold text-bone">Session replay.</strong> This is the part
+          worth reading twice. PostHog records how pages are used — pointer movement, scrolling,
+          clicks, and what the page looked like while you were on it — and we watch those recordings
+          back to find out where the writing loses people. It is a reconstruction of the page, not a
+          video of your screen and not access to your device: it captures this site and nothing else
+          in your browser. Anything typed into a field would be masked before it left the page,
+          though in practice there are no fields on this site to type into.
+        </p>
+        <p>
+          <strong className="font-semibold text-bone">Where it goes.</strong> To PostHog&rsquo;s EU
+          infrastructure, through a path on this domain rather than a third-party one. Your IP
+          address is discarded at the point of collection rather than stored against the events. We
+          also collect page performance timings and browser console errors, so a page that is broken
+          or slow shows up as a number rather than as silence.
+        </p>
+        <p>
+          The lawful basis is legitimate interest: understanding whether the writing on a site works
+          is a reasonable thing for its owner to do, and it is done here without persistent
+          identifiers, without a profile that follows you, and without anything shared for
+          advertising.
+        </p>
+      </Clause>
+
+      <Clause title="How to switch it off">
+        <p>
+          Turn on <strong className="font-semibold text-bone">Do Not Track</strong> in your browser
+          and this site captures nothing from you at all — no events and no recording. Most policies
+          mention DNT in order to say they ignore it. We honour it, and it is the reason there is no
+          separate opt-out button to hunt for.
+        </p>
+        <p>
+          Blocking the script with an extension works too, and breaks nothing on the site. If you
+          would rather we deleted a recording that has already been made, write to us and we will,
+          though you will need to tell us roughly when you visited so we can find it.
         </p>
       </Clause>
 
@@ -113,13 +176,20 @@ export default function PrivacyPage() {
 
       <Clause title="Who else sees anything">
         <p>
-          Two providers, both processing on our behalf: <strong className="font-semibold text-bone">Vercel</strong>{" "}
-          for hosting, and <strong className="font-semibold text-bone">Supabase</strong> for the
-          article database. Email is handled by our mail provider.
+          Three providers, all processing on our behalf:{" "}
+          <strong className="font-semibold text-bone">Vercel</strong> for hosting,{" "}
+          <strong className="font-semibold text-bone">Supabase</strong> for the article database,
+          and <strong className="font-semibold text-bone">PostHog</strong> for analytics and session
+          replay, on their EU infrastructure. Email is handled by our mail provider.
         </p>
         <p>
-          Nothing is sold, rented or shared for advertising. There is no data to sell, which is the
-          most reliable form of that promise.
+          Nothing is sold, rented or shared for advertising. Nobody outside those providers sees any
+          of it, and none of it is joined to anything else.
+        </p>
+        <p>
+          <strong className="font-semibold text-bone">How long it is kept.</strong> Session
+          recordings are deleted after 30 days. Analytics events are kept for 12 months and then
+          removed.
         </p>
       </Clause>
 
@@ -136,8 +206,10 @@ export default function PrivacyPage() {
           and we will respond within one month.
         </p>
         <p>
-          In practice, unless you have emailed us, we almost certainly hold nothing about you at
-          all — and we will tell you that plainly rather than send you a form.
+          In practice, unless you have emailed us, what we hold is a set of events with no name
+          attached and no identifier that lasts beyond the day — and we will tell you that plainly
+          rather than send you a form. The fastest way to exercise the right to object is Do Not
+          Track, described above, which takes effect immediately and needs no request to us.
         </p>
         {jurisdiction ? (
           <p>

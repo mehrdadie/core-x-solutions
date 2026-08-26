@@ -21,6 +21,7 @@ are not automatically shared — the repos are independent.
 | Repo | `mehrdadie/core-x-solutions`, production branch `main` |
 | Hosting | Vercel project `core-x-solutions`, auto-deploys on push to `main` |
 | Blog data | Supabase project `core-x.solutions` (ref `yuiqypblvacmrnztutkg`) |
+| Analytics | PostHog EU, project `core-x.solutions` (id `254770`) |
 | Registrar | GoDaddy. A `@` → `76.76.21.21`, CNAME `www` → `cname.vercel-dns.com.` |
 
 Environment variables live in Vercel, not the repo: `NEXT_PUBLIC_SITE_URL`,
@@ -125,6 +126,42 @@ drift. Nine pages use it. The question wording comes from what live search
 returns, not from invented headings, and the answers have to say something the
 page above them does not. This matters more here than elsewhere because
 `robots.ts` admits every AI crawler on purpose.
+
+**The site is measured, and it still sets no cookies.** `posthog-js` runs on
+every page via `src/instrumentation-client.ts` — Next's own pre-hydration hook,
+chosen because the alternative (a provider using `useSearchParams`) would opt the
+entire statically prerendered tree out of prerendering and fail the build. Route
+changes are caught by `capture_pageview: 'history_change'`, so no React hook is
+involved and every page stays `○ Static`.
+
+`cookieless_mode: 'always'` is the decision, set in `src/lib/analytics.ts`.
+Nothing is written to the visitor's device — no cookie, no localStorage — so
+there is no consent banner and every visitor is measured rather than the fraction
+who would click Accept. The cost is that identity does not survive the day, so
+returning-visitor and multi-session analysis do not exist. Switching that constant
+to `'on_reject'` buys them back but requires a banner **and** a second rewrite of
+`/privacy`, which currently describes the cookieless arrangement specifically.
+
+Cookieless has to be on at both ends. `cookieless_server_hash_mode` is set to
+Stateful on PostHog project 254770; if it is ever turned off, every event from
+the site is dropped at ingestion and the site looks dead rather than broken.
+
+**Ingestion is proxied through this origin.** `/ingest/*` rewrites to PostHog's EU
+endpoints in `next.config.js`, so requests are first-party and domain blocklists
+do not delete a share of an audience that blocks trackers well above average. It
+is not an evasion — a blocked script stays blocked, and `respect_dnt` is on. The
+proxy is why `skipTrailingSlashRedirect: true` is set: posthog-js POSTs to paths
+ending in a slash, and Next's default 308 would turn those into redirects and lose
+the events. The side effect is that `/about/` and `/about` both return 200, which
+is safe only because every page sets an explicit `alternates.canonical`. Dropping
+a canonical from a page is now an expensive mistake.
+
+**`/privacy` and `/terms` describe the analytics exactly, including replay.** They
+used to say the site ran none. Session replay is disclosed in plain words rather
+than buried, Do Not Track is honoured and named as the opt-out, and retention (30
+days for recordings, 12 months for events) is stated. If the capture config
+changes, those pages change with it — an inaccurate privacy policy on a
+consultancy that sells data governance is worse than no analytics.
 
 **The logo is a hand-built SVG, not an exported asset.**
 `public/core-x-logo.svg` is the CORE-X wordmark, drawn on a 654x100 grid (cap

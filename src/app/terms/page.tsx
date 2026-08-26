@@ -126,7 +126,8 @@ export default function TermsPage() {
             className="text-signal underline decoration-signal/40 underline-offset-4 transition-colors hover:decoration-signal"
           >
             privacy policy
-          </Link>. The short version is that it sets no cookies and runs no analytics.
+          </Link>. The short version is that it sets no cookies, but it does measure how pages are
+          used and records page interactions — and it honours Do Not Track.
         </p>
       </Clause>
 
