@@ -5,11 +5,73 @@ import Header from "@/components/sections/Header"
 import Footer from "@/components/sections/Footer"
 import FinalCta from "@/components/sections/FinalCta"
 import RelatedServices from "@/components/services/RelatedServices"
+import ServiceFaq from "@/components/services/ServiceFaq"
 import Reveal from "@/components/ui/Reveal"
 
 const title = "CRM Integration Services | Connecting Systems That Disagree"
 const description =
-  "Identity resolution, sync direction, conflict rules and the failures nobody plans for. How CRM integration works across Salesforce, HubSpot and billing."
+  "Identity resolution, sync direction, conflict rules and the failures nobody plans for. CRM integration across Salesforce, HubSpot, GoHighLevel and Stripe."
+
+/**
+ * "What is a CRM integration" and "what is a CRM consultant" both complete in
+ * live search on this seed, and the connect-CRM-and-marketing family is the
+ * strongest buyer phrasing pointing at this page.
+ */
+const faqs = [
+  {
+    q: "What is a CRM integration, really?",
+    a:
+      "Two systems agreeing about a record. The connector is the easy half — most platforms have one. The half that decides whether it works is the mapping: which system owns which field, what happens when both change it, and what the integration does with a record it cannot match. An integration without those answers moves bad data faster.",
+  },
+  {
+    q: "How do you connect a CRM and marketing automation?",
+    a:
+      "Through a shared identity and an agreed direction of travel. The marketing platform usually owns behaviour — opens, clicks, form submissions — and the CRM owns the commercial state of the relationship. Decide that before you connect them, and the sync is straightforward. Decide it afterwards and you get two systems overwriting each other nightly.",
+  },
+  {
+    q: "What does a CRM consultant actually do?",
+    a:
+      "Mostly, decide which system wins. The build work is real and it is learnable. The expensive part is getting the people who disagree about a definition to commit to one, and then making the systems enforce it.",
+  },
+  {
+    q: "Will this work with the tools we already pay for?",
+    a:
+      "Usually, and that is the starting assumption — a migration is a project on top of the project you actually have. Where a tool genuinely cannot do what you need we will say so plainly rather than build a workaround that someone has to maintain forever.",
+  },
+] as const
+
+/**
+ * The specific platform pairs people search for by name. These are sections
+ * here rather than four separate service URLs on purpose: each is a seam on a
+ * page about seams, and splitting them out would produce exactly the thin
+ * per-combination pages the services index is trying not to be.
+ */
+const seams = [
+  {
+    pair: "GoHighLevel → Salesforce",
+    body: "Two systems that both believe they own the contact. The question is which one holds the commercial state of the relationship and which one holds the acquisition record, and the answer decides the sync direction rather than the other way round.",
+    href: "/blog/gohighlevel-to-salesforce-what-to-sync",
+    label: "What to sync, and what not to",
+  },
+  {
+    pair: "Stripe → CRM",
+    body: "The payment is the only place revenue is definitely true. Joining it back to the opportunity — and the opportunity back to the first click — is what turns a CRM forecast into something finance recognises.",
+    href: "/services/revenue-attribution-models",
+    label: "Revenue attribution models",
+  },
+  {
+    pair: "Ad platforms ↔ CRM",
+    body: "Both directions matter. Source in, so the CRM knows where a lead came from; conversions back out, so the ad platform optimises against revenue instead of form fills.",
+    href: "/blog/connect-crm-to-ad-platforms-both-directions",
+    label: "Why it has to run both ways",
+  },
+  {
+    pair: "n8n → warehouse and BI",
+    body: "Where the joins actually happen once more than two systems are involved. The connector is rarely the hard part; the state that says which records have already been processed is.",
+    href: "/services/data-automation-consultant",
+    label: "Data automation consulting",
+  },
+] as const
 
 export const metadata: Metadata = {
   title,
@@ -341,6 +403,38 @@ export default function CrmIntegrationServicesPage() {
                 </div>
               </article>
             </Reveal>
+
+            <Reveal delay={0.05}>
+              <article className="grid gap-x-14 gap-y-6 border-b border-rule py-12 md:grid-cols-[minmax(0,0.36fr)_minmax(0,1fr)] md:py-16">
+                <h2 className="font-display text-[clamp(1.5rem,2.9vw,2.05rem)] leading-none font-semibold tracking-[-0.03em] text-bone md:pt-1">
+                  The seams we are asked about most
+                </h2>
+
+                <div className="min-w-0">
+                  <dl className="border-t border-rule-2">
+                    {seams.map((seam) => (
+                      <div key={seam.pair} className="border-b border-rule py-5 last:border-b-0">
+                        <dt className="font-display text-[17px] font-semibold text-bone">
+                          {seam.pair}
+                        </dt>
+                        <dd className="copy-sm mt-2">
+                          {seam.body}{" "}
+                          <Link
+                            href={seam.href}
+                            className="text-signal underline decoration-rule-2 underline-offset-[5px] transition-colors hover:decoration-signal"
+                          >
+                            {seam.label}
+                          </Link>
+                          .
+                        </dd>
+                      </div>
+                    ))}
+                  </dl>
+                </div>
+              </article>
+            </Reveal>
+
+            <ServiceFaq faqs={faqs} path="/services/crm-integration-services" />
 
             <Reveal delay={0.1}>
               <div className="panel border-l-2 border-l-signal p-6 md:p-8">

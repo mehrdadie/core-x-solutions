@@ -5,11 +5,40 @@ import Header from "@/components/sections/Header"
 import Footer from "@/components/sections/Footer"
 import FinalCta from "@/components/sections/FinalCta"
 import RelatedServices from "@/components/services/RelatedServices"
+import ServiceFaq from "@/components/services/ServiceFaq"
 import Reveal from "@/components/ui/Reveal"
 
 const title = "Revenue Attribution Models | Guide to Revenue Modelling"
 const description =
   "Master revenue attribution models (first-touch, last-touch, linear, time-decay, data-driven). Learn which model works best for your revenue operations."
+
+/**
+ * The calculate / measure / example questions are the ones live search returns
+ * on this topic. The consultant-title form returns nothing, so nothing here is
+ * written for it.
+ */
+const faqs = [
+  {
+    q: "What is an example of revenue attribution?",
+    a:
+      "A customer clicks a paid ad in March, downloads something in April, takes a call in May and is invoiced in July. Revenue attribution is the rule that decides how much of that July invoice is credited to the March click. Every business already has such a rule; most have never written it down, which is why two dashboards disagree.",
+  },
+  {
+    q: "How do you calculate revenue attribution?",
+    a:
+      "Start from the invoice, not the ad pixel. Join the paid amount back to the customer, the customer back to the opportunity, and the opportunity back to the first touch that has a source on it. Then apply a credit rule — first touch, last touch, or a split. The arithmetic is trivial once the joins exist; the joins are the work.",
+  },
+  {
+    q: "Which attribution model should we use?",
+    a:
+      "Whichever one you will still be using in a year. A model is a policy, not a measurement: it encodes what your business has decided to reward. Changing it changes every historical number, so pick the simplest rule your team will accept and hold it steady long enough to compare periods.",
+  },
+  {
+    q: "Do we need a data warehouse for this?",
+    a:
+      "Not always. If everything already lives in one CRM you may not. If spend lives in ad platforms, revenue in a billing system and the relationship in a CRM, you need somewhere to join them, and doing that inside a CRM tends to end badly.",
+  },
+] as const
 
 export const metadata: Metadata = {
   title,
@@ -197,6 +226,8 @@ export default function RevenueAttributionModelsPage() {
                 </div>
               </article>
             </Reveal>
+
+            <ServiceFaq faqs={faqs} path="/services/revenue-attribution-models" />
 
             <Reveal delay={0.15}>
               <div className="panel border-l-2 border-l-signal p-6 md:p-8">

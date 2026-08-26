@@ -108,6 +108,24 @@ the /contact cost answer; leave it null and both read correctly without it. The
 `finalCta.shape` sentence is the screen that works in the meantime — fixed scope
 or retainer, never hourly.
 
+**Keywords are evidence-only, and `docs/keyword-strategy.md` is the record.**
+Four of the site's original head terms — `marketing attribution consultant`,
+`CRM data quality consultant`, `revenue attribution consultant`, `lead to revenue
+reporting` — return nothing when typed into live autocomplete, and two more
+(`fractional head of data`, `systems integration consultant`) return job and
+salary queries. They are out of the root `keywords` array. Search prefers
+`revenue operations consulting` to `consultant`, and problem phrasings to job
+titles, which is why `/services/crm-data-quality` is written about duplicates
+rather than about a role. Read that doc before adding a service page: it lists
+the seven candidate URLs that were rejected and why.
+
+**Service pages carry `FAQPage` markup; the blog always did and they never did.**
+`ServiceFaq.tsx` renders the block and emits the node together so the two cannot
+drift. Nine pages use it. The question wording comes from what live search
+returns, not from invented headings, and the answers have to say something the
+page above them does not. This matters more here than elsewhere because
+`robots.ts` admits every AI crawler on purpose.
+
 **The logo is a hand-built SVG, not an exported asset.**
 `public/core-x-logo.svg` is the CORE-X wordmark, drawn on a 654x100 grid (cap
 height 100, stroke 19, letters at x = 0/122/244/366/484/554). `src/app/icon.svg`

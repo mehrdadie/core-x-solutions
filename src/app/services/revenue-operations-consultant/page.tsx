@@ -5,11 +5,15 @@ import Header from "@/components/sections/Header"
 import Footer from "@/components/sections/Footer"
 import FinalCta from "@/components/sections/FinalCta"
 import RelatedServices from "@/components/services/RelatedServices"
+import ServiceFaq from "@/components/services/ServiceFaq"
 import Reveal from "@/components/ui/Reveal"
 
-const title = "Revenue Operations Consultant | Core-X Solutions"
+/* "Consulting" rather than "consultant": the -ing form is what search actually
+   completes on this head, and the H1 below already used it. The title was the
+   only thing still pointing at the job title, which completes into salaries. */
+const title = "Revenue Operations Consulting | RevOps Consultancy, UK"
 const description =
-  "A RevOps consultancy connecting CRM, marketing, finance and support into one system you can report on. What we own, and how an engagement runs."
+  "RevOps consulting for B2B and SaaS teams, UK and international. We connect CRM, marketing, finance and support into one system you can report on."
 
 export const metadata: Metadata = {
   title,
@@ -167,6 +171,14 @@ const faqs = [
   {
     q: "Can you fix the CRM without touching the rest?",
     a: "Sometimes, and we will tell you when that is true. But the CRM is usually messy because of what flows into it, so cleaning it without fixing the inputs buys about a quarter before it returns.",
+  },
+  {
+    q: "When should we hire RevOps consulting rather than hire in-house?",
+    a: "Hire in-house when the work is continuous and someone will own it every week. Bring somebody in when the work is a decision followed by a build — mapping the systems, settling the definitions, making them enforceable — because that shape has a beginning and an end, and a permanent hire spends their first six months on it before the job they were hired for starts.",
+  },
+  {
+    q: "How much does a RevOps engagement cost?",
+    a: "It is scoped to an outcome and priced as a fixed scope or a retainer, never by the hour, and the number is in writing after the audit rather than guessed before it. If the work turns out to be small enough to bill hourly, we will tell you that instead of quoting for it.",
   },
 ]
 
@@ -488,6 +500,12 @@ export default function RevenueOperationsConsultantPage() {
                   </div>
 
                   <p className="copy mt-6">
+                    This lands most often with B2B and SaaS businesses running paid acquisition
+                    into a CRM, in the UK and internationally — the shape where several systems
+                    each hold part of the same customer and none of them holds all of it.
+                  </p>
+
+                  <p className="copy mt-4">
                     We are the wrong answer if the problem lives entirely inside one tool and one
                     team. Hire someone who knows that tool deeply instead — it will be faster and
                     cheaper, and we will tell you so on the first call.
@@ -496,24 +514,7 @@ export default function RevenueOperationsConsultantPage() {
               </article>
             </Reveal>
 
-            <Reveal delay={0.05}>
-              <article className="grid gap-x-14 gap-y-6 border-b border-rule py-12 md:grid-cols-[minmax(0,0.36fr)_minmax(0,1fr)] md:py-16">
-                <h2 className="font-display text-[clamp(1.5rem,2.9vw,2.05rem)] leading-none font-semibold tracking-[-0.03em] text-bone md:pt-1">
-                  Questions we get asked
-                </h2>
-
-                <div className="min-w-0">
-                  <dl>
-                    {faqs.map((f) => (
-                      <div key={f.q} className="border-b border-rule py-5 last:border-b-0">
-                        <dt className="font-display text-[17px] font-semibold text-bone">{f.q}</dt>
-                        <dd className="copy-sm mt-2">{f.a}</dd>
-                      </div>
-                    ))}
-                  </dl>
-                </div>
-              </article>
-            </Reveal>
+            <ServiceFaq faqs={faqs} path="/services/revenue-operations-consultant" />
 
             <Reveal delay={0.1}>
               <div className="panel border-l-2 border-l-signal p-6 md:p-8">

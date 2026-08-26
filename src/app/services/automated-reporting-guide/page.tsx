@@ -5,11 +5,40 @@ import Header from "@/components/sections/Header"
 import Footer from "@/components/sections/Footer"
 import FinalCta from "@/components/sections/FinalCta"
 import RelatedServices from "@/components/services/RelatedServices"
+import ServiceFaq from "@/components/services/ServiceFaq"
 import Reveal from "@/components/ui/Reveal"
 
 const title = "Automated Reporting | Real-Time Sales & Marketing Dashboards"
 const description =
   "Build automated dashboards for sales, marketing, and leadership. Real-time pipeline visibility, forecasts, and metrics. No more manual reports."
+
+/**
+ * Live search reaches this topic through the "how to automate reporting" and
+ * "weekly reports" phrasings rather than the bare noun, and Power BI and Excel
+ * are the two destinations it names most.
+ */
+const faqs = [
+  {
+    q: "How do you automate weekly reports?",
+    a:
+      "Move the join out of the spreadsheet. The reason a weekly report takes half a day is almost never the formatting — it is that someone is reconciling exports from three systems by hand. Once those are joined once, on a schedule, the report becomes a view over the result and the half-day disappears.",
+  },
+  {
+    q: "How do you automate reporting in Power BI?",
+    a:
+      "Point it at a modelled dataset rather than at the source systems. A Power BI file that queries four platforms directly becomes the thing that breaks whenever one of them changes; a Power BI file over a joined, defined dataset keeps working. The refresh schedule is the last step, not the first.",
+  },
+  {
+    q: "Should we automate the report we have, or fix it first?",
+    a:
+      "Fix it first. Automating a report nobody agrees with produces a wrong number faster and more often. If two people currently reconcile the figure by hand, that reconciliation is a definition nobody has written down, and it has to be written down before it can be encoded.",
+  },
+  {
+    q: "What happens when the automated report breaks?",
+    a:
+      "It should tell you. Most reporting automation in small companies fails silently, which is worse than not having it — the dashboard still renders, just with yesterday's data. Anything we build reports its own state, so a stale number announces itself rather than being discovered in a board meeting.",
+  },
+] as const
 
 export const metadata: Metadata = {
   title,
@@ -216,6 +245,8 @@ export default function AutomatedReportingGuidePage() {
                 </div>
               </article>
             </Reveal>
+
+            <ServiceFaq faqs={faqs} path="/services/automated-reporting-guide" />
 
             <Reveal delay={0.15}>
               <div className="panel border-l-2 border-l-signal p-6 md:p-8">
