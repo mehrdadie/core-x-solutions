@@ -200,7 +200,7 @@ export default function ZohoCrmAutomationPage() {
                     </li>
                     <li className="flex items-start gap-4 border-b border-rule py-3 last:border-b-0">
                       <span aria-hidden className="mt-[9px] h-[7px] w-[7px] shrink-0 bg-signal" />
-                      <span>Ongoing optimization and support</span>
+                      <span>Ongoing optimisation and support</span>
                     </li>
                   </ul>
                 </div>
@@ -218,7 +218,7 @@ export default function ZohoCrmAutomationPage() {
                   >
                     Zoho RevOps expert
                   </Link>{" "}
-                  to audit, configure, and optimize your Zoho instance.
+                  to audit, configure, and optimise your Zoho instance.
                 </p>
                 <Link href="#contact" className="btn btn-primary">
                   Schedule Your Zoho Audit

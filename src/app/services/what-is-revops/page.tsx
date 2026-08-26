@@ -5,11 +5,40 @@ import Header from "@/components/sections/Header"
 import Footer from "@/components/sections/Footer"
 import FinalCta from "@/components/sections/FinalCta"
 import RelatedServices from "@/components/services/RelatedServices"
+import ServiceFaq from "@/components/services/ServiceFaq"
 import Reveal from "@/components/ui/Reveal"
 
 const title = "What is Revenue Operations? Complete RevOps Definition"
 const description =
   "Understand RevOps: the alignment of sales, marketing, and customer success with data, technology, and process. How RevOps drives business growth."
+
+/**
+ * Question wording taken from what live search sources actually return for this
+ * topic, not from headings invented to fill a block. The sales-ops comparison
+ * and the stack question are the two that come back most consistently.
+ */
+const faqs = [
+  {
+    q: "What is the difference between RevOps and sales ops?",
+    a:
+      "Sales ops serves one team: its job is to make the sales organisation work better — territories, quotas, the CRM the reps live in. RevOps serves the seam between teams. Its job is that marketing, sales and finance can state the same number and mean the same thing by it. A company can have excellent sales ops and still have three versions of last month's revenue.",
+  },
+  {
+    q: "What does a typical RevOps tech stack include?",
+    a:
+      "A CRM, a marketing platform, a billing or finance system, and somewhere to join them — increasingly a warehouse, though not always. The list matters far less than the map: which of those systems is allowed to change which fact. Most stacks that do not work are not missing a tool. They are missing that decision.",
+  },
+  {
+    q: "How do you do RevOps in practice?",
+    a:
+      "It starts with an audit and a definitions document rather than a build: every system holding a record, which fields each one owns, and where two systems both think they own the same field. That takes about two to four weeks. What follows — pipelines, routing, reporting — is scoped after it, because scoping it before means guessing.",
+  },
+  {
+    q: "Is RevOps only for SaaS companies?",
+    a:
+      "No. The pattern that makes RevOps useful is several systems holding part of the same customer, which is as true of a services group with three trading brands as it is of a subscription business. SaaS talks about it more because recurring revenue makes the disagreements visible sooner.",
+  },
+] as const
 
 export const metadata: Metadata = {
   title,
@@ -52,9 +81,11 @@ export default function WhatIsRevOpsPage() {
 
             <Reveal delay={0.1}>
               <p className="lead mt-8">
-                RevOps is the alignment of sales, marketing, and customer success operations with
-                data, technology, and process. It's the bridge that connects teams, systems, and
-                strategies into a unified revenue engine.
+                RevOps is the discipline of making sales, marketing, finance and customer success
+                run on one set of definitions, one set of systems and one version of the number.
+                Most of the job is not technology. It is deciding, in writing, which system owns
+                which fact, and getting the people who disagree about a definition to commit to
+                one.
               </p>
             </Reveal>
           </div>
@@ -102,7 +133,7 @@ export default function WhatIsRevOpsPage() {
                       },
                       {
                         pillar: "Process",
-                        desc: "Standardized workflows. Consistent lead qualification, routing, and handoff processes ensure predictability and accountability.",
+                        desc: "Standardised workflows. Consistent lead qualification, routing, and handoff processes ensure predictability and accountability.",
                       },
                       {
                         pillar: "Technology",
@@ -163,8 +194,9 @@ export default function WhatIsRevOpsPage() {
                     </table>
                   </div>
                   <p className="copy-sm">
-                    <strong>The key difference:</strong> Sales ops optimizes the sales team. RevOps
-                    optimizes the entire revenue engine—from lead to customer.
+                    <strong>The key difference:</strong> sales ops makes the sales team work
+                    better. RevOps makes marketing, sales and finance agree &mdash; from the first
+                    click to the paid invoice.
                   </p>
                 </div>
               </article>
@@ -179,9 +211,9 @@ export default function WhatIsRevOpsPage() {
                 <div className="min-w-0">
                   <div className="copy space-y-4 [&_strong]:font-semibold [&_strong]:text-bone">
                     <p>
-                      <strong>3-5x ROI within 18 months.</strong> Companies with mature RevOps see
-                      faster pipeline growth, higher close rates, and lower customer acquisition
-                      costs.
+                      <strong>The arguments stop.</strong> When marketing, sales and finance have
+                      agreed what a qualified lead is and what counts as revenue, the weekly meeting
+                      is about the business rather than about whose export is right.
                     </p>
                     <p>
                       <strong>Faster decision-making.</strong> Real-time dashboards and unified data
@@ -192,7 +224,7 @@ export default function WhatIsRevOpsPage() {
                       duplicate work, conflicting numbers, and finger-pointing between teams.
                     </p>
                     <p>
-                      <strong>Predictable revenue.</strong> Standardized processes mean you can
+                      <strong>Predictable revenue.</strong> Standardised processes mean you can
                       forecast accurately and scale without chaos.
                     </p>
                   </div>
@@ -226,7 +258,7 @@ export default function WhatIsRevOpsPage() {
                             "Implement",
                             "Connect your systems, build automations, train your team.",
                           ],
-                          ["Optimize", "Monitor, iterate, and evolve as your business grows."],
+                          ["Optimise", "Monitor, iterate, and evolve as your business grows."],
                         ].map(([step, desc], i) => (
                           <li key={i} className="copy-sm">
                             <strong>{step}:</strong> {desc}
@@ -256,6 +288,7 @@ export default function WhatIsRevOpsPage() {
                 </div>
               </article>
             </Reveal>
+            <ServiceFaq faqs={faqs} path="/services/what-is-revops" />
           </div>
         </section>
 

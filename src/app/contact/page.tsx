@@ -1,6 +1,6 @@
 import type { Metadata } from "next"
 import Link from "next/link"
-import { profile } from "@/content/profile"
+import { engagementFloor, profile } from "@/content/profile"
 import Header from "@/components/sections/Header"
 import Footer from "@/components/sections/Footer"
 import Reveal from "@/components/ui/Reveal"
@@ -40,6 +40,31 @@ const helpful = [
   {
     label: "Any deadline that is real",
     body: "A board meeting, an audit, a migration date. Real deadlines shape scope; invented ones only shape the quote.",
+  },
+]
+
+/**
+ * The three things people ask before they write, answered here rather than two
+ * clicks away on a service page. Deliberately shorter than the full answers on
+ * /services/revenue-operations-consultant, which this links to — two pages
+ * carrying the same paragraph verbatim is duplicate content, and the version a
+ * buyer needs before writing an email is the short one.
+ */
+const asked = [
+  {
+    q: "How long does this take?",
+    a: "The audit and the definitions work is usually two to four weeks. What follows depends on how many systems are involved, which is why it is scoped after the audit rather than before it.",
+  },
+  {
+    q: "What does it cost?",
+    a:
+      "Engagements are scoped to an outcome and priced as a fixed scope or a retainer, never by the hour." +
+      (engagementFloor ? ` The floor is ${engagementFloor}.` : "") +
+      " You get the number in writing before anything is built. If the work is small enough to bill hourly, we will tell you that instead of quoting for it.",
+  },
+  {
+    q: "What happens when it ends?",
+    a: "You own all of it — the pipelines, the definitions document, the dashboards and the documentation. If we have built something only we can maintain, we have done it wrong.",
   },
 ]
 
@@ -173,6 +198,43 @@ export default function ContactPage() {
                 shows how it is reasoned about.
               </p>
             </div>
+          </div>
+        </section>
+
+        <section className="section border-t border-rule">
+          <div className="shell">
+            <Reveal>
+              <h2 className="font-display text-[clamp(1.6rem,3vw,2.1rem)] leading-[1.12] font-semibold tracking-[-0.028em] text-bone">
+                Asked before most first emails
+              </h2>
+            </Reveal>
+
+            <dl className="mt-9 border-t border-rule-2">
+              {asked.map((item, i) => (
+                <Reveal key={item.q} delay={0.04 * (i + 1)}>
+                  <div className="grid gap-2 border-b border-rule py-6 md:grid-cols-[minmax(0,0.4fr)_minmax(0,1fr)] md:gap-12">
+                    <dt className="font-display text-[1.05rem] leading-snug font-semibold text-bone">
+                      {item.q}
+                    </dt>
+                    <dd className="text-[16.5px] leading-[1.68] text-bone-2">{item.a}</dd>
+                  </div>
+                </Reveal>
+              ))}
+            </dl>
+
+            <Reveal delay={0.2}>
+              <p className="copy-sm mt-7">
+                The longer answers — whether you need a warehouse, whether this works with the tools
+                you already pay for — are on the{" "}
+                <Link
+                  href="/services/revenue-operations-consultant"
+                  className="text-signal underline decoration-rule-2 underline-offset-[5px] transition-colors hover:decoration-signal"
+                >
+                  revenue operations consulting
+                </Link>{" "}
+                page.
+              </p>
+            </Reveal>
           </div>
         </section>
       </main>

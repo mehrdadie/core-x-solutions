@@ -9,7 +9,7 @@ import Reveal from "@/components/ui/Reveal"
 
 const title = "Win/Loss Analysis | Learn From Every Deal"
 const description =
-  "Analyze your wins and losses. Identify why you win, why you lose, where to compete. Turn deal outcomes into strategy."
+  "Analyse your wins and losses. Identify why you win, why you lose, where to compete. Turn deal outcomes into strategy."
 
 export const metadata: Metadata = {
   title,
@@ -53,7 +53,7 @@ export default function WinLossAnalysisPage() {
             <Reveal delay={0.1}>
               <p className="lead mt-8">
                 Why did you lose to a competitor? Why did you win that deal? The data is in your
-                CRM. Extract it, analyze it, improve.
+                CRM. Extract it, analyse it, improve.
               </p>
             </Reveal>
           </div>
@@ -71,7 +71,7 @@ export default function WinLossAnalysisPage() {
                   <div className="copy space-y-4 [&_strong]:font-semibold [&_strong]:text-bone">
                     <p>
                       <strong>Capture the reasons.</strong> When a deal closes or is lost, log why
-                      in a standardized field: "lost to competitor X", "budget cut", "scope
+                      in a standardised field: "lost to competitor X", "budget cut", "scope
                       misalignment".
                     </p>
                     <p>

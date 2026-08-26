@@ -10,7 +10,7 @@ import CollectionSchema from "@/components/CollectionSchema"
 
 const title = `Services | ${profile.name}`
 const description =
-  "Revenue operations, CRM integration, data automation and reporting. Browse the full index of services, platform guides and operating playbooks."
+  "Three jobs: make the numbers agree, make the leads get owned, make the reporting run without a person. The full index of services, platform guides and operating playbooks sits underneath them."
 
 export const metadata: Metadata = {
   title,
@@ -46,6 +46,38 @@ const sections = (() => {
 })()
 
 const total = serviceCount
+
+/**
+ * The three jobs the practice is actually hired for. The index below is long
+ * because the keyword surface is long, and a reader who meets thirty-one
+ * numbered rows before meeting an argument reads the page as a catalogue —
+ * which invites a request for a quote on one line item rather than an
+ * engagement. These three sit above it and say what is being sold; the index is
+ * how the work divides once it has started.
+ */
+const jobs = [
+  {
+    n: "01",
+    symptom: "The numbers do not match",
+    body: "Two systems hold the same fact and disagree about it, so the forecast is argued rather than read. The work is deciding which system owns which field, writing the definitions down, and making the rest follow them.",
+    href: "/services/revenue-operations-consultant",
+    label: "Revenue operations consulting",
+  },
+  {
+    n: "02",
+    symptom: "The leads do not get owned",
+    body: "A form is submitted, and somewhere between the ad platform, the CRM and whoever was meant to call, the lead stops being anybody's. The work is joining those systems so a record cannot fall between them.",
+    href: "/services/crm-integration-services",
+    label: "CRM integration services",
+  },
+  {
+    n: "03",
+    symptom: "The report is still a Monday export",
+    body: "The weekly numbers exist, but only because a person spends half a day making them exist. The work is moving that job to pipelines that run whether or not anyone remembers.",
+    href: "/services/data-automation-consultant",
+    label: "Data automation consulting",
+  },
+] as const
 
 /**
  * The symptom is what people arrive with; the page is the diagnosis. Set on the
@@ -84,23 +116,24 @@ export default function ServicesIndexPage() {
               <div>
                 <Reveal delay={0.05}>
                   <h1 className="font-display text-[clamp(2.3rem,5.6vw,4.2rem)] leading-[1.02] font-semibold tracking-[-0.035em]">
-                    What we do,
+                    Three jobs.
                     <br />
-                    <span className="text-bone-3">and how it fits together.</span>
+                    <span className="text-bone-3">The rest is how they divide.</span>
                   </h1>
                 </Reveal>
 
                 <Reveal delay={0.1}>
                   <p className="lead mt-8 max-w-lg">
-                    Most engagements start with{" "}
+                    Companies arrive with a symptom, and it is nearly always one of three. We take
+                    the engagement at that level, usually starting with{" "}
                     <Link
                       href="/services/revenue-operations-consultant"
                       className="text-signal underline decoration-rule-2 underline-offset-[5px] transition-colors hover:decoration-signal"
                     >
                       revenue operations consulting
                     </Link>{" "}
-                    and narrow from there. Everything below covers one piece of that —
-                    routing, attribution, forecasting, retention — or the platform it runs on.
+                    and narrowing from there. The {total} pages below are how the work divides once
+                    it has started — not a menu to buy from by the hour.
                   </p>
                 </Reveal>
               </div>
@@ -135,34 +168,60 @@ export default function ServicesIndexPage() {
           </div>
         </section>
 
-        {/* The one page that matters most, pulled out of the list. */}
-        <section aria-label="Start here" className="border-b border-rule bg-ground-2">
-          <div className="shell grid gap-x-16 gap-y-7 py-10 lg:grid-cols-[minmax(0,1fr)_auto] lg:items-center lg:py-11">
-            <div>
-              <p className="tag text-signal">Start here</p>
-              <h2 className="mt-3 font-display text-[clamp(1.5rem,2.8vw,2.05rem)] leading-[1.08] font-semibold tracking-[-0.03em]">
-                Revenue operations consulting
-              </h2>
-              <p className="copy mt-3 max-w-xl">
-                If you are not sure which of the {total} below applies, this is the overview the
-                rest hangs off — what RevOps covers, what we own, and what changes.
-              </p>
-            </div>
+        {/* The three jobs, before the index. */}
+        <section aria-label="What we are hired for" className="border-b border-rule bg-ground-2">
+          <div className="shell py-12 md:py-14">
+            <p className="tag text-signal">What we are hired for</p>
 
-            <div className="flex flex-wrap gap-3">
-              <Link href="/services/revenue-operations-consultant" className="btn btn-primary">
-                Read the overview
-              </Link>
-              <Link href="/#contact" className="btn btn-secondary">
-                Discuss a project
-              </Link>
-            </div>
+            <ol className="mt-8 grid gap-px bg-rule md:grid-cols-3">
+              {jobs.map((job) => (
+                <li key={job.n} className="bg-ground-2 md:p-1">
+                  <Link href={job.href} className="group flex h-full flex-col p-5 md:p-6">
+                    <span className="font-mono text-[12px] tracking-[0.11em] text-bone-3 transition-colors group-hover:text-signal">
+                      {job.n}
+                    </span>
+                    <h2 className="mt-3 font-display text-[clamp(1.3rem,2.4vw,1.7rem)] leading-[1.1] font-semibold tracking-[-0.03em] text-bone transition-colors group-hover:text-signal">
+                      &ldquo;{job.symptom}&rdquo;
+                    </h2>
+                    <p className="copy-sm mt-4">{job.body}</p>
+                    <span className="tag mt-6 flex items-baseline gap-3 text-signal">
+                      <span
+                        aria-hidden
+                        className="h-px w-7 shrink-0 translate-y-[-4px] bg-signal transition-all duration-300 group-hover:w-11"
+                      />
+                      {job.label}
+                    </span>
+                  </Link>
+                </li>
+              ))}
+            </ol>
+
+            <p className="copy-sm mt-9 max-w-2xl">
+              If none of the three is quite it, the{" "}
+              <Link
+                href="/services/revenue-operations-consultant"
+                className="text-signal underline decoration-rule-2 underline-offset-[5px] transition-colors hover:decoration-signal"
+              >
+                revenue operations overview
+              </Link>{" "}
+              is what the rest hangs off, and{" "}
+              <Link
+                href="/contact"
+                className="text-signal underline decoration-rule-2 underline-offset-[5px] transition-colors hover:decoration-signal"
+              >
+                one email
+              </Link>{" "}
+              is faster than reading {total} pages to find out.
+            </p>
           </div>
         </section>
 
         {/* The index proper. Group header stays put while its rows scroll. */}
         <section className="section">
-          <div className="shell border-t border-rule-2">
+          <div className="shell">
+            <p className="tag border-b border-rule-2 pb-3">
+              How the work divides &mdash; {total} guides
+            </p>
             {sections.map((group, gi) => (
               <Reveal key={group.id} delay={gi === 0 ? 0 : 0.04}>
                 <div

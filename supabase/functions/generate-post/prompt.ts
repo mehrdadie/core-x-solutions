@@ -42,6 +42,7 @@ export type SiteContext = {
  */
 export const SERVICE_PAGES = [
   "/services/revenue-operations-consultant",
+  "/services/fractional-revops",
   "/services/what-is-revops",
   "/services/crm-integration-services",
   "/services/data-automation-consultant",

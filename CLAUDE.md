@@ -21,6 +21,7 @@ are not automatically shared — the repos are independent.
 | Repo | `mehrdadie/core-x-solutions`, production branch `main` |
 | Hosting | Vercel project `core-x-solutions`, auto-deploys on push to `main` |
 | Blog data | Supabase project `core-x.solutions` (ref `yuiqypblvacmrnztutkg`) |
+| Analytics | PostHog EU, project `core-x.solutions` (id `254770`) |
 | Registrar | GoDaddy. A `@` → `76.76.21.21`, CNAME `www` → `cname.vercel-dns.com.` |
 
 Environment variables live in Vercel, not the repo: `NEXT_PUBLIC_SITE_URL`,
@@ -57,6 +58,110 @@ palette in five places, not one.
 Post diagrams are the exception that proves it: `Diagram.tsx` uses the token
 classes rather than literals, which is what lets one component read correctly on
 both the dark ground and the paper ground the article body sits on.
+
+**The site is `en_GB`, and the service pages were not.** Hand-written copy uses
+`-ise`/`-our`/`-yse` (`summarises`, `standardised`, `behaviour`) and prices in
+sterling; the keyword-built service pages arrived with `optimize`, `Behaviors`
+and dollar examples. They have been corrected. The slug
+`/services/sales-methodology-standardization` keeps its US spelling — it is a
+URL, and changing it would need a redirect for nothing.
+
+**Nothing on a service page states a statistic it cannot source.** Four pages
+carried claims of the "3-5x ROI within 18 months" / "20% of your revenue is at
+risk — that is industry average" kind. They are gone. Where a section needed a
+number, it now names the metric the work moves rather than predicting how far it
+moves it. A figure on this site should be traceable to an engagement or to the
+reader's own system.
+
+**Case visuals that show one path are labelled `Illustrative`.** The case-02
+timeline, the case-03 bars and the case-06 transcript sit next to numbers that
+were measured across a whole engagement. `Reconstructed` in `CaseVisuals.tsx`
+marks the three, which is what protects the measured figures beside them — an
+unlabelled example next to a real number invites a sceptical reader to discount
+both.
+
+**The primary CTA goes to `/contact`, not to a `mailto:`.** Hero, header and the
+`FinalCta` button all land on the page that says what to put in the first email
+and what happens after it. The four symptom openers in `FinalCta` stay as
+`mailto:` links — they carry their own subject line, which is the qualification.
+`#contact` on service pages is fine: those pages render `FinalCta`, so the
+anchor resolves on the page the reader is already on.
+
+**The practice is named, and still speaks as "we".** `principal` in
+`profile.ts` carries Mehrdad Fashami's name and title; /about opens a "Who you
+would be working with" section on it, the fact table names him, the blog index
+carries his byline and `StructuredData.tsx` emits a `Person` node the
+`Organization` points at as `founder`. The company voice stays — that is the fork
+decision, and naming who does the work is not the same as unwinding it. `photo`
+and `record` are null and every use site guards on null, so the page claims no
+photograph and no career history it cannot support.
+
+**The services index leads with three jobs, not thirty-one.** The numbered index
+is still there and no URL was given up, but it now sits under a block naming what
+the practice is actually hired for — the numbers do not match, the leads do not
+get owned, the report is still a Monday export — each pointing at one of the
+three core pages. A reader who meets thirty-one rows before meeting an argument
+asks for a quote on a line item.
+
+**There is a place for a price, and it is empty.** `engagementFloor` in
+`profile.ts` is null. Set it to a string and it appears in the closing CTA and in
+the /contact cost answer; leave it null and both read correctly without it. The
+`finalCta.shape` sentence is the screen that works in the meantime — fixed scope
+or retainer, never hourly.
+
+**Keywords are evidence-only, and `docs/keyword-strategy.md` is the record.**
+Four of the site's original head terms — `marketing attribution consultant`,
+`CRM data quality consultant`, `revenue attribution consultant`, `lead to revenue
+reporting` — return nothing when typed into live autocomplete, and two more
+(`fractional head of data`, `systems integration consultant`) return job and
+salary queries. They are out of the root `keywords` array. Search prefers
+`revenue operations consulting` to `consultant`, and problem phrasings to job
+titles, which is why `/services/crm-data-quality` is written about duplicates
+rather than about a role. Read that doc before adding a service page: it lists
+the seven candidate URLs that were rejected and why.
+
+**Service pages carry `FAQPage` markup; the blog always did and they never did.**
+`ServiceFaq.tsx` renders the block and emits the node together so the two cannot
+drift. Nine pages use it. The question wording comes from what live search
+returns, not from invented headings, and the answers have to say something the
+page above them does not. This matters more here than elsewhere because
+`robots.ts` admits every AI crawler on purpose.
+
+**The site is measured, and it still sets no cookies.** `posthog-js` runs on
+every page via `src/instrumentation-client.ts` — Next's own pre-hydration hook,
+chosen because the alternative (a provider using `useSearchParams`) would opt the
+entire statically prerendered tree out of prerendering and fail the build. Route
+changes are caught by `capture_pageview: 'history_change'`, so no React hook is
+involved and every page stays `○ Static`.
+
+`cookieless_mode: 'always'` is the decision, set in `src/lib/analytics.ts`.
+Nothing is written to the visitor's device — no cookie, no localStorage — so
+there is no consent banner and every visitor is measured rather than the fraction
+who would click Accept. The cost is that identity does not survive the day, so
+returning-visitor and multi-session analysis do not exist. Switching that constant
+to `'on_reject'` buys them back but requires a banner **and** a second rewrite of
+`/privacy`, which currently describes the cookieless arrangement specifically.
+
+Cookieless has to be on at both ends. `cookieless_server_hash_mode` is set to
+Stateful on PostHog project 254770; if it is ever turned off, every event from
+the site is dropped at ingestion and the site looks dead rather than broken.
+
+**Ingestion is proxied through this origin.** `/ingest/*` rewrites to PostHog's EU
+endpoints in `next.config.js`, so requests are first-party and domain blocklists
+do not delete a share of an audience that blocks trackers well above average. It
+is not an evasion — a blocked script stays blocked, and `respect_dnt` is on. The
+proxy is why `skipTrailingSlashRedirect: true` is set: posthog-js POSTs to paths
+ending in a slash, and Next's default 308 would turn those into redirects and lose
+the events. The side effect is that `/about/` and `/about` both return 200, which
+is safe only because every page sets an explicit `alternates.canonical`. Dropping
+a canonical from a page is now an expensive mistake.
+
+**`/privacy` and `/terms` describe the analytics exactly, including replay.** They
+used to say the site ran none. Session replay is disclosed in plain words rather
+than buried, Do Not Track is honoured and named as the opt-out, and retention (30
+days for recordings, 12 months for events) is stated. If the capture config
+changes, those pages change with it — an inaccurate privacy policy on a
+consultancy that sells data governance is worse than no analytics.
 
 **The logo is a hand-built SVG, not an exported asset.**
 `public/core-x-logo.svg` is the CORE-X wordmark, drawn on a 654x100 grid (cap
@@ -144,10 +249,13 @@ broken deploy.
   optional field renders **only when non-null** — so /privacy and /terms
   currently make no claim they cannot support. Fill them in and both pages pick
   them up; nothing else needs editing
-- The About slot carries a stock team photo (`public/team-placeholder.webp`).
-  Those are not Core-X people. Same problem as the testimonials: a visitor reads
-  the slot as "this is who you would be working with". Replace with a real photo,
-  or restore the `CX` mark, before this reaches `main`
+- The About slot no longer carries the stock team photo — it was deleted, and the
+  slot falls back to the wordmark. Set `principal.photo` to a real photograph of
+  Mehrdad and both /about and the home slot pick it up
+- `principal.record` is null. One line of checkable history (years, previous
+  roles) is the cheapest remaining credibility gain on the site
+- `engagementFloor` is null. A stated floor is what makes an hourly brief
+  self-select out; the shape sentence alone does not
 - `www.core-x.solutions` certificate — verify it issued; set apex as primary domain
 - Blog images still load from the personal site's Supabase storage bucket
 - `profile.linkedin` is null until a company LinkedIn page exists; every use site

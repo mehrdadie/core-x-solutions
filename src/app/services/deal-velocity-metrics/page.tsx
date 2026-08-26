@@ -103,7 +103,7 @@ export default function DealVelocityMetricsPage() {
                       your normal.
                     </p>
                     <p>
-                      <strong>By deal size:</strong> $10K deals close in 20 days. $100K deals in 60
+                      <strong>By deal size:</strong> &pound;10k deals close in 20 days. &pound;100k deals in 60
                       days. Set realistic targets.
                     </p>
                   </div>
@@ -113,7 +113,7 @@ export default function DealVelocityMetricsPage() {
 
             <Reveal delay={0.1}>
               <div className="panel border-l-2 border-l-signal p-6 md:p-8">
-                <p className="font-semibold text-bone mb-3">Track and optimize deal velocity</p>
+                <p className="font-semibold text-bone mb-3">Track and optimise deal velocity</p>
                 <p className="copy mb-5">
                   Get velocity dashboards and recommendations to accelerate your sales cycle.
                 </p>

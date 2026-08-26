@@ -1,32 +1,42 @@
 import Image from "next/image"
-import { about, profile } from "@/content/profile"
+import { about, principal, profile } from "@/content/profile"
 import Reveal from "@/components/ui/Reveal"
 
 /**
- * PLACEHOLDER. These are not Core-X people — the photograph is stock, standing
- * in until there is a real one. It carries the same weight on the page as a
- * genuine team photo would, which is exactly why it cannot ship to production
- * as-is: a visitor reads this slot as "this is who you would be working with".
- * Same argument as the testimonials in `profile.ts`, recorded in CLAUDE.md.
+ * The slot used to carry a stock photograph of seven people who do not work
+ * here. That was flagged as unshippable while the site was anonymous; naming
+ * the principal on /about settled it, because a visitor reading "the work is
+ * done by Mehrdad Fashami" and then meeting a group shot draws exactly the
+ * wrong conclusion about which of them he is.
  *
- * The frame follows the source's 5:4 rather than the 4:5 the slot used to
- * reserve, because cropping a seven-person group to portrait cuts the two
- * people at the edges out of the photograph entirely.
- *
- * next/image here rather than the plain <img> used for the logo and post
- * covers: this is a local raster, so there is no remote host to allow-list and
- * no fixed-aspect vector to preserve — the optimizer's job (AVIF/WebP,
- * per-breakpoint resizing) is worth having.
+ * The mark goes here instead until there is a real photograph. `principal.photo`
+ * is the switch: set it and this renders the person, leave it null and the page
+ * makes no claim about who anybody is. No stock imagery either way.
  */
 function CompanyImage() {
+  if (principal.photo) {
+    return (
+      <div className="relative aspect-[4/5] w-full overflow-hidden bg-paper-2">
+        <Image
+          src={principal.photo}
+          alt={principal.photoAlt ?? principal.name}
+          fill
+          sizes="(min-width: 1024px) 420px, 100vw"
+          className="object-cover"
+        />
+      </div>
+    )
+  }
+
   return (
-    <div className="relative aspect-[5/4] w-full overflow-hidden bg-paper-2">
-      <Image
-        src="/team-placeholder.webp"
-        alt="Seven colleagues gathered on a rooftop terrace, four standing behind three seated."
-        fill
-        sizes="(min-width: 1024px) 420px, 100vw"
-        className="object-cover"
+    <div className="flex aspect-[5/4] w-full items-center justify-center border border-rule bg-ground-2">
+      <img
+        src="/core-x-logo.svg"
+        alt=""
+        aria-hidden
+        width={654}
+        height={100}
+        className="w-[62%] max-w-[260px] opacity-70"
       />
     </div>
   )

@@ -9,7 +9,7 @@ import Reveal from "@/components/ui/Reveal"
 
 const title = "Sales Compensation Plan Design | Align Incentives"
 const description =
-  "Design sales comp plans aligned with RevOps goals. Base pay, commission structure, SPIFs. Motivate the right behaviors."
+  "Design sales comp plans aligned with RevOps goals. Base pay, commission structure, SPIFs. Motivate the right behaviours."
 
 export const metadata: Metadata = {
   title,
@@ -46,13 +46,13 @@ export default function CompensationPlanAlignmentPage() {
 
             <Reveal delay={0.05}>
               <h1 className="mt-10 font-display text-[clamp(2.3rem,5.6vw,4.2rem)] leading-[1.02] font-semibold tracking-[-0.035em]">
-                Compensation Plan Alignment: Motivate the Right Behaviors
+                Compensation Plan Alignment: Motivate the Right Behaviours
               </h1>
             </Reveal>
 
             <Reveal delay={0.1}>
               <p className="lead mt-8">
-                Sales compensation drives behavior. Misaligned comp incentivizes the wrong things.
+                Sales compensation drives behaviour. Misaligned comp incentivises the wrong things.
                 Align comp with strategy. Get results.
               </p>
             </Reveal>
@@ -83,7 +83,7 @@ export default function CompensationPlanAlignmentPage() {
                     </p>
                     <p>
                       <strong>SPIFs (special incentives):</strong> Time-limited bonuses for specific
-                      behaviors: new logos, expansion, territory growth.
+                      behaviours: new logos, expansion, territory growth.
                     </p>
                   </div>
                 </div>

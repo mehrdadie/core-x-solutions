@@ -73,12 +73,13 @@ export default function RevenueRetentionStrategyPage() {
                       <strong>NRR = (Beginning ARR + Expansion - Churn) / Beginning ARR</strong>
                     </p>
                     <p>
-                      Example: Start with $1M. Add $300K expansion. Lose $100K to churn. NRR = ($1M
-                      + $300K - $100K) / $1M = 120%
+                      Example: start with &pound;1m. Add &pound;300k expansion. Lose &pound;100k to
+                      churn. NRR = (&pound;1m + &pound;300k &minus; &pound;100k) / &pound;1m = 120%
                     </p>
                     <p>
-                      Every 1% increase in NRR compounds exponentially. Move from 100% to 120% and
-                      your revenue growth accelerates 2x.
+                      NRR compounds, which is why it is the number to watch. A business holding
+                      120% grows off its existing base before a single new logo is signed. A
+                      business at 90% has to sell that gap back every year before it grows at all.
                     </p>
                   </div>
                 </div>
@@ -97,17 +98,17 @@ export default function RevenueRetentionStrategyPage() {
                       {
                         lever: "1. Reduce Churn",
                         desc: "Prevent cancellations. Health scoring, CS proactive outreach, retention playbooks.",
-                        impact: "1-2% improvement",
+                        impact: "Measured on: gross revenue retention",
                       },
                       {
                         lever: "2. Drive Expansion",
                         desc: "Upsell and cross-sell existing customers. Expansion playbooks, scoring, sales involvement.",
-                        impact: "5-10% improvement",
+                        impact: "Measured on: expansion revenue per account",
                       },
                       {
                         lever: "3. Increase Seat Expansion",
                         desc: "Grow seat count in existing accounts. Activity tracking, usage-based pricing, incentives.",
-                        impact: "3-5% improvement",
+                        impact: "Measured on: seats per account over time",
                       },
                     ].map((item) => (
                       <div key={item.lever} className="border-l-2 border-signal pl-6">

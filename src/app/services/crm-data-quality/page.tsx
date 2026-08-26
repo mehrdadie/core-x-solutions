@@ -5,11 +5,40 @@ import Header from "@/components/sections/Header"
 import Footer from "@/components/sections/Footer"
 import FinalCta from "@/components/sections/FinalCta"
 import RelatedServices from "@/components/services/RelatedServices"
+import ServiceFaq from "@/components/services/ServiceFaq"
 import Reveal from "@/components/ui/Reveal"
 
 const title = "CRM Data Quality Standards | Clean Your Database"
 const description =
   "Establish CRM data quality standards. Duplicate removal, field validation, audit trails. Keep your CRM clean and trustworthy."
+
+/**
+ * Live search returns this topic as a problem query, not as a job title —
+ * "CRM data quality issues", "CRM data quality dashboard", "what is CRM data".
+ * The title form returns nothing, so these answer the problem.
+ */
+const faqs = [
+  {
+    q: "What actually causes bad CRM data?",
+    a:
+      "Almost never careless typing. It is usually two systems allowed to write the same field, an import that ran without survivorship rules, or a form that creates a record every time somebody submits it. Cleaning the records without fixing whichever of those is true buys about a quarter before the duplicates come back.",
+  },
+  {
+    q: "How do you measure CRM data quality?",
+    a:
+      "Pick the checks that map to a decision somebody makes: duplicate rate on accounts, percentage of open opportunities with an owner, contacts with a bounced or missing email, records with no activity in ninety days. Each one is a query you can run again next month. A single quality score nobody can decompose does not survive its first argument.",
+  },
+  {
+    q: "Can automation replace a data quality consultant?",
+    a:
+      "Automation holds a standard; it cannot decide one. Deduplication tools need survivorship rules — which record wins when two disagree about an address — and that is a business decision about which system is authoritative. Once it is made and written down, the enforcement should absolutely be automatic, and we build it that way.",
+  },
+  {
+    q: "How long does a CRM data quality project take?",
+    a:
+      "The audit and the rules are usually two to four weeks. The remediation depends entirely on how many systems feed the CRM and how bad the duplicate situation is, which is why we scope that part after the audit rather than quoting it blind.",
+  },
+] as const
 
 export const metadata: Metadata = {
   title,
@@ -82,8 +111,11 @@ export default function CrmDataQualityPage() {
                       their own spreadsheets. The system becomes useless.
                     </p>
                     <p>
-                      <strong>Cost: 20% of your revenue is at risk.</strong> That's industry average
-                      for data quality issues.
+                      <strong>The cost is real, and it is local.</strong> There is no industry
+                      average worth quoting: what bad records cost you depends on how much of your
+                      revenue depends on a record being right. Count the deals that went to the
+                      wrong owner last quarter and the renewals that went to a dead address. That
+                      number is yours, and it is the only one worth arguing from.
                     </p>
                   </div>
                 </div>
@@ -129,6 +161,8 @@ export default function CrmDataQualityPage() {
                 </div>
               </article>
             </Reveal>
+
+            <ServiceFaq faqs={faqs} path="/services/crm-data-quality" />
 
             <Reveal delay={0.1}>
               <div className="panel border-l-2 border-l-signal p-6 md:p-8">

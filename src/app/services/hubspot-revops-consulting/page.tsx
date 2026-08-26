@@ -7,7 +7,7 @@ import FinalCta from "@/components/sections/FinalCta"
 import RelatedServices from "@/components/services/RelatedServices"
 import Reveal from "@/components/ui/Reveal"
 
-const title = "HubSpot RevOps Consulting | Implementation & Optimization"
+const title = "HubSpot RevOps Consulting | Implementation & Optimisation"
 const description =
   "Expert HubSpot RevOps consulting. Workflows, properties, custom objects, lead routing, and automation. Unlock HubSpot's full RevOps potential."
 
@@ -46,7 +46,7 @@ export default function HubSpotRevOpsConsultingPage() {
 
             <Reveal delay={0.05}>
               <h1 className="mt-10 font-display text-[clamp(2.3rem,5.6vw,4.2rem)] leading-[1.02] font-semibold tracking-[-0.035em]">
-                HubSpot RevOps Consulting: Optimize Your Instance
+                HubSpot RevOps Consulting: Optimise Your Instance
               </h1>
             </Reveal>
 
@@ -112,7 +112,7 @@ export default function HubSpotRevOpsConsultingPage() {
                       {
                         step: 1,
                         title: "Instance Audit",
-                        desc: "Document all workflows, properties, integrations, and custom objects. Identify gaps and optimization opportunities.",
+                        desc: "Document all workflows, properties, integrations, and custom objects. Identify gaps and optimisation opportunities.",
                       },
                       {
                         step: 2,
@@ -198,7 +198,7 @@ export default function HubSpotRevOpsConsultingPage() {
                     </li>
                     <li className="flex items-start gap-4 border-b border-rule py-3 last:border-b-0">
                       <span aria-hidden className="mt-[9px] h-[7px] w-[7px] shrink-0 bg-signal" />
-                      <span>Ongoing optimization and maintenance</span>
+                      <span>Ongoing optimisation and maintenance</span>
                     </li>
                   </ul>
                 </div>
@@ -207,7 +207,7 @@ export default function HubSpotRevOpsConsultingPage() {
 
             <Reveal delay={0.15}>
               <div className="panel border-l-2 border-l-signal p-6 md:p-8">
-                <p className="font-semibold text-bone mb-3">Get HubSpot optimized for RevOps</p>
+                <p className="font-semibold text-bone mb-3">Get HubSpot optimised for RevOps</p>
                 <p className="copy mb-5">
                   Work with our{" "}
                   <Link

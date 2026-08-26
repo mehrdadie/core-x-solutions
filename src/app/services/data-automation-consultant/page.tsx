@@ -5,11 +5,40 @@ import Header from "@/components/sections/Header"
 import Footer from "@/components/sections/Footer"
 import FinalCta from "@/components/sections/FinalCta"
 import RelatedServices from "@/components/services/RelatedServices"
+import ServiceFaq from "@/components/services/ServiceFaq"
 import Reveal from "@/components/ui/Reveal"
 
 const title = "Data Automation Consultant | Pipelines That Run Without You"
 const description =
-  "What to automate, what to leave alone, and how to build pipelines that fail loudly rather than quietly. Scheduling, idempotency, validation and alerting."
+  "Workflow and data automation consulting — n8n, native platform workflows, scheduled jobs. What to automate, what to leave alone, and how to fail loudly."
+
+/**
+ * The tool-shaped questions here — buy software or hire someone, which stack,
+ * what it costs — are the ones live search returns around workflow automation
+ * and n8n. Answering them honestly is also the screen against the cheap gig.
+ */
+const faqs = [
+  {
+    q: "Do I need a consultant, or can I just buy workflow automation software?",
+    a:
+      "Buy the software if the process is settled and lives in one tool. Bring somebody in when the process crosses systems, when the answer depends on which system is right, or when the automation has to survive a person leaving. The tool is rarely the hard part; deciding what it should do, and making that decision durable, is.",
+  },
+  {
+    q: "Which tools do you build automation on?",
+    a:
+      "Whatever you already run, wherever that is sensible — n8n, native platform workflows, scheduled jobs against a warehouse. The tool is a choice about who can maintain it afterwards, not a matter of principle. If the answer is that nobody on your side can, we have chosen wrong.",
+  },
+  {
+    q: "How much does it cost to hire someone for this?",
+    a:
+      "Engagements are scoped to an outcome and priced as a fixed scope or a retainer, never by the hour, and the number is in writing before anything is built. If the work is small enough to bill hourly, we will say so rather than quote for it — that is a different market and there are people who serve it better.",
+  },
+  {
+    q: "What happens when the engagement ends?",
+    a:
+      "You own the pipelines, the definitions document, the dashboards and the documentation. An engagement is finished when someone on your side has changed the thing unaided. If we have built something only we can maintain, we have done it wrong.",
+  },
+] as const
 
 export const metadata: Metadata = {
   title,
@@ -289,6 +318,8 @@ export default function DataAutomationConsultantPage() {
                 </div>
               </article>
             </Reveal>
+
+            <ServiceFaq faqs={faqs} path="/services/data-automation-consultant" />
 
             <Reveal delay={0.1}>
               <div className="panel border-l-2 border-l-signal p-6 md:p-8">

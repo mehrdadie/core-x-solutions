@@ -40,6 +40,11 @@ const raw: Array<Omit<ServiceGroup, "items"> & { items: [string, string, string]
         "Data automation consulting",
         "Pipelines and syncs that run without you",
       ],
+      [
+        "/services/fractional-revops",
+        "Fractional RevOps",
+        "The same judgement, bought monthly",
+      ],
       ["/services/what-is-revops", "What is RevOps?", "The discipline, explained plainly"],
     ],
   },

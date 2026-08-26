@@ -64,7 +64,7 @@ export default function Header() {
               {item.label}
             </a>
           ))}
-          <a href="/#contact" className="btn btn-primary btn-sm">
+          <a href="/contact" className="btn btn-primary btn-sm">
             Discuss a project
           </a>
         </nav>
@@ -94,7 +94,7 @@ export default function Header() {
               {item.label}
             </a>
           ))}
-          <a href="/#contact" onClick={() => setOpen(false)} className="btn btn-primary mt-6 w-full">
+          <a href="/contact" onClick={() => setOpen(false)} className="btn btn-primary mt-6 w-full">
             Discuss a project
           </a>
         </div>

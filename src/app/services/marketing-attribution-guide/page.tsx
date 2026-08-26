@@ -5,11 +5,39 @@ import Header from "@/components/sections/Header"
 import Footer from "@/components/sections/Footer"
 import FinalCta from "@/components/sections/FinalCta"
 import RelatedServices from "@/components/services/RelatedServices"
+import ServiceFaq from "@/components/services/ServiceFaq"
 import Reveal from "@/components/ui/Reveal"
 
 const title = "Marketing Attribution Guide | Track Campaign ROI"
 const description =
-  "Master marketing attribution. Track which campaigns and channels drive qualified leads. Measure ROI accurately and optimize your marketing spend."
+  "Master marketing attribution. Track which campaigns and channels drive qualified leads. Measure ROI accurately and optimise your marketing spend."
+
+/**
+ * Live search completes this topic on models / tools / platforms / software and
+ * on B2B and account-based variants. The consultant-title seed returns nothing.
+ */
+const faqs = [
+  {
+    q: "What does attribution work actually involve?",
+    a:
+      "Less modelling than people expect and far more plumbing. The job is making sure the acquisition source survives every hop between the ad click and the invoice — the form, the CRM record, the opportunity, the payment. Once the source is still attached at the end, the choice of model is an afternoon's argument, not a project.",
+  },
+  {
+    q: "How long does a B2B marketing attribution implementation take?",
+    a:
+      "The audit and the definitions are usually two to four weeks. How long the joins take after that depends on how many systems hold part of the journey and whether any of them ever captured the source in the first place — which is the thing the audit is for.",
+  },
+  {
+    q: "Why do our ad platform and our CRM report different numbers?",
+    a:
+      "Because they are answering different questions. The ad platform counts conversions it can attribute within its own window and its own definition of a conversion; the CRM counts records a human moved to a stage. Neither is lying. They do not need to be identical, they need to be explicable, and that is a definitions job.",
+  },
+  {
+    q: "Is B2B attribution different from B2C?",
+    a:
+      "Longer cycles, more people on the buying side, and revenue that arrives as an invoice rather than a checkout. That means account-level joins rather than person-level ones, and it means the model has to survive a deal that started nine months before it closed.",
+  },
+] as const
 
 export const metadata: Metadata = {
   title,
@@ -53,7 +81,7 @@ export default function MarketingAttributionGuidePage() {
             <Reveal delay={0.1}>
               <p className="lead mt-8">
                 Stop guessing which campaigns drive revenue. Master marketing attribution to measure
-                true ROI, optimize budgets, and build credibility with leadership.
+                true ROI, optimise budgets, and build credibility with leadership.
               </p>
             </Reveal>
           </div>
@@ -170,7 +198,10 @@ export default function MarketingAttributionGuidePage() {
                           • Lead quality visibility: know which channels deliver highest-intent
                           leads
                         </li>
-                        <li>• Budget optimization: shift 20%+ of spend to highest-ROI channels</li>
+                        <li>
+                          • Budget decisions with a source: which channels produced revenue, not
+                          which produced leads
+                        </li>
                         <li>
                           • Forecast confidence: accurate attribution → accurate pipeline forecasts
                         </li>
@@ -180,6 +211,8 @@ export default function MarketingAttributionGuidePage() {
                 </div>
               </article>
             </Reveal>
+
+            <ServiceFaq faqs={faqs} path="/services/marketing-attribution-guide" />
 
             <Reveal delay={0.15}>
               <div className="panel border-l-2 border-l-signal p-6 md:p-8">

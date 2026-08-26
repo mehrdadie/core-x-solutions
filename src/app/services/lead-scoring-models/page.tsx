@@ -9,7 +9,7 @@ import Reveal from "@/components/ui/Reveal"
 
 const title = "Lead Scoring Models | Identify High-Intent Prospects"
 const description =
-  "Learn lead scoring models. Behavioral scoring, demographic scoring, predictive scoring. Identify the leads most likely to close."
+  "Learn lead scoring models. Behavioural scoring, demographic scoring, predictive scoring. Identify the leads most likely to close."
 
 export const metadata: Metadata = {
   title,
@@ -108,7 +108,7 @@ export default function LeadScoringModelsPage() {
                         cons: "Misses engagement signals",
                       },
                       {
-                        model: "Behavioral Scoring",
+                        model: "Behavioural Scoring",
                         desc: "Score based on engagement: email opens, website visits, form fills, demo requests.",
                         pros: "Real-time, responsive to intent",
                         cons: "Decays if engagement stops",

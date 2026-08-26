@@ -9,7 +9,7 @@ import Reveal from "@/components/ui/Reveal"
 
 const title = "Sales Cycle Analysis | Understand Your Deal Velocity"
 const description =
-  "Analyze your sales cycle. Identify bottlenecks, predict close dates, reduce time-to-close. Data-driven sales forecasting starts here."
+  "Analyse your sales cycle. Identify bottlenecks, predict close dates, reduce time-to-close. Data-driven sales forecasting starts here."
 
 export const metadata: Metadata = {
   title,
@@ -78,8 +78,8 @@ export default function SalesCycleAnalysisPage() {
                       they get stuck? That's your bottleneck.
                     </p>
                     <p>
-                      <strong>Win rate by deal size.</strong> $10K deals might close 60% of the
-                      time. $100K deals might close 30% of the time. Adjust your targets
+                      <strong>Win rate by deal size.</strong> &pound;10k deals might close 60% of
+                      the time. &pound;100k deals might close 30% of the time. Adjust your targets
                       accordingly.
                     </p>
                     <p>
@@ -87,7 +87,7 @@ export default function SalesCycleAnalysisPage() {
                       cash. If 30 days, your forecast should assume 30-day lag.
                     </p>
                     <p>
-                      Learn to analyze and improve your cycle with a{" "}
+                      Learn to analyse and improve your cycle with a{" "}
                       <Link
                         href="/services/revenue-operations-consultant"
                         className="text-signal underline decoration-rule-2 underline-offset-[5px] transition-colors hover:decoration-signal"

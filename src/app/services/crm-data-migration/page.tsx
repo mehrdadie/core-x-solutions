@@ -76,7 +76,7 @@ export default function CrmDataMigrationPage() {
                       },
                       {
                         phase: "Phase 2: Data Cleaning (2-4 weeks)",
-                        desc: "Remove duplicates. Validate fields. Standardize formats. Quality check.",
+                        desc: "Remove duplicates. Validate fields. Standardise formats. Quality check.",
                       },
                       {
                         phase: "Phase 3: Migration Test (1-2 weeks)",

@@ -13,6 +13,22 @@ const SIG = "var(--color-signal)"
 
 import type { WorkflowSpec } from "@/content/profile"
 
+/**
+ * A footnote for the visuals that show one path through the data rather than an
+ * aggregate. The timeline, the bars and the transcript are drawn from the live
+ * record but they are single illustrative cases, and they sit inches away from
+ * numbers that were measured across the whole engagement. Saying which is which
+ * protects the measured ones — an unlabelled example next to a real figure
+ * invites a sceptical reader to discount both.
+ */
+function Reconstructed({ children }: { children: React.ReactNode }) {
+  return (
+    <p className="mt-4 border-t border-rule-2 pt-3.5 text-[13px] leading-[1.6] text-bone-3">
+      <span className="tag">Illustrative</span> <span className="ml-1.5">{children}</span>
+    </p>
+  )
+}
+
 function Frame({ children, label }: { children: React.ReactNode; label: string }) {
   return (
     <figure className="border border-rule">
@@ -137,6 +153,11 @@ export function CustomerVisual() {
           </li>
         ))}
       </ol>
+
+      <Reconstructed>
+        One customer&rsquo;s path through the joined record, redrawn from it. The counts above
+        it &mdash; sources joined, calls matched &mdash; are measured across the engagement.
+      </Reconstructed>
     </Frame>
   )
 }
@@ -178,6 +199,11 @@ export function AttributionVisual() {
         Same spend, redistributed. The channel with the largest budget was not the channel
         producing the revenue.
       </p>
+
+      <Reconstructed>
+        Bars show the shape of the finding, not the client&rsquo;s spend. The figures are
+        withheld under confidentiality; the ranking between channels is as it was.
+      </Reconstructed>
     </Frame>
   )
 }
@@ -303,6 +329,11 @@ export function CallsVisual() {
       <p className="mt-4 text-[14px] text-bone-3">
         Written back to the record the same day. The model tags; the rep decides.
       </p>
+
+      <Reconstructed>
+        A representative call, paraphrased. Real transcripts are the client&rsquo;s. The
+        classification categories and the coverage figure are from the live system.
+      </Reconstructed>
     </Frame>
   )
 }

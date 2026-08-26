@@ -1,14 +1,19 @@
-import { finalCta, hero, profile } from "@/content/profile"
+import Link from "next/link"
+import { engagementFloor, finalCta, hero, profile } from "@/content/profile"
 import Reveal from "@/components/ui/Reveal"
 
 /**
  * The close. Left-aligned and oversized rather than the centred hero-echo every
  * landing page ends on, with the four openers set as a list you can click into
  * — the email writes its own subject line.
+ *
+ * The primary button goes to /contact rather than opening a blank compose
+ * window. A mailto with the subject "Project enquiry" asks the reader to do the
+ * qualifying; /contact tells them what to put in the first email and what
+ * happens after it, which is the part that makes a serious buyer reply. The
+ * four symptom openers stay as mailto links — those already carry their subject.
  */
 export default function FinalCta() {
-  const mailto = `mailto:${profile.email}?subject=${encodeURIComponent("Project enquiry")}`
-
   return (
     <section id="contact" className="section border-t border-rule bg-pit">
       <div className="shell grid gap-14 lg:grid-cols-[minmax(0,1fr)_minmax(0,0.95fr)] lg:gap-20">
@@ -23,10 +28,17 @@ export default function FinalCta() {
 
             <p className="lead prose-w mt-8">{finalCta.body}</p>
 
+            {/* The floor is appended rather than written into `shape`, so the
+                sentence stays true while `engagementFloor` is null. */}
+            <p className="prose-w mt-5 text-[15.5px] leading-[1.65] text-bone-3">
+              {finalCta.shape}
+              {engagementFloor ? ` Engagements start at ${engagementFloor}.` : ""}
+            </p>
+
             <div className="mt-10 flex flex-wrap items-center gap-3">
-              <a href={mailto} className="btn btn-primary">
+              <Link href="/contact" className="btn btn-primary">
                 {finalCta.primary}
-              </a>
+              </Link>
               {profile.linkedin ? (
                 <a
                 href={profile.linkedin}

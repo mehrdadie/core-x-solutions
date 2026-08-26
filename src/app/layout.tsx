@@ -41,23 +41,36 @@ export const metadata: Metadata = {
    * describes itself — see docs/keyword-research.md. "Growth systems" stays the
    * brand line in the hero; it has no search demand, so it is not a keyword.
    */
+  /**
+   * Only phrases a live search source actually completes.
+   *
+   * The list this replaced was built from the brief rather than from evidence,
+   * and four of its entries return nothing at all when typed — `marketing
+   * attribution consultant`, `CRM data quality consultant`, `revenue attribution
+   * consultant` and `lead to revenue reporting`. Two more, `fractional head of
+   * data` and `systems integration consultant`, complete almost entirely into
+   * salary and job-description queries, which is a different audience wearing
+   * the same words. `revenue operations consulting` is the form that completes;
+   * `consultancy` is the form the brand uses. Both are here on purpose.
+   */
   keywords: [
+    "revenue operations consulting",
+    "revenue operations consulting services",
     "revenue operations consultancy",
     "RevOps consultancy",
-    "revenue operations consultant",
-    "marketing attribution consultant",
-    "fractional head of data",
-    "freelance data consultant",
-    "CRM data quality consultant",
-    "lead to revenue reporting",
-    "revenue attribution",
-    "marketing analytics",
+    "RevOps agency",
+    "RevOps agency UK",
+    "fractional RevOps",
+    "B2B RevOps consultancy",
+    "revenue attribution models",
+    "marketing attribution models",
+    "CRM integration consultant",
     "CRM architecture",
-    "workflow automation consultant",
-    "systems integration consultant",
-    "n8n",
-    "BigQuery",
-    "Power BI",
+    "CRM data quality",
+    "reporting automation",
+    "marketing analytics consulting services",
+    "n8n automation consultant",
+    "Power BI consultancy UK",
     "Salesforce",
     "GoHighLevel",
     "Stripe",
