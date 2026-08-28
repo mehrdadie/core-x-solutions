@@ -22,6 +22,7 @@ are not automatically shared — the repos are independent.
 | Hosting | Vercel project `core-x-solutions`, auto-deploys on push to `main` |
 | Blog data | Supabase project `core-x.solutions` (ref `yuiqypblvacmrnztutkg`) |
 | Analytics | PostHog EU, project `core-x.solutions` (id `254770`) |
+| Email | ImprovMX catch-all → `mehrdadfashami@gmail.com` (see `docs/email-setup.md`) |
 | Registrar | GoDaddy. A `@` → `76.76.21.21`, CNAME `www` → `cname.vercel-dns.com.` |
 
 Environment variables live in Vercel, not the repo: `NEXT_PUBLIC_SITE_URL`,
