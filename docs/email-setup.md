@@ -12,6 +12,13 @@ All emails sent to any address at `@core-x.solutions` (including typos and non-e
 - Reliable forwarding
 - Works with GoDaddy's nameservers
 
+## Status
+
+✅ **MX records configured** (2026-08-28)
+- `mx1.improvmx.com` (Priority 10) — Added
+- `mx2.improvmx.com` (Priority 20) — Added
+- Awaiting DNS propagation (5-15 minutes typical)
+
 ---
 
 ## Setup Steps
