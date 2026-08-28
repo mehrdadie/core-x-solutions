@@ -44,7 +44,7 @@ export const metadata: Metadata = {
 }
 
 export default function PrivacyPage() {
-  const { registeredName, companyNumber, jurisdiction, address, contactEmail } = legalEntity
+  const { registeredName, companyNumber, jurisdiction, address, contactEmail, phone } = legalEntity
 
   return (
     <LegalDocument
@@ -61,6 +61,7 @@ export default function PrivacyPage() {
             jurisdiction ? ` in ${jurisdiction}` : "",
             ".",
             address ? ` Registered address: ${address}.` : "",
+            phone ? ` Phone: ${phone}.` : "",
           ].join("")}
         </p>
         <p>

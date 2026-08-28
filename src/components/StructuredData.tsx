@@ -1,4 +1,5 @@
 import { about, principal, profile } from "@/content/profile"
+import { legalEntity } from "@/content/legal"
 
 /** Organization + ProfessionalService schema, rendered once on the home page. */
 export default function StructuredData() {
@@ -29,6 +30,8 @@ export default function StructuredData() {
            stays empty until there are real profiles to point at — inventing
            them would be worse than omitting the property. */
         sameAs: profile.linkedin ? [profile.linkedin] : undefined,
+        ...(legalEntity.phone ? { telephone: legalEntity.phone } : {}),
+        ...(legalEntity.address ? { address: { "@type": "PostalAddress", streetAddress: legalEntity.address } } : {}),
         knowsAbout: about.tags,
         /* The practice is one person, and the entity graph should say so. This
            is what lets a search engine connect the company, the byline on the

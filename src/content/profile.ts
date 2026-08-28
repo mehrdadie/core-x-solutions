@@ -9,7 +9,7 @@ export const profile = {
   shortRole: "Systems Consultancy",
   email: "hello@core-x.solutions",
   /** Set once the company LinkedIn page exists; every use site guards on null. */
-  linkedin: null as string | null,
+  linkedin: "https://www.linkedin.com/company/core-x-solutions/" as string | null,
   /** Set NEXT_PUBLIC_SITE_URL at build time; this is the fallback. */
   url: process.env.NEXT_PUBLIC_SITE_URL ?? "https://core-x.solutions",
   location: "Working internationally",
