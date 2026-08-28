@@ -1,5 +1,6 @@
 import Link from "next/link"
 import { profile } from "@/content/profile"
+import { legalEntity } from "@/content/legal"
 
 export default function Footer() {
   return (
@@ -10,6 +11,19 @@ export default function Footer() {
             {profile.name}
           </p>
           <p className="mt-2 max-w-xs text-[15px] leading-snug text-bone-3">{profile.role}</p>
+          {legalEntity.address ? (
+            <p className="mt-4 max-w-xs text-[13px] leading-snug text-bone-3">
+              {legalEntity.address}
+            </p>
+          ) : null}
+          {legalEntity.phone ? (
+            <a
+              href={`tel:${legalEntity.phone.replace(/\s+/g, "")}`}
+              className="mt-1 inline-block font-mono text-[13px] tracking-[0.04em] text-bone-3 transition-colors hover:text-signal"
+            >
+              {legalEntity.phone}
+            </a>
+          ) : null}
         </div>
 
         <nav aria-label="Footer" className="flex flex-col gap-3 md:items-end">
