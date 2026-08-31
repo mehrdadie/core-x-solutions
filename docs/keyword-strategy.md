@@ -131,7 +131,31 @@ Set it in `profile.ts` and the answers that reference it pick it up.
   consultant`, `premier revops agency`, `marketing attribution llc` and similar
   are other companies' names, not queries a buyer types about us.
 
-## 6. Related
+## 6. Blog clusters published against this evidence
+
+The blog draws from `content_topics`, the same evidence base rather than a
+separate keyword list. Four clusters were written and published by hand on
+31 August 2026, chosen because they were the highest-priority pending clusters
+that no existing post already answered:
+
+| Cluster | Focus keyword | Why it was next |
+|---|---|---|
+| `revops-consultant` | `revops consulting` | The head term §2 establishes as the one that completes. Twenty-one posts, none on it. |
+| `gohighlevel-basics` | `Go High Level` | Only a Salesforce-sync post existed; the platform itself was unexplained. |
+| `attribution-tools` | `marketing attribution tools` | §2's rule that tool and software forms complete where consultant forms return nothing. Existing attribution posts cover models, not selection. |
+| `power-bi-reporting` | `how to connect crm to power bi` | One of the few UK-local commercial completions in the set (§3), and distinct from the thin `reporting-automation` post. |
+
+Their topic rows are marked `written` with `post_id` set, so the generator will
+not produce a second article against the same cluster. **Do that by hand for any
+post written outside the pipeline** — an unmarked cluster is a duplicate waiting
+to be generated.
+
+Cannibalisation is the constraint that picked these four as much as priority was.
+`revops-definition` (`revops meaning`) is still pending and deliberately so: it
+would compete with the `revops consulting` post for the same intent. Two pages
+splitting one query is worse than one page answering it.
+
+## 7. Related
 
 `docs/backlinks.md` in this repo covers the two-site problem — this site and
 mehrdadfashami.com target the same terms with the same person and the same case

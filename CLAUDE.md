@@ -270,6 +270,14 @@ broken deploy.
 - Generated drafts need reviewing before they are worth anything — see
   `docs/auto-blog.md`, and read the note there before switching the pipeline to
   publish automatically
+- **`REVALIDATE_SECRET` is not set in Vercel.** Confirmed live on 31 August 2026:
+  publishing a post fires `notify_revalidate`, which returns
+  `503 REVALIDATE_SECRET is not configured on this deployment`. This is the
+  documented degraded path rather than a breakage — the post is reachable at its
+  own URL immediately, but `/blog` and `/sitemap.xml` lag by up to their
+  ten-minute ISR window. IndexNow is unaffected and returned 200. Fix by setting
+  the variable in Vercel to match `revalidate_secret` in Vault; see
+  `docs/auto-blog.md`
 
 ## Related repo
 
