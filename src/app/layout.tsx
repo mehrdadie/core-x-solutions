@@ -108,8 +108,11 @@ export const viewport: Viewport = {
 }
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
+  // en-GB, not en. The copy is -ise/-our/-yse and prices in sterling, the
+  // OpenGraph block above already declares en_GB, and this is one of the few
+  // locale signals an origin can send without a country-code TLD.
   return (
-    <html lang="en" className={`${archivo.variable} ${instrument.variable} ${jetbrains.variable}`}>
+    <html lang="en-GB" className={`${archivo.variable} ${instrument.variable} ${jetbrains.variable}`}>
       <body className="antialiased">{children}</body>
     </html>
   )
