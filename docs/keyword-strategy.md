@@ -157,6 +157,13 @@ splitting one query is worse than one page answering it.
 
 ## 7. Related
 
+`docs/search-console-baseline.md` is the first measurement against this
+strategy, from nine days of data. It supports §2 — the queries that surfaced are
+problem and definition phrasings, with no job, salary or certification queries
+among them — and it sharpens §6: the RevOps *definitional* cluster is where the
+demonstrated impressions are, which is an argument for making
+`/services/what-is-revops` competitive rather than for writing a post beside it.
+
 `docs/backlinks.md` in this repo covers the two-site problem — this site and
 mehrdadfashami.com target the same terms with the same person and the same case
 studies behind them. Read it before acting on any of the above with off-site

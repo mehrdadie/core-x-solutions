@@ -280,8 +280,13 @@ broken deploy.
 - **The eight case studies are word-for-word identical on both live sites**, each
   claiming the work as its own. Same objection as the testimonials, and these are
   rendered. Fix before any link building — `docs/backlinks.md` has the options
-- Neither Google Search Console nor Bing Webmaster Tools is set up, so indexation
-  is currently unknown
+- Google Search Console **is** set up — the property carries data from 21 August
+  2026. The first export is analysed in `docs/search-console-baseline.md`; read
+  it before drawing any conclusion from click counts, because the clicks in it
+  are navigational rather than demand. **Bing Webmaster Tools is still not set
+  up**, which is the odd gap: IndexNow already pings Bing on every publish and
+  returns 200, so the submission half works and only the measurement half is
+  missing
 - Generated drafts need reviewing before they are worth anything — see
   `docs/auto-blog.md`, and read the note there before switching the pipeline to
   publish automatically
