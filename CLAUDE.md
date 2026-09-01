@@ -227,6 +227,21 @@ plus the post's own path stale. Needs `REVALIDATE_SECRET` in Vercel matching
 silent no-op that degrades to the old ten-minute behaviour rather than failing
 the publish.
 
+**Both ends are set, and the chain was verified end to end on 1 September 2026.**
+A POST carrying the Vault value returns
+`200 {"revalidated":["/blog","/sitemap.xml","/blog/<slug>"]}`. Probe it without
+breaking anything by sending a deliberately wrong secret: `401` means the
+variable is set, `503` means it is not — the endpoint fails closed before it
+checks the value, so the two are easy to tell apart.
+
+One trap that cost an hour: an environment variable added in Vercel does not
+reach the running deployment until something redeploys. Between publishing and
+that redeploy, `/sitemap.xml` served the list frozen at the *previous build* —
+not a stale ISR window but the build-time output, which had been four days old.
+`/blog` revalidated normally throughout, so the two listings disagreed. If a new
+post is on `/blog` but missing from the sitemap, check when production last
+built before assuming the ISR window is at fault.
+
 ## Publishing a post
 
 Insert a row into `public.posts` with `status = 'published'` and a
@@ -270,14 +285,9 @@ broken deploy.
 - Generated drafts need reviewing before they are worth anything — see
   `docs/auto-blog.md`, and read the note there before switching the pipeline to
   publish automatically
-- **`REVALIDATE_SECRET` is not set in Vercel.** Confirmed live on 31 August 2026:
-  publishing a post fires `notify_revalidate`, which returns
-  `503 REVALIDATE_SECRET is not configured on this deployment`. This is the
-  documented degraded path rather than a breakage — the post is reachable at its
-  own URL immediately, but `/blog` and `/sitemap.xml` lag by up to their
-  ten-minute ISR window. IndexNow is unaffected and returned 200. Fix by setting
-  the variable in Vercel to match `revalidate_secret` in Vault; see
-  `docs/auto-blog.md`
+- `REVALIDATE_SECRET` was unset in Vercel until 1 September 2026 and is now set
+  and verified — kept here only so the symptom is recognisable if it recurs. See
+  the publishing section above for how to probe it
 
 ## Related repo
 
