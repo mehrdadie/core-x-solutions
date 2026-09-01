@@ -227,6 +227,21 @@ plus the post's own path stale. Needs `REVALIDATE_SECRET` in Vercel matching
 silent no-op that degrades to the old ten-minute behaviour rather than failing
 the publish.
 
+**Both ends are set, and the chain was verified end to end on 1 September 2026.**
+A POST carrying the Vault value returns
+`200 {"revalidated":["/blog","/sitemap.xml","/blog/<slug>"]}`. Probe it without
+breaking anything by sending a deliberately wrong secret: `401` means the
+variable is set, `503` means it is not — the endpoint fails closed before it
+checks the value, so the two are easy to tell apart.
+
+One trap that cost an hour: an environment variable added in Vercel does not
+reach the running deployment until something redeploys. Between publishing and
+that redeploy, `/sitemap.xml` served the list frozen at the *previous build* —
+not a stale ISR window but the build-time output, which had been four days old.
+`/blog` revalidated normally throughout, so the two listings disagreed. If a new
+post is on `/blog` but missing from the sitemap, check when production last
+built before assuming the ISR window is at fault.
+
 ## Publishing a post
 
 Insert a row into `public.posts` with `status = 'published'` and a
@@ -265,11 +280,19 @@ broken deploy.
 - **The eight case studies are word-for-word identical on both live sites**, each
   claiming the work as its own. Same objection as the testimonials, and these are
   rendered. Fix before any link building — `docs/backlinks.md` has the options
-- Neither Google Search Console nor Bing Webmaster Tools is set up, so indexation
-  is currently unknown
+- Google Search Console **is** set up — the property carries data from 21 August
+  2026. The first export is analysed in `docs/search-console-baseline.md`; read
+  it before drawing any conclusion from click counts, because the clicks in it
+  are navigational rather than demand. **Bing Webmaster Tools is still not set
+  up**, which is the odd gap: IndexNow already pings Bing on every publish and
+  returns 200, so the submission half works and only the measurement half is
+  missing
 - Generated drafts need reviewing before they are worth anything — see
   `docs/auto-blog.md`, and read the note there before switching the pipeline to
   publish automatically
+- `REVALIDATE_SECRET` was unset in Vercel until 1 September 2026 and is now set
+  and verified — kept here only so the symptom is recognisable if it recurs. See
+  the publishing section above for how to probe it
 
 ## Related repo
 
