@@ -11,6 +11,12 @@ cp .env.example .env.local   # then fill in the values
 npm run dev
 ```
 
+## Checks
+
+Run `npm test` on Node.js 22.18+ (or Node.js 24+) for sitemap regressions.
+The tests intercept database requests; no Supabase credentials are needed.
+Run `npx tsc --noEmit` and `npm run build` for application verification.
+
 ## Environment
 
 | Variable | Purpose |
